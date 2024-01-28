@@ -13,7 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     { import = "sonntag.plugins" },
-    -- { import = "sonntag.plugins.lsp" },
+    { import = "sonntag.plugins.lsp" },
 },
 {
     install = { colorscheme = { "nord" } },

@@ -1,8 +1,8 @@
 local opt = vim.opt
 
 opt.autoindent = true
--- opt.backspace = "indent,eol,start"
-opt.backspace = "eol"  -- testing this out for now
+opt.backspace = "indent,eol,start"
+-- opt.backspace = "eol"  -- testing this out for now
 opt.clipboard:append("unnamedplus")  -- syncs system clipboard with Neovim's
 opt.cursorline = true  -- puts a line under the cursorline
 opt.expandtab = true  -- no tabs!
