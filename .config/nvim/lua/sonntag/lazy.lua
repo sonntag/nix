@@ -18,4 +18,5 @@ require("lazy").setup({
 {
     install = { colorscheme = { "nord" } },
     change_detection = { notify = false },
+    ui = { border = "single" },
 })
