@@ -1,6 +1,7 @@
 return {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    enabled = false,
     config = function()
         local nvimtree = require("nvim-tree")
 
@@ -8,9 +9,15 @@ return {
         vim.g.loaded_netrwPlugin = 1
 
         nvimtree.setup({
+            renderer = {
+                group_empty = true,
+            },
             view = {
                 width = 50,
                 -- centralized_selection = true,
+            },
+            update_focused_file = {
+                enabled = true,
             },
         })
 

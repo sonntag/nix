@@ -11,12 +11,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-    { import = "sonntag.plugins" },
-    { import = "sonntag.plugins.lsp" },
-},
-{
-    install = { colorscheme = { "nord" } },
-    change_detection = { notify = false },
-    ui = { border = "single" },
-})
+require("lazy").setup(
+    "sonntag.plugins",
+    {
+        install = { colorscheme = { "nord" } },
+        ui = { border = "single" },
+    }
+)

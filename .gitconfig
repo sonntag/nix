@@ -1,0 +1,19 @@
+[user]
+    name = Justin Sonntag
+    email = sonntag@amperity.com
+
+[init]
+    defaultBranch = main
+
+[diff]
+    tool = difftastic
+    external = difft
+
+[difftool]
+    prompt = false
+
+[difftool "difftastic"]
+    cmd = difft --display inline --color always "$LOCAL" "$REMOTE"
+
+[pager]
+    difftool = true

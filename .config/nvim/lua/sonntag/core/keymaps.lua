@@ -1,7 +1,5 @@
 local keymap = vim.keymap
-
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+local wk = require('which-key')
 
 keymap.set({"n", "v" }, "<Space>", "<Nop>", { silent = true })
 
@@ -13,12 +11,18 @@ keymap.set("n", "<M-o>", "o<ESC>", { desc = "Insert a new line down in normal mo
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 keymap.set("n", "<leader>j", "J", { desc = "Join lines" })
 keymap.set("n", "<leader>qq", "<cmd> qa <CR>", { desc = "Close neovim" })
+keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
 
 -- Maintaining windown splits
-keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
-keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
-keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
-keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
+wk.register({
+    s = {
+        name = "Window Splits",
+        e = { "<C-w>=", "Make splits equal size" },
+        h = { "<c-w>s", "Split window horizontally" },
+        v = { "<C-w>v", "Split window vertically" },
+        x = { "<cmd>close<CR>", "Close current split" },
+    }
+}, { prefix = "<leader>" })
 
 -- Line movement improvements
 keymap.set("n", "J", "5j", { desc = "Move 5 lines down" })
