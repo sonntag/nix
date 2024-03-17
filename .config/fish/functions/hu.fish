@@ -1,4 +1,4 @@
-function hu --wraps=ls --description 'alias hu ls'
-  ls $argv
+function hu --wraps=ls --wraps=eza --description 'alias hu eza'
+  eza $argv
         
 end

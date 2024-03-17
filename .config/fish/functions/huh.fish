@@ -1,4 +1,4 @@
-function huh --wraps=lal --wraps=la --description 'alias huh la'
-  la $argv
+function huh --wraps=lal --wraps=la --wraps='eza -la' --description 'alias huh eza -la'
+  eza -la $argv
         
 end

@@ -1,7 +1,6 @@
 return {
     "Olical/conjure",
     ft = { "clojure", "fennel" },
-    enabled = false,
     dependencies = {
         {
             "PaterJason/cmp-conjure",
