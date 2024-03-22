@@ -13,6 +13,9 @@ if test -f /opt/homebrew/Caskroom/mambaforge/base/bin/conda
 end
 # <<< conda initialize <<<
 
+# Source the Nord theme dircolors
+eval (gdircolors -c ~/.dircolors)
+
 # Initialize zoxide and alias it to d
 zoxide init --cmd cd fish | source
 

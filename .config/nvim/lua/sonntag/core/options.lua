@@ -6,8 +6,8 @@ opt.backspace = "indent,eol,start"
 opt.clipboard:append("unnamedplus")  -- syncs system clipboard with Neovim's
 opt.cursorline = true  -- puts a line under the cursorline
 opt.expandtab = true  -- no tabs!
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"  -- trying out code folding but will probably remove
+--opt.foldmethod = "expr"
+--opt.foldexpr = "nvim_treesitter#foldexpr()"  -- trying out code folding but will probably remove
 opt.ignorecase = true  -- ignore case for autocomplete in command mode
 opt.mouse = "a"
 opt.number = true

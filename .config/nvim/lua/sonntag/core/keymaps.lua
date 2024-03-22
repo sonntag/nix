@@ -1,5 +1,7 @@
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ','
+
 local keymap = vim.keymap
-local wk = require('which-key')
 
 keymap.set({"n", "v" }, "<Space>", "<Nop>", { silent = true })
 
@@ -12,17 +14,6 @@ keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 keymap.set("n", "<leader>j", "J", { desc = "Join lines" })
 keymap.set("n", "<leader>qq", "<cmd> qa <CR>", { desc = "Close neovim" })
 keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
-
--- Maintaining windown splits
-wk.register({
-    s = {
-        name = "Window Splits",
-        e = { "<C-w>=", "Make splits equal size" },
-        h = { "<c-w>s", "Split window horizontally" },
-        v = { "<C-w>v", "Split window vertically" },
-        x = { "<cmd>close<CR>", "Close current split" },
-    }
-}, { prefix = "<leader>" })
 
 -- Line movement improvements
 keymap.set("n", "J", "5j", { desc = "Move 5 lines down" })

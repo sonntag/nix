@@ -17,3 +17,5 @@
 
 [pager]
     difftool = true
+[rebase]
+	updateRefs = true
