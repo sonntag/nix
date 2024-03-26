@@ -17,5 +17,9 @@
 
 [pager]
     difftool = true
+
 [rebase]
 	updateRefs = true
+
+[push]
+	autoSetupRemote = true
