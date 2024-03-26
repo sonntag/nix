@@ -1,6 +1,5 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR --export AWS_PROFILE:dev
 SETUVAR --export BAT_THEME:Nord
 SETUVAR --export EDITOR:nvim
 SETUVAR --export GIT_AUTHOR_EMAIL:justin\x2esonntag\x40gmail\x2ecom
