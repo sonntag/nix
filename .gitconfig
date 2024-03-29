@@ -5,6 +5,9 @@
 [init]
     defaultBranch = main
 
+[core]
+    excludesfile = /Users/justin/.gitignore
+
 [diff]
     tool = difftastic
     external = difft
@@ -19,7 +22,7 @@
     difftool = true
 
 [rebase]
-	updateRefs = true
+    updateRefs = true
 
 [push]
-	autoSetupRemote = true
+    autoSetupRemote = true
