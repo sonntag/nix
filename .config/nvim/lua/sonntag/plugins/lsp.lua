@@ -35,6 +35,9 @@ return {
 			opts.desc = "Smart rename"
 			keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
 
+			opts.desc = "Code Actions"
+			keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
+
 			opts.desc = "Show buffer diagnostics"
 			keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
 
@@ -64,6 +67,7 @@ return {
 		lspconfig.clojure_lsp.setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+			root_dir = require("lspconfig.util").root_pattern(".git"),
 		})
 
 		lspconfig.gopls.setup({

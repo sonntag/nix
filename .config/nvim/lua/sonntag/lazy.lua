@@ -12,5 +12,5 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("sonntag.plugins", {
-	install = { colorscheme = { "nord" } },
+	install = { colorscheme = { "rose-pine" } },
 })

@@ -4,15 +4,27 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"debugloop/telescope-undo.nvim",
+		"nvim-telescope/telescope-ui-select.nvim",
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
 			build = "make",
 		},
 	},
 	config = function()
-		require("telescope").load_extension("fzf")
+		local telescope = require("telescope")
 		local builtin = require("telescope.builtin")
 		local wk = require("which-key")
+
+		telescope.setup({
+			extensions = {
+				["ui-select"] = {
+					require("telescope.themes").get_dropdown({}),
+				},
+			},
+		})
+
+		telescope.load_extension("ui-select")
+		telescope.load_extension("fzf")
 
 		wk.register({
 			f = {
