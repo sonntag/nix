@@ -1,4 +1,4 @@
 return {
-	"declancm/maximize.nvim",
+	'declancm/maximize.nvim',
 	opts = {},
 }

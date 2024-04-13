@@ -1,6 +1,6 @@
 return {
-    "okuuva/auto-save.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {},
-    enabled = false,
+	'okuuva/auto-save.nvim',
+	event = { 'BufReadPre', 'BufNewFile' },
+	opts = {},
+	enabled = false,
 }

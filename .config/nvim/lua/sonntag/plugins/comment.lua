@@ -1,19 +1,19 @@
 return {
-	"numToStr/Comment.nvim",
-	event = { "BufReadPre", "BufNewFile" },
+	'numToStr/Comment.nvim',
+	event = { 'BufReadPre', 'BufNewFile' },
 	opts = {
 		toggler = {
-			line = "<leader>cc",
-			block = "<leader>cb",
+			line = '<leader>cc',
+			block = '<leader>cb',
 		},
 		opleader = {
-			line = "<leader>cc",
-			block = "<leader>cb",
+			line = '<leader>cc',
+			block = '<leader>cb',
 		},
 		extra = {
-			above = "<leader>cO",
-			below = "<leader>co",
-			eol = "<leader>cA",
+			above = '<leader>cO',
+			below = '<leader>co',
+			eol = '<leader>cA',
 		},
 	},
 }
