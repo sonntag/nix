@@ -12,6 +12,13 @@ return {
 			},
 		}
 
+		vim.keymap.set(
+			'n',
+			'<M-h>',
+			function() harpoon:list():select(1) end,
+			{ desc = 'Open Jot file', noremap = true, silent = true }
+		)
+
 		require('which-key').register({
 			h = {
 				name = 'Harpoon',

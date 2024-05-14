@@ -10,14 +10,15 @@ keymap.set('n', '<M-down>', ':m .+1<CR>==', { desc = 'Move line down', silent = 
 keymap.set('n', '<M-up>', ':m .-2<CR>==', { desc = 'Move line up', silent = true })
 
 keymap.set('n', '<M-o>', 'o<ESC>', { desc = 'Insert a new line down in normal mode' })
-keymap.set('n', '<CR>', ':noh<CR>', { desc = 'Clear search highlights', silent = true })
-keymap.set('n', '<leader>j', 'J', { desc = 'Join lines' })
+-- TODO: add a branch here to clear highlights conditionally if they exist, otherwise keep normal behavior
+keymap.set('n', '<CR>', ':noh<CR><CR>', { desc = 'Clear search highlights', silent = true })
+-- keymap.set('n', '<leader>j', 'J', { desc = 'Join lines' })
 keymap.set('n', '<leader>q', '<cmd>q<CR>', { desc = 'Close buffer' })
 keymap.set('n', '<leader>w', '<cmd>w<cr>', { desc = 'Save' })
 
 -- Line movement improvements
-keymap.set('n', 'J', '5j', { desc = 'Move 5 lines down' })
-keymap.set('n', 'K', '5k', { desc = 'Move 5 lines up' })
+-- keymap.set('n', 'J', '5j', { desc = 'Move 5 lines down' })
+-- keymap.set('n', 'K', '5k', { desc = 'Move 5 lines up' })
 keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 

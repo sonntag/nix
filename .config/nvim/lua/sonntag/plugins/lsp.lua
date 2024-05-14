@@ -64,6 +64,11 @@ return {
 			border = 'rounded',
 		})
 
+		lspconfig.clangd.setup {
+			capabilities = capabilities,
+			on_attach = on_attach,
+		}
+
 		lspconfig.clojure_lsp.setup {
 			capabilities = capabilities,
 			on_attach = on_attach,
@@ -91,6 +96,11 @@ return {
 					},
 				},
 			},
+		}
+
+		lspconfig.rust_analyzer.setup {
+			capabilities = capabilities,
+			on_attach = on_attach,
 		}
 	end,
 }
