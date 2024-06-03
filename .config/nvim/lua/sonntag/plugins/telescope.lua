@@ -20,11 +20,13 @@ return {
 				['ui-select'] = {
 					require('telescope.themes').get_dropdown {},
 				},
+				undo = {},
 			},
 		}
 
 		telescope.load_extension('ui-select')
 		telescope.load_extension('fzf')
+		telescope.load_extension('undo')
 
 		wk.register({
 			f = {
@@ -33,6 +35,7 @@ return {
 				g = { builtin.live_grep, 'Live Grep' },
 				b = { builtin.buffers, 'Buffers' },
 				h = { builtin.help_tags, 'Help Tags' },
+				u = { '<cmd>Telescope undo<cr>', 'Undo' },
 			},
 		}, { prefix = '<leader>' })
 	end,
