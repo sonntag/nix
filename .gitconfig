@@ -7,6 +7,8 @@
 
 [core]
     excludesfile = /Users/justin/.gitignore
+    untrackedCache = true
+    fsmonitor = true
 
 [diff]
     tool = difftastic
@@ -26,3 +28,6 @@
 
 [push]
     autoSetupRemote = true
+
+[pull]
+	rebase = false
