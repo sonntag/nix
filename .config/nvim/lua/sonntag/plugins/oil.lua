@@ -1,6 +1,6 @@
 return {
-	-- 'stevearc/oil.nvim',
-	dir = '~/Dropbox/Development/sonntag/oil.nvim',
+	'stevearc/oil.nvim',
+	--dir = '~/Dropbox/Development/sonntag/oil.nvim',
 	dependencies = { 'nvim-tree/nvim-web-devicons' },
 	config = function()
 		require('oil').setup()

@@ -28,15 +28,13 @@ return {
 		telescope.load_extension('fzf')
 		telescope.load_extension('undo')
 
-		wk.register({
-			f = {
-				name = 'Telescope Find',
-				f = { builtin.find_files, 'Find File' },
-				g = { builtin.live_grep, 'Live Grep' },
-				b = { builtin.buffers, 'Buffers' },
-				h = { builtin.help_tags, 'Help Tags' },
-				u = { '<cmd>Telescope undo<cr>', 'Undo' },
-			},
-		}, { prefix = '<leader>' })
+		wk.add {
+			{ '<leader>f', group = 'Telescope Find' },
+			{ '<leader>ff', builtin.find_files, desc = 'Find File' },
+			{ '<leader>fg', builtin.live_grep, desc = 'Live Grep' },
+			{ '<leader>fb', builtin.buffers, desc = 'Buffers' },
+			{ '<leader>fh', builtin.help_tags, desc = 'Help Tags' },
+			{ '<leader>fu', '<cmd>Telescope undo<cr>', desc = 'Undo' },
+		}
 	end,
 }

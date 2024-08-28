@@ -24,6 +24,8 @@ return {
 				'clojure_lsp',
 				'gopls',
 				'lua_ls',
+				-- For toml formatting and stuff
+				'taplo',
 			},
 			automatic_installation = true,
 		}

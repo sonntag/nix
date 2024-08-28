@@ -11,14 +11,12 @@ return {
 		wk.setup {}
 
 		-- Maintaining windown splits
-		wk.register({
-			s = {
-				name = 'Window Splits',
-				e = { '<C-w>=', 'Make splits equal size' },
-				h = { '<c-w>s', 'Split window horizontally' },
-				v = { '<C-w>v', 'Split window vertically' },
-				x = { '<cmd>close<CR>', 'Close current split' },
-			},
-		}, { prefix = '<leader>' })
+		wk.add {
+			{ '<leader>s', group = 'Window Splits' },
+			{ '<leader>se', '<C-w>=', desc = 'Make splits equal size' },
+			{ '<leader>sh', '<c-w>s', desc = 'Split window horizontally' },
+			{ '<leader>sv', '<C-w>v', desc = 'Split window vertically' },
+			{ '<leader>sx', '<cmd>close<CR>', desc = 'Close current split' },
+		}
 	end,
 }
