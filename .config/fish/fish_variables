@@ -5,13 +5,16 @@ SETUVAR --export EDITOR:nvim
 SETUVAR --export GIT_AUTHOR_EMAIL:justin\x2esonntag\x40gmail\x2ecom
 SETUVAR --export GIT_AUTHOR_NAME:Justin\x20Sonntag
 SETUVAR --export GODEBUG:asyncpreemptoff\x3d1
+SETUVAR --export --path GOPATH:/Users/justin/go
+SETUVAR --export GOROOT:/opt/homebrew/bin/go
 SETUVAR --export TFENV_ARCH:amd64
 SETUVAR --export VAULT_ADDR:https\x3a//vault\x2eamperity\x2etop\x3a8200
 SETUVAR VAULT_TOKEN:\x1d
 SETUVAR __fish_initialized:3400
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
+SETUVAR _fisher_nickeb96_2F_puffer_2D_fish_files:\x7e/\x2econfig/fish/functions/_puffer_fish_expand_bang\x2efish\x1e\x7e/\x2econfig/fish/functions/_puffer_fish_expand_dots\x2efish\x1e\x7e/\x2econfig/fish/functions/_puffer_fish_expand_lastarg\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/puffer_fish_key_bindings\x2efish
 SETUVAR _fisher_patrickf1_2F_fzf_2E_fish_files:\x7e/\x2econfig/fish/functions/_fzf_configure_bindings_help\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_extract_var_info\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_preview_changed_file\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_preview_file\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_report_diff_type\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_report_file_type\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_directory\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_git_log\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_git_status\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_history\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_processes\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_variables\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_wrapper\x2efish\x1e\x7e/\x2econfig/fish/functions/fzf_configure_bindings\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/fzf\x2efish\x1e\x7e/\x2econfig/fish/completions/fzf_configure_bindings\x2efish
-SETUVAR _fisher_plugins:jorgebucaran/fisher\x1epatrickf1/fzf\x2efish
+SETUVAR _fisher_plugins:jorgebucaran/fisher\x1epatrickf1/fzf\x2efish\x1enickeb96/puffer\x2dfish
 SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR fish_color_autosuggestion:4c566a
 SETUVAR fish_color_cancel:\x2d\x2dreverse
@@ -53,4 +56,4 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3d434c5e
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/Users/justin/Dropbox/Development/sonntag/jit/bin\x1e/Users/justin/\x2ecargo/bin\x1e/Users/justin/\x2easdf/shims\x1e/opt/homebrew/Cellar/asdf/0\x2e12\x2e0/libexec/bin\x1e/Users/justin/Development/amperity/app/bin\x1e/opt/homebrew/bin
+SETUVAR fish_user_paths:/Users/justin/go/bin\x1e/opt/homebrew/bin/go/bin\x1e/Users/justin/\x2elocal/bin\x1e/Users/justin/\x2enix\x2dprofile/bin\x1e/nix/var/nix/profiles/default/bin\x1e/Users/justin/Dropbox/Development/sonntag/jit/bin\x1e/Users/justin/\x2ecargo/bin\x1e/Users/justin/\x2easdf/shims\x1e/opt/homebrew/Cellar/asdf/0\x2e12\x2e0/libexec/bin\x1e/Users/justin/Development/amperity/app/bin\x1e/opt/homebrew/bin

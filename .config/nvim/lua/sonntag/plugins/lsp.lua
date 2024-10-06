@@ -75,6 +75,11 @@ return {
 			root_dir = require('lspconfig.util').root_pattern('.git'),
 		}
 
+		lspconfig.gleam.setup {
+			capabilities = capabilities,
+			on_attach = on_attach,
+		}
+
 		lspconfig.gopls.setup {
 			capabilities = capabilities,
 			on_attach = on_attach,
