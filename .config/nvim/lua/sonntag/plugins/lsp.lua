@@ -75,6 +75,11 @@ return {
 			root_dir = require('lspconfig.util').root_pattern('.git'),
 		}
 
+		lspconfig.emmet_language_server.setup {
+			capabilities = capabilities,
+			on_attach = on_attach,
+		}
+
 		lspconfig.gleam.setup {
 			capabilities = capabilities,
 			on_attach = on_attach,
