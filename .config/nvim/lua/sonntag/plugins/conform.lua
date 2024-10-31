@@ -6,8 +6,9 @@ return {
 
 		conform.setup {
 			formatters_by_ft = {
-				lua = { 'stylua' },
 				clojure = { 'cljstyle' },
+				just = { 'just' },
+				lua = { 'stylua' },
 				nix = { 'alejandra' },
 			},
 			format_on_save = {

@@ -23,8 +23,8 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
+        pkgs.just
         pkgs.neofetch
-        pkgs.vim
       ];
 
       homebrew = {
@@ -70,7 +70,6 @@
           "httpie"
           "hugo"
           "jq"
-          "just"
           "kanata"
           "kubectx"
           "lazydocker"
