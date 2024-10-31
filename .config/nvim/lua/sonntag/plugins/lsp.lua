@@ -108,12 +108,22 @@ return {
 			},
 		}
 
+		lspconfig.nil_ls.setup {
+			capabilities = capabilities,
+			on_attach = on_attach,
+		}
+
 		lspconfig.rust_analyzer.setup {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		}
 
 		lspconfig.taplo.setup {
+			capabilities = capabilities,
+			on_attach = on_attach,
+		}
+
+		lspconfig.terraformls.setup {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		}

@@ -8,6 +8,7 @@ return {
 			formatters_by_ft = {
 				lua = { 'stylua' },
 				clojure = { 'cljstyle' },
+				nix = { 'alejandra' },
 			},
 			format_on_save = {
 				lsp_fallback = true,
