@@ -45,7 +45,6 @@
           "oven-sh/bun"
         ];
         brews = [
-          "asdf"
           "awscli"
           "azure-cli"
           "bash"

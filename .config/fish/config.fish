@@ -11,7 +11,6 @@ if status is-interactive
     starship init fish | source
 end
 
-source /opt/homebrew/opt/asdf/libexec/asdf.fish
 #test -e /Users/justin/.iterm2_shell_integration.fish ; and source /Users/justin/.iterm2_shell_integration.fish ; or true
 source /Users/justin/.config/op/plugins.sh
 
