@@ -23,8 +23,8 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
+        pkgs.coreutils
         pkgs.just
-        pkgs.neofetch
       ];
 
       homebrew = {
@@ -32,124 +32,47 @@
         onActivation.cleanup = "zap";
 
         taps = [
-          "azure/kubelogin"
           "babashka/brew"
           "borkdude/brew"
           "conductorone/cone"
-          "derailed/k9s"
           "homebrew/bundle"
           "homebrew/cask-fonts"
           "homebrew/services"
           "koekeishiya/formulae"
           "nikitabobko/tap"
-          "oven-sh/bun"
         ];
         brews = [
-          "awscli"
           "azure-cli"
-          "bash"
-          "bat"
-          "clojure"
-          "clojure-lsp"
-          "difftastic"
-          "elm"
-          "eza"
-          "fd"
-          "fzf"
-          "libavif"
-          "gh"
-          "git"
-          "gleam"
-          "gnu-sed"
-          "gnutls"
-          "gnupg"
-          "gnuplot"
-          "go"
-          "helm"
-          "htop"
-          "httpie"
-          "hugo"
-          "jq"
           "kanata"
-          "kubectx"
-          "lazydocker"
-          "lazygit"
-          "leiningen"
-          "mas"
-          "mkcert"
-          "ripgrep"
-          "nb"
-          "neovim"
-          "node"
-          "poetry"
-          "rustup"
-          "starship"
-          "stow"
-          "tailwindcss"
-          "tfenv"
-          "thefuck"
-          "tldr"
-          "tmux"
-          "tree"
-          "vault"
-          "virtualenv"
-          "yarn"
-          "yazi"
-          "zoxide"
-          "azure/kubelogin/kubelogin"
-          "babashka/brew/neil"
           "conductorone/cone/cone"
-          "derailed/k9s/k9s"
-          "oven-sh/bun/bun"
         ];
         casks = [
           "1password-cli"
           "aerospace"
           "anki"
           "ankiapp"
-          "autodesk-fusion"
-          "bartender"
-          "bettertouchtool"
-          "chromedriver"
           "cljstyle"
-          "db-browser-for-sqlite"
           "devtoys"
           "docker"
-          "flutter"
           "font-sauce-code-pro-nerd-font"
           "font-symbols-only-nerd-font"
           "font-victor-mono-nerd-font"
-          "kitty"
-          "logitune"
-          "microsoft-azure-storage-explorer"
           "obsidian"
           "openscad"
-          "racket"
           "raycast"
           "sublime-text"
-          "warp"
-          "wezterm"
         ];
         masApps = {
           "1Password for Safari" = 1569813296;
           "Day One" = 1055511498;
-          "FitFileExplorer" = 1244431640;
-          "GarageBand" = 682658836;
-          "Gifox" = 1461845568;
-          "iMovie" = 408981434;
-          "Keynote" = 409183694;
-          "NordVPN" = 905953485;
-          "Notenik" = 1465997984;
-          "Numbers" = 409203825;
-          "Pages" = 409201541;
-          "PCalc" = 403504866;
-          "Slack" = 803453959;
-          "Spark" = 1176895641;
-          "TestFlight" = 899247664;
-          "Things" = 904280696;
-          "Ulysses" = 1225570693;
-          "Xcode" = 497799835;
-          "Yoink" = 457622435;
+          FitFileExplorer = 1244431640;
+          NordVPN = 905953485;
+          Notenik = 1465997984;
+          PCalc = 403504866;
+          Slack = 803453959;
+          Spark = 1176895641;
+          Things = 904280696;
+          Yoink = 457622435;
         };
       };
 
@@ -177,6 +100,8 @@
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
 
+      nixpkgs.config.allowUnfree = true;
+
       environment.shells = [pkgs.fish];
       environment.loginShell = pkgs.fish;
 
@@ -195,6 +120,36 @@
 
       home.packages = with pkgs; [
         alejandra # nix formatter
+        awscli2
+        bat
+        clojure
+        clojure-lsp
+        difftastic
+        eza
+        fd
+        fzf
+        git
+        gnused
+        htop
+        httpie
+        jq
+        k9s
+        kubectx
+        kubelogin # for azure
+        lazydocker
+        lazygit
+        leiningen
+        nb
+        neil
+        neovim
+        ripgrep
+        starship
+        thefuck
+        tldr
+        tmux
+        tree
+        yazi
+        zoxide
       ];
 
       home.sessionVariables = {
