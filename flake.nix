@@ -23,8 +23,7 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
-        pkgs.coreutils
-        pkgs.just
+        pkgs.mas
       ];
 
       homebrew = {
@@ -32,14 +31,8 @@
         onActivation.cleanup = "zap";
 
         taps = [
-          "babashka/brew"
-          "borkdude/brew"
           "conductorone/cone"
-          "homebrew/bundle"
-          "homebrew/cask-fonts"
-          "homebrew/services"
-          "koekeishiya/formulae"
-          "nikitabobko/tap"
+          "nikitabobko/tap" # contains aerospace
         ];
         brews = [
           "azure-cli"
@@ -52,11 +45,7 @@
           "anki"
           "ankiapp"
           "cljstyle"
-          "devtoys"
           "docker"
-          "font-sauce-code-pro-nerd-font"
-          "font-symbols-only-nerd-font"
-          "font-victor-mono-nerd-font"
           "obsidian"
           "openscad"
           "raycast"
@@ -124,6 +113,7 @@
         bat
         clojure
         clojure-lsp
+        coreutils
         difftastic
         eza
         fd
@@ -133,6 +123,7 @@
         htop
         httpie
         jq
+        just
         k9s
         kubectx
         kubelogin # for azure
@@ -141,13 +132,17 @@
         leiningen
         nb
         neil
+        neofetch
         neovim
+        nerdfonts
+        openscad
         ripgrep
         starship
         thefuck
         tldr
         tmux
         tree
+        vault
         yazi
         zoxide
       ];
