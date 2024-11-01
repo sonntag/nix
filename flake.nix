@@ -150,6 +150,11 @@
       home.sessionVariables = {
         EDITOR = "vim";
       };
+
+      home.file."./.config/nvim/" = {
+        source = ./nvim;
+        recursive = true;
+      };
     };
   in {
     # Build darwin flake using:
