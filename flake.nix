@@ -179,6 +179,14 @@
         source = ./tmux;
         recursive = true;
       };
+
+      home.file.".gitconfig" = {
+        source = ./gitconfig;
+      };
+
+      home.file.".dircolors" = {
+        source = ./dircolors;
+      };
     };
   in {
     # Build darwin flake using:
