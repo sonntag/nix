@@ -155,6 +155,30 @@
         source = ./nvim;
         recursive = true;
       };
+
+      home.file."./.config/fish/" = {
+        source = ./fish;
+        recursive = true;
+      };
+
+      home.file."./.config/aerospace/" = {
+        source = ./aerospace;
+        recursive = true;
+      };
+
+      home.file."./.config/kanata/" = {
+        source = ./kanata;
+        recursive = true;
+      };
+
+      home.file."./.config/starship.toml" = {
+        source = ./starship.toml;
+      };
+
+      home.file."./.config/tmux/" = {
+        source = ./tmux;
+        recursive = true;
+      };
     };
   in {
     # Build darwin flake using:
