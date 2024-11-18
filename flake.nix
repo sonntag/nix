@@ -19,11 +19,15 @@
     nix-darwin,
     home-manager,
   }: let
+    user = "justin";
     configuration = {pkgs, ...}: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
+        pkgs.git
         pkgs.mas
+        pkgs.sketchybar
+        pkgs.openscad
       ];
 
       homebrew = {
@@ -46,10 +50,13 @@
           "ankiapp"
           "cljstyle"
           "docker"
+          "homerow"
           "obsidian"
           "openscad"
           "raycast"
+          "snowflake-snowsql"
           "sublime-text"
+          "zen-browser"
         ];
         masApps = {
           "1Password for Safari" = 1569813296;
@@ -79,6 +86,34 @@
       #programs.zsh.enable = true;  # default shell on catalina
       programs.fish.enable = true;
 
+      # FIXME: This is needed to address bug where the $PATH is re-ordered by
+      # the `path_helper` tool, prioritising Apple’s tools over the ones we’ve
+      # installed with nix.
+      #
+      # This gist explains the issue in more detail: https://gist.github.com/Linerre/f11ad4a6a934dcf01ee8415c9457e7b2
+      # There is also an issue open for nix-darwin: https://github.com/LnL7/nix-darwin/issues/122
+      programs.fish.loginShellInit = let
+        # We should probably use `config.environment.profiles`, as described in
+        # https://github.com/LnL7/nix-darwin/issues/122#issuecomment-1659465635
+        # but this takes into account the new XDG paths used when the nix
+        # configuration has `use-xdg-base-directories` enabled. See:
+        # https://github.com/LnL7/nix-darwin/issues/947 for more information.
+        profiles = [
+          "/etc/profiles/per-user/$USER" # Home manager packages
+          "$HOME/.nix-profile"
+          "(set -q XDG_STATE_HOME; and echo $XDG_STATE_HOME; or echo $HOME/.local/state)/nix/profile"
+          "/run/current-system/sw"
+          "/nix/var/nix/profiles/default"
+        ];
+
+        makeBinSearchPath =
+          nixpkgs.lib.concatMapStringsSep " " (path: "${path}/bin");
+      in ''
+        # Fix path that was re-ordered by Apple's path_helper
+        fish_add_path --move --prepend --path ${makeBinSearchPath profiles}
+        set fish_user_paths $fish_user_paths
+      '';
+
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
@@ -86,17 +121,93 @@
       # $ darwin-rebuild changelog
       system.stateVersion = 5;
 
+      system.defaults = {
+        dock = {
+          autohide = true;
+          autohide-delay = 0.1;
+          autohide-time-modifier = 0.5;
+          expose-animation-duration = 0.25;
+          expose-group-by-app = true;
+          launchanim = false;
+          mineffect = "scale";
+          minimize-to-application = true;
+          mru-spaces = false;
+          orientation = "bottom";
+          persistent-apps = [
+            "/System/Applications/Messages.app"
+            "/Applications/Arc.app"
+            "/Applications/Spark Desktop.app"
+            "/Applications/Things3.app"
+            "/Applications/Obsidian.app"
+            "/Applications/Slack.app"
+            "/System/Applications/Calendar.app"
+            "/Applications/Day One.app"
+            "/Applications/iTerm.app"
+            "/Applications/ChatGPT.app"
+            "/Applications/OpenSCAD.app"
+          ];
+
+          persistent-others = [
+            "/Users/${user}/Desktop"
+            "/Users/${user}/Downloads"
+          ];
+
+          # CustomUserPreferences = {
+          #         # Sets Downloads folder with fan view in Dock
+          #         "com.apple.dock" = {
+          #             persistent-others = [
+          #             {
+          #                 "tile-data" = {
+          #                     "file-data" = {
+          #                     "_CFURLString" = "/Users/<youruser>/Downloads";
+          #                     "_CFURLStringType" = 0;
+          #                   };
+          #                   "arrangement" = 2;  # sorting order
+          #                   "displayas" = 1;    # 1 for fan display
+          #                   "showas" = 1;       # 1 for stack view
+          #                 };
+          #                 "tile-type" = "directory-tile";
+          #               }
+          #             {
+          #                 "tile-data" = {
+          #                   "file-data" = {
+          #                     "_CFURLString" = "/Applications";
+          #                     "_CFURLStringType" = 0;
+          #                   };
+          #                 };
+          #                 "tile-type" = "directory-tile";
+          #               }
+          #           ];
+          #         };
+          #       };
+          #
+          #   };
+
+          show-process-indicators = true;
+          show-recents = true;
+          showhidden = true;
+
+          slow-motion-allowed = false;
+
+          static-only = false;
+
+          tilesize = 42;
+        };
+
+        spaces.spans-displays = true;
+      };
+
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
 
       nixpkgs.config.allowUnfree = true;
 
       environment.shells = [pkgs.fish];
-      environment.loginShell = pkgs.fish;
+      #environment.loginShell = pkgs.fish;
 
-      users.users.justin = {
-        name = "justin";
-        home = "/Users/justin";
+      users.users.${user} = {
+        name = "${user}";
+        home = "/Users/${user}";
         shell = pkgs.fish;
       };
     };
@@ -107,10 +218,15 @@
       # Let home-manager install and manage itself.
       programs.home-manager.enable = true;
 
+      # Enable carapace completions
+      programs.carapace.enable = true;
+      programs.carapace.enableFishIntegration = true;
+
       home.packages = with pkgs; [
         alejandra # nix formatter
         awscli2
         bat
+        carapace
         clojure
         clojure-lsp
         coreutils
@@ -118,7 +234,6 @@
         eza
         fd
         fzf
-        git
         gnused
         htop
         httpie
@@ -135,7 +250,6 @@
         neofetch
         neovim
         nerdfonts
-        openscad
         ripgrep
         starship
         thefuck
@@ -143,12 +257,14 @@
         tmux
         tree
         vault
+        wezterm
         yazi
         zoxide
       ];
 
       home.sessionVariables = {
-        EDITOR = "vim";
+        EDITOR = "nvim";
+        CARAPACE_BRIDGES = "fish,zsh,bash,inshellisense";
       };
 
       home.file."./.config/nvim/" = {
