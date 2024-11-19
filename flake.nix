@@ -56,6 +56,7 @@
           "raycast"
           "snowflake-snowsql"
           "sublime-text"
+          "todoist"
           "zen-browser"
         ];
         masApps = {
