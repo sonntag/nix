@@ -4,5 +4,4 @@ return {
 	dependencies = {
 		'nvim-telescope/telescope-fzf-native.nvim',
 	},
-	enabled = false,
 }

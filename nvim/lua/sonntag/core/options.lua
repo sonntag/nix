@@ -58,6 +58,6 @@ local function update_winbar()
 	-- .. vim.fn.systemlist("hostname")[1]
 end
 -- Autocmd to update the winbar on BufEnter and WinEnter events
-vim.api.nvim_create_autocmd({ 'BufEnter', 'WinEnter' }, {
-	callback = update_winbar,
-})
+-- vim.api.nvim_create_autocmd({ 'BufEnter', 'WinEnter' }, {
+-- 	callback = update_winbar,
+-- })

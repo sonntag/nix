@@ -45,29 +45,37 @@
         ];
         casks = [
           "1password-cli"
+          "ableton-live-suite"
           "aerospace"
           "anki"
           "ankiapp"
+          "arc"
+          "bambu-studio"
           "cljstyle"
+          "desktoppr"
           "docker"
+          "dropbox"
+          "gimp"
           "homerow"
+          "iterm2"
+          "nordvpn"
           "obsidian"
           "openscad"
           "raycast"
+          "readdle-spark"
+          "slack"
           "snowflake-snowsql"
+          "spotify"
           "sublime-text"
+          "tableplus"
           "todoist"
           "zen-browser"
+          "zoom"
         ];
         masApps = {
-          "1Password for Safari" = 1569813296;
           "Day One" = 1055511498;
-          FitFileExplorer = 1244431640;
-          NordVPN = 905953485;
-          Notenik = 1465997984;
+          Gifox = 1461845568;
           PCalc = 403504866;
-          Slack = 803453959;
-          Spark = 1176895641;
           Things = 904280696;
           Yoink = 457622435;
         };
