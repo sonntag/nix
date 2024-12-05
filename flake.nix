@@ -40,10 +40,12 @@
         ];
         brews = [
           "azure-cli"
-          "kanata"
           "conductorone/cone/cone"
+          "kanata"
+          "tfenv"
         ];
         casks = [
+          "1password"
           "1password-cli"
           "ableton-live-suite"
           "aerospace"
@@ -51,10 +53,12 @@
           "ankiapp"
           "arc"
           "bambu-studio"
+          "chatgpt"
           "cljstyle"
           "desktoppr"
           "docker"
           "dropbox"
+          "gifox"
           "gimp"
           "homerow"
           "iterm2"
@@ -63,6 +67,7 @@
           "openscad"
           "raycast"
           "readdle-spark"
+          "rekordbox"
           "slack"
           "snowflake-snowsql"
           "spotify"
@@ -73,8 +78,6 @@
           "zoom"
         ];
         masApps = {
-          "Day One" = 1055511498;
-          Gifox = 1461845568;
           PCalc = 403504866;
           Things = 904280696;
           Yoink = 457622435;
@@ -150,7 +153,7 @@
             "/Applications/Obsidian.app"
             "/Applications/Slack.app"
             "/System/Applications/Calendar.app"
-            "/Applications/Day One.app"
+            # "/Applications/Day One.app"
             "/Applications/iTerm.app"
             "/Applications/ChatGPT.app"
             "/Applications/OpenSCAD.app"
@@ -240,6 +243,7 @@
         clojure-lsp
         coreutils
         difftastic
+        direnv
         eza
         fd
         fzf
