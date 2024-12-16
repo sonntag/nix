@@ -53,6 +53,7 @@
           "ankiapp"
           "arc"
           "bambu-studio"
+          "blackhole-2ch"
           "chatgpt"
           "cljstyle"
           "desktoppr"
@@ -74,6 +75,8 @@
           "sublime-text"
           "tableplus"
           "todoist"
+          "tor-browser"
+          "xnapper"
           "zen-browser"
           "zoom"
         ];
