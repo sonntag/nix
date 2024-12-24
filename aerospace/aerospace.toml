@@ -208,5 +208,37 @@ alt-shift-l = ['join-with right', 'mode main']
 # run = 'layout tiling'
 
 [[on-window-detected]]
+if.app-id = 'com.ableton.live'
+run = 'move-note-to-workspace A'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iCal'
+run = 'move-note-to-workspace C'
+
+[[on-window-detected]]
+if.app-id = 'com.googlecode.iterm2'
+run = 'move-note-to-workspace G'
+
+[[on-window-detected]]
+if.app-id = 'com.readdle.SparkDesktop'
+run = 'move-note-to-workspace M'
+
+[[on-window-detected]]
+if.app-id = 'com.1password.1password'
+run = 'move-note-to-workspace P'
+
+[[on-window-detected]]
+if.app-id = 'com.todoist.mac.Todoist'
+run = 'move-note-to-workspace R'
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-note-to-workspace S'
+
+[[on-window-detected]]
+if.app-id = 'com.googlecode.iterm2'
+run = 'move-note-to-workspace T'
+
+[[on-window-detected]]
 if.app-id = 'us.zoom.xos'
 run = 'move-node-to-workspace Z'
