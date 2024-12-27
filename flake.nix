@@ -1,5 +1,5 @@
 {
-  description = "Example Darwin system flake";
+  description = "Justin's nix config";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
