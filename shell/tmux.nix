@@ -17,7 +17,18 @@
     '';
 
     plugins = with pkgs; [
-      # tmuxPlugins.better-mouse-mode
+      {
+        plugin = tmuxPlugins.better-mouse-mode;
+        extraConfig = ''
+          set -g @scroll-without-changing-pane 'on'
+          set -g @scroll-in-moused-over-pane 'on'
+          set -g @emulate-scroll-for-no-mouse-alternate-buffer 'on'
+        '';
+      }
+      {
+        plugin = tmuxPlugins.continuum;
+        extraConfig = "set -g @continuum-restore 'on'";
+      }
       {
         plugin = tmuxPlugins.rose-pine;
         extraConfig = ''
@@ -26,7 +37,6 @@
           set -g @rose_pine_directory 'on'
         '';
       }
-      tmuxPlugins.sensible
       {
         plugin = inputs.tmux-sessionx.packages.${pkgs.system}.default;
         extraConfig = ''
@@ -37,6 +47,8 @@
           set -g @sessionx-zoxide-mode 'on'
         '';
       }
+      tmuxPlugins.resurrect
+      tmuxPlugins.sensible
       tmuxPlugins.vim-tmux-navigator
     ];
   };
