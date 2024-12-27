@@ -235,6 +235,10 @@
       # Let home-manager install and manage itself.
       programs.home-manager.enable = true;
 
+      imports = [
+        ./shell/tmux.nix
+      ];
+
       # Enable carapace completions
       programs.carapace.enable = true;
       programs.carapace.enableFishIntegration = true;
@@ -314,10 +318,10 @@
         source = ./starship.toml;
       };
 
-      home.file."./.config/tmux/" = {
-        source = ./tmux;
-        recursive = true;
-      };
+      # home.file."./.config/tmux/" = {
+      #   source = ./tmux;
+      #   recursive = true;
+      # };
 
       home.file.".gitconfig" = {
         source = ./gitconfig;
