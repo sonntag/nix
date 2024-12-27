@@ -59,6 +59,7 @@
           "desktoppr"
           "docker"
           "dropbox"
+          "ghostty"
           "gifox"
           "gimp"
           "homerow"
@@ -157,7 +158,8 @@
             "/Applications/Slack.app"
             "/System/Applications/Calendar.app"
             # "/Applications/Day One.app"
-            "/Applications/iTerm.app"
+            # "/Applications/iTerm.app"
+            "/Applications/Ghostty.app"
             "/Applications/ChatGPT.app"
             "/Applications/OpenSCAD.app"
           ];
@@ -290,6 +292,11 @@
 
       home.file."./.config/fish/" = {
         source = ./fish;
+        recursive = true;
+      };
+
+      home.file."./.config/ghostty/" = {
+        source = ./ghostty;
         recursive = true;
       };
 

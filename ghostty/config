@@ -1,0 +1,7 @@
+font-family = VictorMono NFM SemiBold
+font-size = 13
+
+theme = rose-pine
+
+keybind = ctrl+space=toggle_quick_terminal
+keybind = global:ctrl+space=toggle_quick_terminal
