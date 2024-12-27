@@ -11,6 +11,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    tmux-sessionx.url = "github:omerxx/tmux-sessionx";
   };
 
   outputs = inputs @ {
@@ -18,6 +20,7 @@
     nixpkgs,
     nix-darwin,
     home-manager,
+    ...
   }: let
     user = "justin";
     configuration = {pkgs, ...}: {
@@ -336,8 +339,14 @@
           home-manager.useUserPackages = true;
           home-manager.verbose = true;
           home-manager.users.justin = homeconfig;
+          home-manager.extraSpecialArgs = {
+            inherit inputs;
+          };
         }
       ];
+      specialArgs = {
+        inherit inputs;
+      };
     };
 
     # Expose the package set, including overlays, for convenience.

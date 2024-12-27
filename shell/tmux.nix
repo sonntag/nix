@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   programs.tmux = {
     enable = true;
 
@@ -10,8 +14,9 @@
 
     plugins = with pkgs; [
       # tmuxPlugins.better-mouse-mode
-      tmuxPlugins.sensible
       tmuxPlugins.rose-pine
+      tmuxPlugins.sensible
+      inputs.tmux-sessionx.packages.${pkgs.system}.default
       tmuxPlugins.vim-tmux-navigator
     ];
 
