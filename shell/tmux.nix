@@ -9,7 +9,7 @@
     terminal = "tmux-256color";
 
     plugins = with pkgs; [
-      tmuxPlugins.better-mouse-mode
+      # tmuxPlugins.better-mouse-mode
       tmuxPlugins.sensible
       tmuxPlugins.rose-pine
       tmuxPlugins.vim-tmux-navigator

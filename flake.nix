@@ -276,7 +276,6 @@
         starship
         thefuck
         tldr
-        tmux
         tree
         vault
         wezterm
@@ -317,11 +316,6 @@
       home.file."./.config/starship.toml" = {
         source = ./starship.toml;
       };
-
-      # home.file."./.config/tmux/" = {
-      #   source = ./tmux;
-      #   recursive = true;
-      # };
 
       home.file.".gitconfig" = {
         source = ./gitconfig;
