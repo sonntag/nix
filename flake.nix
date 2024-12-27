@@ -278,7 +278,6 @@
         tldr
         tree
         vault
-        wezterm
         yazi
         zoxide
       ];
