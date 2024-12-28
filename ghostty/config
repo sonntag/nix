@@ -1,7 +1,14 @@
-font-family = VictorMono NFM SemiBold
+font-family = VictorMono Nerd Font Mono
 font-size = 13
+font-thicken = true
 
 theme = rose-pine
+
+macos-titlebar-style = hidden
+window-colorspace = display-p3
+window-padding-x = 5
+window-padding-y = 5
+window-padding-balance = true
 
 keybind = ctrl+space=toggle_quick_terminal
 keybind = global:ctrl+space=toggle_quick_terminal
