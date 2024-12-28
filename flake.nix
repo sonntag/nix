@@ -165,6 +165,7 @@
       imports = [
         ./shell/tmux.nix
         ./shell/fish/default.nix
+        ./shell/starship.nix
       ];
 
       # Enable carapace completions
@@ -203,7 +204,6 @@
         neovim
         nerdfonts
         ripgrep
-        starship
         thefuck
         tldr
         tree
@@ -240,10 +240,6 @@
       home.file."./.config/kanata/" = {
         source = ./kanata;
         recursive = true;
-      };
-
-      home.file."./.config/starship.toml" = {
-        source = ./starship.toml;
       };
 
       home.file.".gitconfig" = {
