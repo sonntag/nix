@@ -246,9 +246,9 @@
         source = ./starship.toml;
       };
 
-      # home.file.".gitconfig" = {
-      #   source = ./gitconfig;
-      # };
+      home.file.".gitconfig" = {
+        source = ./gitconfig;
+      };
 
       home.file.".dircolors" = {
         source = ./dircolors;
