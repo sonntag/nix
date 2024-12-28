@@ -23,77 +23,28 @@
     ...
   }: let
     user = "justin";
+    system = "aarch64-darwin";
     configuration = {pkgs, ...}: {
+      imports = [
+        ./darwin/homebrew.nix
+      ];
+
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
         pkgs.git
         pkgs.mas
         pkgs.sketchybar
-        pkgs.openscad
       ];
-
-      homebrew = {
-        enable = true;
-        onActivation.cleanup = "zap";
-
-        taps = [
-          "conductorone/cone"
-          "nikitabobko/tap" # contains aerospace
-        ];
-        brews = [
-          "azure-cli"
-          "conductorone/cone/cone"
-          "kanata"
-          "tfenv"
-        ];
-        casks = [
-          "1password"
-          "1password-cli"
-          "ableton-live-suite"
-          "aerospace"
-          "anki"
-          "ankiapp"
-          "arc"
-          "bambu-studio"
-          "blackhole-2ch"
-          "chatgpt"
-          "cljstyle"
-          "desktoppr"
-          "docker"
-          "dropbox"
-          "ghostty"
-          "gifox"
-          "gimp"
-          "homerow"
-          "iterm2"
-          "nordvpn"
-          "obsidian"
-          "openscad"
-          "raycast"
-          "readdle-spark"
-          "rekordbox"
-          "slack"
-          "snowflake-snowsql"
-          "spotify"
-          "sublime-text"
-          "tableplus"
-          "todoist"
-          "tor-browser"
-          "xnapper"
-          "zen-browser"
-          "zoom"
-        ];
-        masApps = {
-          PCalc = 403504866;
-          Things = 904280696;
-          Yoink = 457622435;
-        };
-      };
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
       # nix.package = pkgs.nix;
+
+      # services.kanata = {
+      #   enable = true;
+      #   config = builtins.readFile ./kanata/kanata.kbd;
+      # };
 
       # Allow touch-id for sudo
       security.pam.enableSudoTouchIdAuth = true;
@@ -218,9 +169,11 @@
       };
 
       # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
-
+      nixpkgs.hostPlatform = system;
       nixpkgs.config.allowUnfree = true;
+      nixpkgs.overlays = [
+        (import ./overlays/default.nix)
+      ];
 
       environment.shells = [pkgs.fish];
       #environment.loginShell = pkgs.fish;
@@ -333,6 +286,7 @@
     darwinConfigurations."greed" = nix-darwin.lib.darwinSystem {
       modules = [
         configuration
+        (import ./modules/services/kanata.nix)
         home-manager.darwinModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
