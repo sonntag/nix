@@ -2,38 +2,49 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  #inherit (config.home.user-info) nixConfigDirectory;
+  nixConfigDirectory = "/Users/justin/.config/nix";
+in {
   programs.fish = {
     enable = true;
 
     plugins = with pkgs.fishPlugins; [
       {
-        name = "done";
-        src = done.src;
-      }
-      {
-        name = "puffer";
-        src = puffer.src;
+        name = "autopair";
+        src = autopair.src;
       }
       {
         name = "bass";
         src = bass.src;
       }
       {
+        name = "colored-man-pages";
+        src = colored-man-pages.src;
+      }
+      {
+        name = "done";
+        src = done.src;
+      }
+      {
+        name = "fish-you-should-use";
+        src = fish-you-should-use.src;
+      }
+      {
         name = "fzf-fish";
         src = fzf-fish.src;
+      }
+      {
+        name = "puffer";
+        src = puffer.src;
       }
       {
         name = "sponge";
         src = sponge.src;
       }
       {
-        name = "autopair";
-        src = autopair.src;
-      }
-      {
-        name = "fish-you-should-use";
-        src = fish-you-should-use.src;
+        name = "transient-fish";
+        src = transient-fish.src;
       }
     ];
 
@@ -55,6 +66,36 @@
       cxa.body = ''
         cd $argv && eza -la
       '';
+    };
+
+    shellAliases = with pkgs; {
+      # Nix related
+      drb = "darwin-rebuild build --flake ${nixConfigDirectory}";
+      drs = "darwin-rebuild switch --flake ${nixConfigDirectory}";
+      flakeup = "nix flake update ${nixConfigDirectory}";
+      nb = "nix build";
+      nd = "nix develop";
+      nf = "nix flake";
+      nr = "nix run";
+      ns = "nix search";
+
+      # Other
+      cat = "${bat}/bin/bat";
+      du = "${du-dust}/bin/dust";
+      g = "${gitAndTools.git}/bin/git";
+      l = "ll --all";
+      ll = "ls -l --icons";
+      ld = "ll | grep ^d";
+      ls = "${eza}/bin/eza";
+      hh = "ll";
+      hu = "ls";
+      huh = "l";
+      hud = "ld";
+      ps = "${procs}/bin/procs";
+
+      # Work Related
+      lr = "lein refresh";
+      vpn = "cone get prod.vpn -d 1w";
     };
 
     # FIXME: This is needed to address bug where the $PATH is re-ordered by

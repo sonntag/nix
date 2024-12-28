@@ -24,6 +24,15 @@
   }: let
     user = "justin";
     system = "aarch64-darwin";
+
+    # greedInfo = {
+    #   user = "justin";
+    #   system = "aarch64-darwin";
+    #   fullUser = "Justin Sonntag";
+    #   email = "sonntag@amperity.com";
+    #   nixConfigDirectory = "/Users/justin/.config/nix";
+    # };
+
     configuration = {pkgs, ...}: {
       imports = [
         ./darwin/homebrew.nix
@@ -32,7 +41,6 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
-        pkgs.mas
         pkgs.sketchybar
       ];
 
@@ -82,8 +90,6 @@
             "/Applications/Obsidian.app"
             "/Applications/Slack.app"
             "/System/Applications/Calendar.app"
-            # "/Applications/Day One.app"
-            # "/Applications/iTerm.app"
             "/Applications/Ghostty.app"
             "/Applications/ChatGPT.app"
             "/Applications/OpenSCAD.app"
