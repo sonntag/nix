@@ -36,6 +36,7 @@
     configuration = {pkgs, ...}: {
       imports = [
         ./darwin/homebrew.nix
+        ./darwin/touch-id.nix
       ];
 
       # List packages installed in system profile. To search by name, run:
@@ -54,7 +55,8 @@
       # };
 
       # Allow touch-id for sudo
-      security.pam.enableSudoTouchIdAuth = true;
+      #security.pam.enableSudoTouchIdAuth = true;
+      security.pam.enableSudoTouchId = true;
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
