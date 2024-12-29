@@ -62,8 +62,8 @@
       nix.settings.experimental-features = "nix-command flakes";
 
       # Create /etc/zshrc that loads the nix-darwin environment.
-      #programs.zsh.enable = true;  # default shell on catalina
-      #programs.fish.enable = true;
+      programs.zsh.enable = true; # default shell on catalina
+      programs.fish.enable = true;
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -155,7 +155,6 @@
       ];
 
       environment.shells = [pkgs.fish];
-      #environment.loginShell = pkgs.fish;
 
       users.users.${user} = {
         name = "${user}";
@@ -178,7 +177,6 @@
 
       # Enable carapace completions
       programs.carapace.enable = true;
-      programs.carapace.enableFishIntegration = true;
 
       programs.git.enable = true;
 
@@ -186,7 +184,6 @@
         alejandra # nix formatter
         awscli2
         bat
-        carapace
         clojure
         clojure-lsp
         coreutils
