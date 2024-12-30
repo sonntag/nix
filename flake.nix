@@ -213,7 +213,7 @@
       imports = [
         ./shell/tmux.nix
         ./shell/fish/default.nix
-        ./shell/starship.nix
+        ./shell/starship
       ];
 
       # Enable carapace completions
