@@ -29,8 +29,8 @@
       # Options
       #set -as terminal-features "$TERM:RGB" # 24-bit color
 
-      #set -g renumber-windows on # Renumber windows when a window is closed
-      #set -g detach-on-destroy off # Don't exit from tmux when closing a session
+      set -g renumber-windows on # Renumber windows when a window is closed
+      set -g detach-on-destroy off # Don't exit from tmux when closing a session
       #set -g set-clipboard on # Use system clipboard
 
       # Copied from sensible
