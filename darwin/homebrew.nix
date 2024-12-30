@@ -1,11 +1,15 @@
 {
   homebrew = {
     enable = true;
-    onActivation.cleanup = "zap";
-    taps = [
-      "conductorone/cone"
-      "nikitabobko/tap" # contains aerospace
-    ];
+    # nix-homebrew is handling homebrew updates
+    global.autoUpdate = false;
+    onActivation = {
+      # "zap" removes manually installed brews and casks
+      cleanup = "zap";
+      # nix-homebrew is handling homebrew updates
+      autoUpdate = false;
+      upgrade = true;
+    };
     brews = [
       "azure-cli"
       "conductorone/cone/cone"

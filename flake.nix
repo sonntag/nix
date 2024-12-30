@@ -3,13 +3,47 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Darwin related stuff
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager = {
-      url = "github:nix-community/home-manager";
+    nix-homebrew = {
+      url = "github:zhaofengli/nix-homebrew";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nix-darwin.follows = "nix-darwin";
+    };
+
+    # Homebrew taps
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+    homebrew-services = {
+      url = "github:homebrew/homebrew-services";
+      flake = false;
+    };
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
+    cone-tap = {
+      url = "github:conductorone/homebrew-cone";
+      flake = false;
+    };
+    nikitabobko-tap = {
+      # Contains aerospace
+      url = "github:nikitabobko/homebrew-tap";
+      flake = false;
     };
 
     tmux-sessionx.url = "github:omerxx/tmux-sessionx";
@@ -20,6 +54,13 @@
     nixpkgs,
     nix-darwin,
     home-manager,
+    nix-homebrew,
+    homebrew-core,
+    homebrew-cask,
+    homebrew-services,
+    homebrew-bundle,
+    cone-tap,
+    nikitabobko-tap,
     ...
   }: let
     user = "justin";
@@ -262,6 +303,28 @@
       modules = [
         configuration
         (import ./modules/services/kanata.nix)
+        ({config, ...}: {
+          # https://github.com/zhaofengli/nix-homebrew/issues/5
+          homebrew.taps = builtins.attrNames config.nix-homebrew.taps;
+        })
+        nix-homebrew.darwinModules.nix-homebrew
+        {
+          nix-homebrew = {
+            # Install Homebrew under the standard prefix
+            enable = true;
+            enableRosetta = false;
+            # User owning the Homebrew prefix
+            inherit user;
+            taps = {
+              "conductorone/homebrew-cone" = cone-tap;
+              "homebrew/homebrew-core" = homebrew-core;
+              "homebrew/homebrew-cask" = homebrew-cask;
+              "homebrew/homebrew-bundle" = homebrew-bundle;
+              "nikitabobko/homebrew-tap" = nikitabobko-tap;
+            };
+            mutableTaps = false;
+          };
+        }
         home-manager.darwinModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
