@@ -10,6 +10,7 @@
       autoUpdate = false;
       upgrade = true;
     };
+    caskArgs = {no_quarantine = true;};
     brews = [
       "azure-cli"
       "conductorone/cone/cone"
