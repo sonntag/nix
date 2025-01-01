@@ -161,9 +161,6 @@ in {
 
       # Enable vi keybindings
       fish_vi_key_bindings
-
-      # Enable starship transience
-      enable_transience
     '';
   };
 }
