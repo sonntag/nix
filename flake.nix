@@ -221,6 +221,12 @@
 
       programs.git.enable = true;
 
+      # Used for Amperity development
+      programs.java = {
+        enable = true;
+        package = pkgs.jdk11;
+      };
+
       home.packages = with pkgs; [
         alejandra # nix formatter
         awscli2
@@ -261,6 +267,9 @@
       home.sessionVariables = {
         EDITOR = "nvim";
         CARAPACE_BRIDGES = "fish,zsh,bash,inshellisense";
+
+        # Amperity related
+        VAULT_ADDR = "https://vault.amperity.top:8200";
       };
 
       home.file."./.config/nvim/" = {

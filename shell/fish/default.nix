@@ -42,10 +42,10 @@ in {
         name = "sponge";
         src = sponge.src;
       }
-      {
-        name = "transient-fish";
-        src = transient-fish.src;
-      }
+      # {
+      #   name = "transient-fish";
+      #   src = transient-fish.src;
+      # }
     ];
 
     functions = {
@@ -65,6 +65,14 @@ in {
 
       cxa.body = ''
         cd $argv && eza -la
+      '';
+
+      starship_transient_prompt_func.body = ''
+        starship module character
+      '';
+
+      starship_transient_rprompt_func.body = ''
+        starship module time
       '';
 
       start-kanata.body = ''
@@ -145,11 +153,17 @@ in {
     #   set fish_user_paths $fish_user_paths
     # '';
 
-    # Start/attach to a tmux session if not already attached
     interactiveShellInit = ''
+      # Start/attach to a tmux session if not already attached
       if not set -q TMUX
         tmux-attach-or-create
       end
+
+      # Enable vi keybindings
+      fish_vi_key_bindings
+
+      # Enable starship transience
+      enable_transience
     '';
   };
 }

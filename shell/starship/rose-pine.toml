@@ -1,5 +1,4 @@
 format = """
-$username\
 $directory\
 $git_branch\
 $git_status\
@@ -18,7 +17,7 @@ $scala\
 $conda\
 $python\
 $time\n  \
-[󱞪](fg:iris) \
+$character \
 """
 
 palette = "rose-pine"
@@ -32,17 +31,29 @@ pine = '#31748f'
 foam = '#9ccfd8'
 iris = '#c4a7e7'
 
+
+[character]
+format = '  $symbol '
+success_symbol = '[](bold fg:foam)'
+error_symbol = '[✖](bold fg:love)'
+vimcmd_symbol = '[❮](bold fg:gold)'
+vimcmd_replace_one_symbol = '[❮](bold fg:iris)'
+vimcmd_replace_symbol = '[❮](bold fg:iris)'
+vimcmd_visual_symbol = '[❮](bold fg:rose)'
+
+
 [directory]
 format = "[](fg:overlay)[ $path ]($style)[](fg:overlay) "
-style = "bg:overlay fg:pine"
+style = "bg:overlay fg:foam"
 truncation_length = 3
 truncation_symbol = "…/"
 
 [directory.substitutions]
+Desktop = ""
 Documents = "󰈙"
-Downloads = " "
-Music = " "
-Pictures = " "
+Downloads = ""
+Music = ""
+Pictures = ""
 
 [fill]
 style = "fg:overlay"
