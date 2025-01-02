@@ -161,6 +161,9 @@ in {
 
       # Enable vi keybindings
       fish_vi_key_bindings
+
+      # Disable welcome message
+      set fish_greeting
     '';
   };
 }

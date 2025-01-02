@@ -17,7 +17,7 @@ $rust\
 $scala\
 $conda\
 $python\
-$time\n\
+$line_break\
 $character\
 """
 
@@ -46,16 +46,20 @@ vimcmd_visual_symbol = '[❮](bold fg:rose)'
 [directory]
 format = "[](fg:overlay)[$path]($style)[](fg:overlay) "
 style = "bg:overlay fg:foam"
-truncation_length = 3
-truncation_symbol = "…/"
+truncation_length = 0
+#fish_style_pwd_dir_length = 1
+#truncation_symbol = "…/"
+before_repo_root_style = "bg:overlay fg:pine"
+repo_root_style = "bg:overlay fg:gold"
+repo_root_format = "[](fg:overlay)[$repo_root](bg:overlay fg:gold)[$path]($style)[$read_only]($read_only_style)[](fg:overlay) "
 
 [directory.substitutions]
-Desktop = ""
-Development = ""
-Documents = "󰈙"
-Downloads = ""
-Music = ""
-Pictures = ""
+Desktop = "  "
+Development = "  "
+Documents = " 󰈙 "
+Downloads = "  "
+Music = "  "
+Pictures = "  "
 
 [fill]
 style = "fg:overlay"
@@ -70,7 +74,7 @@ symbol = ""
 disabled = false
 style = "bg:overlay fg:love"
 format = '[](fg:overlay)([$all_status$ahead_behind]($style))[](fg:overlay) '
-up_to_date = '[ ✓ ](bg:overlay fg:iris)'
+up_to_date = '[ ✓](bg:overlay fg:iris)'
 untracked = '[?\($count\)](bg:overlay fg:gold)'
 stashed = '[\$](bg:overlay fg:iris)'
 modified = '[!\($count\)](bg:overlay fg:gold)'
