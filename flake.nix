@@ -272,6 +272,10 @@
         VAULT_ADDR = "https://vault.amperity.top:8200";
       };
 
+      home.sessionPath = [
+        "$HOME/Development/amperity/app/bin"
+      ];
+
       home.file."./.config/nvim/" = {
         source = ./nvim;
         recursive = true;

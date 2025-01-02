@@ -4,18 +4,28 @@ return {
 	lazy = false,
 	version = false, -- set this if you want to always pull the latest change
 	opts = {
-		provider = 'azure',
-		-- add any opts here
+		provider = 'openai',
+		openai = {
+			endpoint = 'http://Bedroc-Proxy-6LZc7RGHPlTd-326431626.us-west-2.elb.amazonaws.com/api/v1',
+			model = 'anthropic.claude-3-5-sonnet-20241022-v2:0',
+			api_key_name = 'cmd:vault read -field=key az-stage/secret/service/openai/bedrock',
+		},
+		windows = {
+			wrap = true,
+			width = '40',
+			input = {
+				height = 16,
+			},
+		},
 	},
-	-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 	build = 'make',
-	-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
 	dependencies = {
 		'nvim-treesitter/nvim-treesitter',
 		'stevearc/dressing.nvim',
 		'nvim-lua/plenary.nvim',
 		'MunifTanjim/nui.nvim',
 		--- The below dependencies are optional,
+		'hrsh7th/nvim-cmp', -- autocomplete for avante commands and mentions
 		'nvim-tree/nvim-web-devicons', -- or echasnovski/mini.icons
 		-- 'zbirenbaum/copilot.lua', -- for providers='copilot'
 		{

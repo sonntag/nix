@@ -18,30 +18,30 @@ in {
         name = "bass";
         src = bass.src;
       }
-      {
-        name = "colored-man-pages";
-        src = colored-man-pages.src;
-      }
-      {
-        name = "done";
-        src = done.src;
-      }
-      {
-        name = "fish-you-should-use";
-        src = fish-you-should-use.src;
-      }
-      {
-        name = "fzf-fish";
-        src = fzf-fish.src;
-      }
+      # {
+      #   name = "colored-man-pages";
+      #   src = colored-man-pages.src;
+      # }
+      # {
+      #   name = "done";
+      #   src = done.src;
+      # }
+      # {
+      #   name = "fish-you-should-use";
+      #   src = fish-you-should-use.src;
+      # }
+      # {
+      #   name = "fzf-fish";
+      #   src = fzf-fish.src;
+      # }
       {
         name = "puffer";
         src = puffer.src;
       }
-      {
-        name = "sponge";
-        src = sponge.src;
-      }
+      # {
+      #   name = "sponge";
+      #   src = sponge.src;
+      # }
       # {
       #   name = "transient-fish";
       #   src = transient-fish.src;
