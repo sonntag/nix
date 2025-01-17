@@ -14,7 +14,7 @@ return {
 			wrap = true,
 			width = '40',
 			input = {
-				height = 16,
+				height = 12,
 			},
 		},
 	},
