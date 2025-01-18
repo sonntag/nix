@@ -45,7 +45,6 @@
       "rekordbox"
       "slack"
       "snowflake-snowsql"
-      "spotify"
       "sublime-text"
       "tableplus"
       "todoist"

@@ -47,6 +47,11 @@
     };
 
     tmux-sessionx.url = "github:omerxx/tmux-sessionx";
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -76,6 +81,7 @@
 
     configuration = {pkgs, ...}: {
       imports = [
+        ./darwin/dock.nix
         ./darwin/homebrew.nix
         ./darwin/touch-id.nix
       ];
@@ -123,25 +129,26 @@
           launchanim = false;
           mineffect = "scale";
           minimize-to-application = true;
+          mouse-over-hilite-stack = true;
           mru-spaces = false;
           orientation = "bottom";
-          persistent-apps = [
-            "/System/Applications/Messages.app"
-            "/Applications/Arc.app"
-            "/Applications/Spark Desktop.app"
-            "/Applications/Things3.app"
-            "/Applications/Obsidian.app"
-            "/Applications/Slack.app"
-            "/System/Applications/Calendar.app"
-            "/Applications/Ghostty.app"
-            "/Applications/ChatGPT.app"
-            "/Applications/OpenSCAD.app"
-          ];
-
-          persistent-others = [
-            "/Users/${user}/Desktop"
-            "/Users/${user}/Downloads"
-          ];
+          # persistent-apps = [
+          #   "/System/Applications/Messages.app"
+          #   "/Applications/Arc.app"
+          #   "/Applications/Spark Desktop.app"
+          #   "/Applications/Things3.app"
+          #   "/Applications/Obsidian.app"
+          #   "/Applications/Slack.app"
+          #   "/System/Applications/Calendar.app"
+          #   "/Applications/Ghostty.app"
+          #   "/Applications/ChatGPT.app"
+          #   "/Applications/OpenSCAD.app"
+          # ];
+          #
+          # persistent-others = [
+          #   "/Users/${user}/Desktop"
+          #   "/Users/${user}/Downloads"
+          # ];
 
           # CustomUserPreferences = {
           #         # Sets Downloads folder with fan view in Dock
@@ -214,6 +221,7 @@
         ./shell/tmux.nix
         ./shell/fish/default.nix
         ./shell/starship
+        ./user/apps/miscellaneous/spicetify.nix
       ];
 
       # Enable carapace completions
@@ -242,10 +250,30 @@
       programs.bat.config.theme = "rose-pine";
       programs.bat.enable = true;
 
+      programs.fzf = {
+        enable = true;
+        enableFishIntegration = true;
+        colors = {
+          "fg" = "#908caa";
+          "bg" = "#191724";
+          "hl" = "#ebbcba";
+          "fg+" = "#e0def4";
+          "bg+" = "#26233a";
+          "hl+" = "#ebbcba";
+          "border" = "#403d52";
+          "header" = "#31748f";
+          "gutter" = "#191724";
+          "spinner" = "#f6c177";
+          "info" = "#9ccfd8";
+          "pointer" = "#c4a7e7";
+          "marker" = "#eb6f92";
+          "prompt" = "#908caa";
+        };
+      };
+
       home.packages = with pkgs; [
         alejandra # nix formatter
         awscli2
-        bat
         clojure
         clojure-lsp
         coreutils
@@ -253,7 +281,6 @@
         direnv
         eza
         fd
-        fzf
         gnused
         htop
         httpie
@@ -272,7 +299,7 @@
         nerdfonts
         nodejs
         ripgrep
-        thefuck
+        spotify
         tldr
         tree
         vault
@@ -339,11 +366,9 @@
         nix-homebrew.darwinModules.nix-homebrew
         {
           nix-homebrew = {
-            # Install Homebrew under the standard prefix
+            inherit user;
             enable = true;
             enableRosetta = false;
-            # User owning the Homebrew prefix
-            inherit user;
             taps = {
               "conductorone/homebrew-cone" = cone-tap;
               "homebrew/homebrew-core" = homebrew-core;
@@ -352,6 +377,7 @@
               "nikitabobko/homebrew-tap" = nikitabobko-tap;
             };
             mutableTaps = false;
+            autoMigrate = true;
           };
         }
         home-manager.darwinModules.home-manager
