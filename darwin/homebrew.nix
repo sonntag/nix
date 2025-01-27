@@ -27,6 +27,7 @@
       "arc"
       "bambu-studio"
       "blackhole-2ch"
+      "chatbox"
       "chatgpt"
       "cljstyle"
       "desktoppr"

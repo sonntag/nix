@@ -217,9 +217,9 @@ run = 'move-node-to-workspace G'
 if.app-id = 'com.apple.MobileSMS'
 run = 'move-node-to-workspace M'
 
-[[on-window-detected]]
-if.app-id = 'com.readdle.SparkDesktop'
-run = 'move-node-to-workspace M'
+# [[on-window-detected]]
+# if.app-id = 'com.readdle.SparkDesktop'
+# run = 'move-node-to-workspace M'
 
 [[on-window-detected]]
 if.app-id = 'com.1password.1password'
