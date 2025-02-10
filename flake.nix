@@ -4,13 +4,13 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Darwin related stuff
     nix-darwin = {
-      url = "github:LnL7/nix-darwin";
+      url = "github:LnL7/nix-darwin/nix-darwin-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-homebrew = {
@@ -125,7 +125,7 @@
           autohide-delay = 0.1;
           autohide-time-modifier = 0.5;
           expose-animation-duration = 0.25;
-          expose-group-by-app = true;
+          expose-group-apps = true;
           launchanim = false;
           mineffect = "scale";
           minimize-to-application = true;
