@@ -52,6 +52,7 @@
       "tableplus"
       "todoist"
       "tor-browser"
+      "whatsapp"
       "xnapper"
       "zen-browser"
       "zoom"
