@@ -32,7 +32,7 @@ in {
     enable = true;
     autoMigrate = true;
     enableRosetta = false;
-    mutableTaps = true;
+    mutableTaps = false;
     taps = {
       "homebrew/homebrew-core" = homebrew-core;
       "homebrew/homebrew-cask" = homebrew-cask;
