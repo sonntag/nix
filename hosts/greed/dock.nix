@@ -5,10 +5,6 @@
 }: let
   user = "justin";
 in {
-  imports = [
-    ../modules/darwin/dock.nix
-  ];
-
   local = {
     dock.enable = true;
     dock.entries = [

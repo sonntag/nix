@@ -17,22 +17,6 @@
         "type": "github"
       }
     },
-    "cone-tap": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1737660939,
-        "narHash": "sha256-O20vUtkt1qOuU/dWQ3TXKDqFW/RtlxZT8OXZP/nmV6k=",
-        "owner": "conductorone",
-        "repo": "homebrew-cone",
-        "rev": "ce8dae9b07eee1632555b845300e2ebde32d0258",
-        "type": "github"
-      },
-      "original": {
-        "owner": "conductorone",
-        "repo": "homebrew-cone",
-        "type": "github"
-      }
-    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -71,6 +55,22 @@
         "type": "github"
       }
     },
+    "homebrew-borkdude": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1737042495,
+        "narHash": "sha256-AMb4ACXRkyMV6sb3frsgfdG/YJVkKFvyZhqxdqrR8DU=",
+        "owner": "borkdude",
+        "repo": "homebrew-brew",
+        "rev": "58c1465bfee720b68746ee7dd838089a25859afe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "borkdude",
+        "repo": "homebrew-brew",
+        "type": "github"
+      }
+    },
     "homebrew-bundle": {
       "flake": false,
       "locked": {
@@ -103,6 +103,22 @@
         "type": "github"
       }
     },
+    "homebrew-cone": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739399800,
+        "narHash": "sha256-POTuYQDZWcLn2GO9cLSmPauUrSvKulYlKvniNYeoYCg=",
+        "owner": "conductorone",
+        "repo": "homebrew-cone",
+        "rev": "eaf92610aaee5051b97b69a473a83db9230b651b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "conductorone",
+        "repo": "homebrew-cone",
+        "type": "github"
+      }
+    },
     "homebrew-core": {
       "flake": false,
       "locked": {
@@ -119,6 +135,38 @@
         "type": "github"
       }
     },
+    "homebrew-hashicorp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739534884,
+        "narHash": "sha256-MIq2RkMJoKZKQmkNXdikI23BUsXKHLh1XLLXJJxWqVY=",
+        "owner": "hashicorp",
+        "repo": "homebrew-tap",
+        "rev": "9bec905911cf0b04b06c2a1f4c9fb72615e3d5fe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hashicorp",
+        "repo": "homebrew-tap",
+        "type": "github"
+      }
+    },
+    "homebrew-nikitabobko": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1733437300,
+        "narHash": "sha256-r0gkdyPodHNid+bcAbVtSgtUR0BkyWa0mpTJkpaq8sw=",
+        "owner": "nikitabobko",
+        "repo": "homebrew-tap",
+        "rev": "64d46a5546d3fe6f7ab368f5a3df0984adfe7087",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nikitabobko",
+        "repo": "homebrew-tap",
+        "type": "github"
+      }
+    },
     "homebrew-services": {
       "flake": false,
       "locked": {
@@ -132,22 +180,6 @@
       "original": {
         "owner": "homebrew",
         "repo": "homebrew-services",
-        "type": "github"
-      }
-    },
-    "nikitabobko-tap": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1733437300,
-        "narHash": "sha256-r0gkdyPodHNid+bcAbVtSgtUR0BkyWa0mpTJkpaq8sw=",
-        "owner": "nikitabobko",
-        "repo": "homebrew-tap",
-        "rev": "64d46a5546d3fe6f7ab368f5a3df0984adfe7087",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nikitabobko",
-        "repo": "homebrew-tap",
         "type": "github"
       }
     },
@@ -248,13 +280,15 @@
     },
     "root": {
       "inputs": {
-        "cone-tap": "cone-tap",
         "home-manager": "home-manager",
+        "homebrew-borkdude": "homebrew-borkdude",
         "homebrew-bundle": "homebrew-bundle",
         "homebrew-cask": "homebrew-cask",
+        "homebrew-cone": "homebrew-cone",
         "homebrew-core": "homebrew-core",
+        "homebrew-hashicorp": "homebrew-hashicorp",
+        "homebrew-nikitabobko": "homebrew-nikitabobko",
         "homebrew-services": "homebrew-services",
-        "nikitabobko-tap": "nikitabobko-tap",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs",
