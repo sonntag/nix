@@ -29,7 +29,6 @@
     nerdfonts
     nodejs
     ripgrep
-    spotify
     tldr
     tree
     yazi

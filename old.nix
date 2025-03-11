@@ -3,10 +3,10 @@
   programs.home-manager.enable = true;
 
   imports = [
-    ./shell/tmux.nix
+    ./modules/home/programs/tmux.nix
     ./modules/home/programs/fish
-    ./shell/starship
-    # ./user/apps/miscellaneous/spicetify.nix
+    ./modules/home/programs/starship
+    ./modules/home/programs/spotify.nix
   ];
 
   # Enable carapace completions
