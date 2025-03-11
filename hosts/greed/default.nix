@@ -6,6 +6,8 @@
     azure-cli
     kubelogin
     mkcert
+    wget
+    yq-go
   ];
 
   imports = [

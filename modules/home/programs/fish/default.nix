@@ -76,7 +76,7 @@ in {
       '';
 
       start-kanata.body = ''
-        sudo /usr/bin/kanata -c /Users/justin/.config/kanata/kanata.kbd
+        sudo /opt/homebrew/bin/kanata -c /Users/justin/.config/kanata/kanata.kbd
       '';
 
       tmux-attach-or-create.body = ''

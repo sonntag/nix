@@ -25,7 +25,6 @@ in {
 
     # https://github.com/zhaofengli/nix-homebrew/issues/5
     taps = builtins.attrNames config.nix-homebrew.taps;
-    # taps = builtins.attrNames (builtins.removeAttrs config.nix-homebrew.taps ["homebrew/bundle" "homebrew/core" "homebrew/cask"]);
   };
 
   nix-homebrew = {

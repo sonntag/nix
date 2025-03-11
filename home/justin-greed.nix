@@ -32,7 +32,6 @@
     spotify
     tldr
     tree
-    vault
     yazi
     zoxide
   ];
@@ -43,9 +42,7 @@
     ../old.nix
     # ../modules/home/services/syncthing.nix
     # ../modules/home/programs/git/work.nix
-    # ../modules/home/programs/kitty.nix
     # ../modules/home/programs/nvim
-    # ../modules/home/programs/emacs
     # ../modules/home/programs/zsh
     # ../modules/home/programs/zsh/darwin.nix
     # ../modules/home/programs/zsh/work.nix

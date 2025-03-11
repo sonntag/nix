@@ -4,7 +4,7 @@
 
   imports = [
     ./shell/tmux.nix
-    ./shell/fish/default.nix
+    ./modules/home/programs/fish
     ./shell/starship
     # ./user/apps/miscellaneous/spicetify.nix
   ];

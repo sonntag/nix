@@ -18,8 +18,10 @@
         NSWindowResizeTime = 0.01;
         NSWindowShouldDragOnGesture = true;
         "com.apple.trackpad.enableSecondaryClick" = true;
-        "com.apple.swipescrolldirection" = false;
+        "com.apple.swipescrolldirection" = true;
         _HIHideMenuBar = true;
+        InitialKeyRepeat = 12;
+        KeyRepeat = 2;
       };
       dock = {
         autohide = true;
@@ -58,7 +60,7 @@
       trackpad = {
         Clicking = false;
         TrackpadRightClick = true;
-        TrackpadThreeFingerDrag = true;
+        TrackpadThreeFingerDrag = false;
         TrackpadThreeFingerTapGesture = 0;
       };
       CustomUserPreferences = {

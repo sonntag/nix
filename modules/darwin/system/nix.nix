@@ -1,7 +1,7 @@
-{...}: {
+{
   nix = {
     settings = {
-      # trusted-users = ["@staff"];
+      trusted-users = ["@staff"];
 
       # substituters = [
       #   "https://nix-community.cachix.org"
@@ -14,15 +14,15 @@
       experimental-features = "nix-command flakes";
     };
 
-    # gc = {
-    #   automatic = true;
-    #   interval.Day = 7;
-    #   options = "--delete-older-than 7d";
-    # };
-    #
-    # optimise = {
-    #   automatic = true;
-    #   interval.Day = 7;
-    # };
+    gc = {
+      automatic = true;
+      interval.Day = 7;
+      options = "--delete-older-than 7d";
+    };
+
+    optimise = {
+      automatic = true;
+      interval.Day = 7;
+    };
   };
 }

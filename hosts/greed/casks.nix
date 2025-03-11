@@ -2,8 +2,8 @@
   nix-homebrew = {
     taps = with inputs; {
       "conductorone/homebrew-cone" = homebrew-cone;
-      "hashicorp/tap" = homebrew-hashicorp;
-      "borkdude/brew" = homebrew-borkdude;
+      "hashicorp/homebrew-tap" = homebrew-hashicorp;
+      "borkdude/homebrew-brew" = homebrew-borkdude;
     };
   };
 
