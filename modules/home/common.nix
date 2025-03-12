@@ -8,8 +8,6 @@
   fonts.fontconfig.enable = true;
 
   imports = [
-    ./programs/tmux
-    ./programs/zsh
-    ./programs/nvim
+    ./programs
   ];
 }

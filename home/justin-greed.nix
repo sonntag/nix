@@ -38,12 +38,6 @@
   fonts.fontconfig.enable = true;
 
   imports = [
-    ../old.nix
-    # ../modules/home/services/syncthing.nix
-    # ../modules/home/programs/git/work.nix
-    # ../modules/home/programs/nvim
-    # ../modules/home/programs/zsh
-    # ../modules/home/programs/zsh/darwin.nix
-    # ../modules/home/programs/zsh/work.nix
+    ../modules/home
   ];
 }
