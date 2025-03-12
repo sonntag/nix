@@ -17,9 +17,11 @@
 
   homebrew.casks = [
     "chromedriver"
+    "cljstyle"
     "docker"
     "google-chrome"
     "slack"
+    "snowflake-snowsql"
     "zoom"
   ];
 }

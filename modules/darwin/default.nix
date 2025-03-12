@@ -12,8 +12,10 @@
   defaultModules = [
     {
       imports = [
-        ./system/dock.nix
+        ./programs
         ./security/touch-id.nix
+        ./services
+        ./system
       ];
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
