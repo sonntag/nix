@@ -1,5 +1,27 @@
-{...}: {
-  system = {
+{lib, ...}: {
+  # These are up for PR in nix-darwin, so can be removed once that is merged
+  # https://github.com/LnL7/nix-darwin/pull/1310
+  options = with lib; {
+    system.defaults.NSGlobalDomain.NSStatusItemSpacing = mkOption {
+      type = types.nullOr types.int;
+      default = null;
+      example = 12;
+      description = ''
+        Sets the spacing between status icons in the menu bar. The default is null.
+      '';
+    };
+
+    system.defaults.NSGlobalDomain.NSStatusItemSelectionPadding = mkOption {
+      type = types.nullOr types.int;
+      default = null;
+      example = 6;
+      description = ''
+        Sets the padding around status icons in the menu bar. The default is null.
+      '';
+    };
+  };
+
+  config.system = {
     defaults = {
       NSGlobalDomain = {
         AppleShowAllFiles = true;
@@ -15,6 +37,8 @@
         NSNavPanelExpandedStateForSaveMode = true;
         NSNavPanelExpandedStateForSaveMode2 = true;
         NSScrollAnimationEnabled = false;
+        NSStatusItemSpacing = 12;
+        NSStatusItemSelectionPadding = 6;
         NSWindowResizeTime = 0.01;
         NSWindowShouldDragOnGesture = true;
         "com.apple.trackpad.enableSecondaryClick" = true;

@@ -11,6 +11,7 @@
     direnv
     eza
     fd
+    figlet
     gnused
     htop
     httpie
@@ -28,6 +29,7 @@
     neovim
     nerdfonts
     nodejs
+    presenterm
     ripgrep
     tldr
     tree
