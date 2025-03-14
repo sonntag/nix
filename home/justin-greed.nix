@@ -27,7 +27,7 @@
     neil
     neofetch
     neovim
-    nerdfonts
+    nerd-fonts.victor-mono
     nodejs
     presenterm
     ripgrep

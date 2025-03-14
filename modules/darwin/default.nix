@@ -13,7 +13,6 @@
     {
       imports = [
         ./programs
-        ./security/touch-id.nix
         ./services
         ./system
       ];
