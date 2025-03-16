@@ -8,7 +8,7 @@ with lib; {
   options = {
     system.wallpaper.image.path = mkOption {
       type = types.nullOr types.path;
-      default = null;
+      default = ../../../backgrounds/rancho-cucamonga-tree.png;
       description = ''
         Path to an image to use as the wallpaper. The default is null.
       '';

@@ -10,8 +10,6 @@
     yq-go
   ];
 
-  system.wallpaper.image.path = ../../backgrounds/rancho-cucamonga-tree.png;
-
   imports = [
     ./users.nix
     ./casks.nix
