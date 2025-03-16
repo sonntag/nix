@@ -7,9 +7,9 @@
   version = "0.5";
   hash = "sha256-JHnQS4ZL0GC4shBcsKtmPOSFBY6zLSV/IAFRb4+A++Q=";
   meta = with lib; {
-    description = "A tool for formatting Clojure code";
-    homepage = "https://github.com/greglook/cljstyle";
-    license = licenses.epl10;
+    description = "Simple command line tool to set the desktop picture on macOS";
+    homepage = "https://github.com/scriptingosx/desktoppr";
+    license = licenses.asl20;
     platforms = ["aarch64-darwin"];
   };
 in
