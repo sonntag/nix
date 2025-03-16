@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     alejandra # nix formatter
     awscli2
+    cljstyle
     clojure
     clojure-lsp
     coreutils

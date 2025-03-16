@@ -111,14 +111,7 @@
       };
     });
 
-    overlays = {
-      "aarch64-darwin" = {
-        default = import ./pkgs;
-      };
-      "x86_64-linux" = {
-        default = final: prev: prev;
-      };
-    };
+    overlays.default = import ./pkgs;
 
     darwinConfigurations = {
       wrath = mkDarwinConfiguration {

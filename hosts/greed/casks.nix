@@ -17,7 +17,6 @@
 
   homebrew.casks = [
     "chromedriver"
-    "cljstyle"
     "docker"
     "google-chrome"
     "slack"

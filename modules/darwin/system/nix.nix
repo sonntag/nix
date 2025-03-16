@@ -1,7 +1,5 @@
 {
   nix = {
-    enable = true;
-
     settings = {
       trusted-users = ["@staff"];
 
