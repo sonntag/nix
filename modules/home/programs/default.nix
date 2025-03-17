@@ -4,7 +4,6 @@
     ./fish
     ./ghostty
     ./git
-    ./kanata
     ./nvim
     ./starship
     ./bat.nix
