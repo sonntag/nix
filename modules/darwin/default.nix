@@ -24,9 +24,7 @@
         inherit overlays hostPlatform;
         config.allowUnfree = true;
       };
-      programs.fish.enable = true;
     }
-
     home-manager.darwinModules.home-manager
   ];
 in

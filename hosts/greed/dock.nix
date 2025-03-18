@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: let
+let
   user = "justin";
 in {
   local = {

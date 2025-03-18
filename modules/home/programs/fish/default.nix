@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
   #inherit (config.home.user-info) nixConfigDirectory;
   nixConfigDirectory = "/Users/justin/.config/nix";
 in {

@@ -1,6 +1,10 @@
 {pkgs, ...}: {
   home.stateVersion = "24.05";
 
+  imports = [
+    ../modules/home
+  ];
+
   home.packages = with pkgs; [
     alejandra # nix formatter
     awscli2
@@ -40,7 +44,9 @@
 
   fonts.fontconfig.enable = true;
 
-  imports = [
-    ../modules/home
-  ];
+  # Used for Amperity development
+  programs.java = {
+    enable = true;
+    package = pkgs.jdk11;
+  };
 }

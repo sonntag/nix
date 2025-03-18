@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   imports = [
     ./aerospace
     ./fish
@@ -14,10 +14,4 @@
 
   # Enable carapace completions
   programs.carapace.enable = true;
-
-  # Used for Amperity development
-  programs.java = {
-    enable = true;
-    package = pkgs.jdk11;
-  };
 }
