@@ -7,7 +7,6 @@
     "chatbox"
     "ghostty"
     "gifox"
-    "hiddenbar"
     "homerow"
     "little-snitch"
     "obsidian"
