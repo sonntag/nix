@@ -1,7 +1,7 @@
 {pkgs, ...}: let
   driverDaemonCmd = "/Library/Application\\ Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon";
   kanataCmd = "${pkgs.kanata}/bin/kanata --cfg ${./kanata.kbd}";
-  logPath = /Users/justin/.log/kanata;
+  logPath = /Users/justin/Library/Logs/kanata;
 in {
   launchd.user.agents.kanata = {
     script = ''
