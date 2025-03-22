@@ -8,6 +8,7 @@
     ./starship
     ./bat.nix
     ./fzf.nix
+    ./man.nix
     ./spotify.nix
     ./tmux.nix
   ];
