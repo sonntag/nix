@@ -1,26 +1,54 @@
-{pkgs, ...}: let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.services.kanata;
   driverDaemonCmd = "/Library/Application\\ Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon";
-  kanataCmd = "${pkgs.kanata}/bin/kanata --cfg ${./kanata.kbd}";
+  kanataCmd = "${pkgs.kanata}/bin/kanata --nodelay --cfg ${cfg.config}";
   logPath = /Users/justin/Library/Logs/kanata;
 in {
-  launchd.user.agents.kanata = {
-    script = ''
-      sudo ${driverDaemonCmd} &
-      sleep 2 && sudo ${kanataCmd}
-    '';
-    serviceConfig = {
-      Label = "org.nixos.kanata";
-      RunAtLoad = true;
-      StandardErrorPath = logPath + /err.log;
-      StandardOutPath = logPath + /out.log;
-      ProcessType = "Interactive";
+  options = {
+    services.kanata.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = ''
+        Whether te enable kanata.
+      '';
+    };
+
+    services.kanata.config = mkOption {
+      type = types.path;
+      default = ./kanata.kbd;
+      description = ''
+        Path to the config file for kanata.
+      '';
     };
   };
 
-  security.sudo.extraConfig = ''
-    %admin ALL=(root) NOPASSWD: ${driverDaemonCmd}
-    %admin ALL=(root) NOPASSWD: ${kanataCmd}
-  '';
+  config = mkIf cfg.enable {
+    launchd.user.agents.kanata = {
+      script = ''
+        sudo ${driverDaemonCmd} &
+        sleep 2 &&
+        sudo ${kanataCmd}
+      '';
+      serviceConfig = {
+        Label = "org.nixos.kanata";
+        RunAtLoad = true;
+        StandardOutPath = logPath + "/kanata.out.log";
+        StandardErrorPath = logPath + "/kanata.err.log";
+        ProcessType = "Interactive";
+      };
+    };
+
+    security.sudo.extraConfig = ''
+      %admin ALL=(root) NOPASSWD: ${driverDaemonCmd}
+      %admin ALL=(root) NOPASSWD: ${kanataCmd}
+    '';
+  };
 
   # kmonad setup
   # follows https://github.com/mtoohey31/nixexprs/blob/main/nix-darwin/modules/mtoohey/kmonad.nix
