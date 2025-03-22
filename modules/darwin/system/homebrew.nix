@@ -3,7 +3,7 @@
   inputs,
   ...
 }: let
-  inherit (inputs) nix-homebrew homebrew-bundle homebrew-core homebrew-cask homebrew-nikitabobko;
+  inherit (inputs) nix-homebrew;
 in {
   imports = [nix-homebrew.darwinModules.nix-homebrew];
 
@@ -32,10 +32,9 @@ in {
     autoMigrate = true;
     enableRosetta = false;
     mutableTaps = false;
-    taps = {
+    taps = with inputs; {
       "homebrew/homebrew-core" = homebrew-core;
       "homebrew/homebrew-cask" = homebrew-cask;
-      "homebrew/homebrew-bundle" = homebrew-bundle;
       "nikitabobko/homebrew-tap" = homebrew-nikitabobko;
     };
   };

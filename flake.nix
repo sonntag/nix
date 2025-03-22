@@ -28,7 +28,10 @@
     # (`nix-darwin` can manage packages/casks from homebrew OOTB,
     #  but doesn't have support for installing homebrew itself)
     nix-homebrew = {
-      url = "github:zhaofengli/nix-homebrew";
+      # Temporarily set nix-homebrew to a PR version to fix brew bundle
+      # https://github.com/zhaofengli/nix-homebrew/issues/70
+      # url = "github:zhaofengli/nix-homebrew";
+      url = "git+https://github.com/zhaofengli/nix-homebrew?ref=refs/pull/71/merge";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nix-darwin.follows = "nix-darwin";
     };
@@ -44,10 +47,6 @@
     # Base taps
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
-      flake = false;
-    };
-    homebrew-bundle = {
-      url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
     homebrew-cask = {
