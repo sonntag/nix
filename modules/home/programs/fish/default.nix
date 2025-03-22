@@ -15,10 +15,6 @@ in {
         src = bass.src;
       }
       # {
-      #   name = "colored-man-pages";
-      #   src = colored-man-pages.src;
-      # }
-      # {
       #   name = "done";
       #   src = done.src;
       # }
@@ -71,8 +67,8 @@ in {
         starship module time
       '';
 
-      start-kanata.body = ''
-        sudo ${pkgs.kanata}/bin/kanata -c /Users/justin/.config/kanata/kanata.kbd
+      kickstart-kanata.body = ''
+        launchctl kickstart -k gui/$(id -u)/org.nixos.kanata
       '';
 
       tmux-attach-or-create.body = ''
