@@ -15,7 +15,7 @@ in {
       type = types.bool;
       default = true;
       description = ''
-        Whether te enable kanata.
+        Whether to enable kanata.
       '';
     };
 
