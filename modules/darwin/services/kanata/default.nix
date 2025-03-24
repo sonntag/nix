@@ -10,8 +10,8 @@ with lib; let
   kanataCmd = "${pkgs.kanata}/bin/kanata --nodelay --cfg ${cfg.config}";
   logPath = /Users/justin/Library/Logs/kanata;
 in {
-  options = {
-    services.kanata.enable = mkOption {
+  options.services.kanata = {
+    enable = mkOption {
       type = types.bool;
       default = true;
       description = ''
@@ -19,7 +19,7 @@ in {
       '';
     };
 
-    services.kanata.config = mkOption {
+    config = mkOption {
       type = types.path;
       default = ./kanata.kbd;
       description = ''
@@ -52,7 +52,7 @@ in {
 
   # kmonad setup
   # follows https://github.com/mtoohey31/nixexprs/blob/main/nix-darwin/modules/mtoohey/kmonad.nix
-  # system.activationScripts.applications.text = pkgs.lib.mkForce ''
+  # system.activationScripts.applications.text = ''
   #   echo copying dext...
   #   echo will do ${pkgs.rsync}/bin/rsync -a --delete ${pkgs.karabiner-driverkit}/Applications/.Karabiner-VirtualHIDDevice-Manager.app /Applications
   #   echo copying shim...
