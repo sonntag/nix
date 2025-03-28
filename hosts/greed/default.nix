@@ -1,6 +1,4 @@
 {pkgs, ...}: {
-  system.stateVersion = 6;
-
   sonntag.nix.enable = true;
 
   environment.systemPackages = with pkgs; [
