@@ -1,5 +1,7 @@
 {
-  system.stateVersion = 5;
+  nix.enable = false;
+
+  system.stateVersion = 6;
 
   imports = [
     ./users.nix

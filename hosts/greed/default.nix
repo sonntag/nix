@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  system.stateVersion = 5;
+  system.stateVersion = 6;
 
   environment.systemPackages = with pkgs; [
     awscli2
@@ -14,8 +14,5 @@
     ./users.nix
     ./casks.nix
     ./dock.nix
-    # ../../modules/darwin/services/aerospace.nix
-    # ../../modules/darwin/services/jankyborders.nix
-    # ../../modules/darwin/services/sketchybar
   ];
 }
