@@ -1,7 +1,17 @@
 {
-  nix = {
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.sonntag.nix;
+in {
+  options = {
+    sonntag.nix.enable = mkEnableOption "sonntag nix settings";
+  };
+  config.nix = mkIf cfg.enable {
     settings = {
-      # trusted-users = ["@staff"];
+      trusted-users = ["@staff"];
 
       # substituters = [
       #   "https://nix-community.cachix.org"
