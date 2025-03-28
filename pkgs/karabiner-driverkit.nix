@@ -39,7 +39,7 @@ in
       runHook preInstall
       mkdir -p $out
       cp -R Applications/.Karabiner-VirtualHIDDevice-Manager.app $out
-      cp -R Library/Application\ Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications $out
+      cp -R Library/Application\ Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app $out
       runHook postInstall
     '';
   }
