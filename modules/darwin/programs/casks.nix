@@ -12,7 +12,6 @@
     "raycast"
     "readdle-spark"
     "sublime-text"
-    "tableplus"
     "xnapper"
     "zen-browser"
   ];
