@@ -2,7 +2,6 @@
   homebrew.casks = [
     "1password"
     "1password-cli"
-    "aerospace"
     "arc"
     "chatbox"
     "ghostty"

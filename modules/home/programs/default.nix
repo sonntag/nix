@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   imports = [
-    ./aerospace
     ./fish
     ./ghostty
     ./git
