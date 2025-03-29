@@ -5,6 +5,7 @@ in {
   users.knownUsers = [userName];
 
   users.users.${userName} = {
+    uid = 501;
     name = userName;
     home = userHome;
     shell = pkgs.fish;
