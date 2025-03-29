@@ -11,7 +11,6 @@
     "obsidian"
     "raycast"
     "readdle-spark"
-    "sublime-text"
     "xnapper"
     "zen-browser"
   ];

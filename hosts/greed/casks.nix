@@ -21,6 +21,7 @@
     "google-chrome"
     "slack"
     "snowflake-snowsql"
+    "sublime-text"
     "tableplus"
     "zoom"
   ];
