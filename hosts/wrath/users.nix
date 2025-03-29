@@ -2,7 +2,7 @@
   userName = "justin";
   userHome = "/Users/${userName}";
 in {
-  nix.settings.trusted-users = [userName];
+  users.knownUsers = [userName];
 
   users.users.${userName} = {
     name = userName;
