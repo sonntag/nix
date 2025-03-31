@@ -22,6 +22,8 @@
     nodejs
   ];
 
+  programs.claude-code.enable = true;
+
   fonts.fontconfig.enable = true;
 
   # Used for Amperity development

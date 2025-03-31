@@ -1,14 +1,15 @@
 {pkgs, ...}: {
   imports = [
+    ./bat.nix
+    ./claude-code.nix
     ./fish
+    ./fzf.nix
     ./ghostty
     ./git
-    ./nvim
-    ./starship
-    ./bat.nix
-    ./fzf.nix
     ./man.nix
+    ./nvim
     ./spotify.nix
+    ./starship
     ./tmux.nix
   ];
 

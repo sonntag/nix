@@ -17,11 +17,11 @@ in {
     };
   };
 
-  config = mkIf (cfg.default != null) {
-    system.activationScripts.postUserActivation.text = ''
-      echo >&2 "Setting default browser to ${cfg.default}..."
-      echo will do ${pkgs.defaultbrowser}/bin/defaultbrowser ${cfg.default}
-      echo >&2 "Default browser set."
-    '';
-  };
+  # config = mkIf (cfg.default != null) {
+  #   system.activationScripts.postUserActivation.text = ''
+  #     echo >&2 "Setting default browser to ${cfg.default}..."
+  #     ${pkgs.defaultbrowser}/bin/defaultbrowser ${cfg.default}
+  #     echo >&2 "Default browser set."
+  #   '';
+  # };
 }
