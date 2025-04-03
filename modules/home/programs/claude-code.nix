@@ -5,10 +5,10 @@
   ...
 }:
 with lib; let
-  cfg = config.programs.claude-code;
+  cfg = config.sonntag.programs.claude-code;
 in {
   options = {
-    programs.claude-code.enable = mkEnableOption "claude code";
+    sonntag.programs.claude-code.enable = mkEnableOption "claude code";
   };
 
   config = mkIf cfg.enable {

@@ -1,6 +1,4 @@
 {pkgs, ...}: {
-  home.stateVersion = "24.05";
-
   imports = [
     ../modules/home
   ];
@@ -22,9 +20,16 @@
     nodejs
   ];
 
-  programs.claude-code.enable = true;
+  home.sessionVariables = {
+    VAULT_ADDR = "https://vault.amperity.top:8200";
+  };
 
-  fonts.fontconfig.enable = true;
+  home.sessionPath = [
+    "$HOME/Development/amperity/app/bin"
+  ];
+
+  sonntag.programs.claude-code.enable = true;
+  sonntag.programs.nvim.enable = true;
 
   # Used for Amperity development
   programs.java = {

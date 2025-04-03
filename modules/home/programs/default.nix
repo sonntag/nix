@@ -27,7 +27,6 @@
     lazygit
     most
     neofetch
-    neovim
     nerd-fonts.victor-mono
     presenterm
     ripgrep
