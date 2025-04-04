@@ -92,11 +92,11 @@ in {
       drb = "darwin-rebuild build --flake ${nixConfigDirectory}";
       drs = "darwin-rebuild switch --flake ${nixConfigDirectory}";
       flakeup = "nix flake update --flake ${nixConfigDirectory}";
-      nb = "nix build";
-      nd = "nix develop";
-      nf = "nix flake";
-      nr = "nix run";
-      ns = "nix search";
+      # nb = "nix build";
+      # nd = "nix develop";
+      # nf = "nix flake";
+      # nr = "nix run";
+      # ns = "nix search";
 
       # Other
       cat = "${bat}/bin/bat";
