@@ -11,6 +11,7 @@
     ./spotify.nix
     ./starship
     ./tmux.nix
+    ./zoxide.nix
   ];
 
   home.packages = with pkgs; [

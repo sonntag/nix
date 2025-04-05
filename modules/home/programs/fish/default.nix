@@ -14,6 +14,10 @@ in {
         name = "bass";
         src = bass.src;
       }
+      {
+        name = "clownfish";
+        src = clownfish.src;
+      }
       # {
       #   name = "done";
       #   src = done.src;
