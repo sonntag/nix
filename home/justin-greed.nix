@@ -41,4 +41,12 @@
     lr = "lein refresh";
     vpn = "cone get prod.vpn -d 1w";
   };
+
+  programs.fish.functions = {
+    aws-profile.body = ''
+      set -gx AWS_PROFILE $argv[1]
+      aws sso login
+      aws configure list
+    '';
+  };
 }
