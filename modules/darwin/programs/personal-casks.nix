@@ -20,7 +20,6 @@
     "chatgpt"
     "dropbox"
     "nordvpn"
-    "openscad"
     "rekordbox"
     "todoist"
     "tor-browser"

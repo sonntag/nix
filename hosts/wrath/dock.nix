@@ -12,7 +12,6 @@ in {
       {path = "/System/Applications/Calendar.app";}
       {path = "/Applications/Ghostty.app";}
       {path = "/Applications/ChatGPT.app";}
-      {path = "/Applications/OpenSCAD.app";}
       {
         path = "/Users/${user}/Desktop";
         section = "others";
