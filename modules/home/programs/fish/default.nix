@@ -115,10 +115,6 @@ in {
       huh = "l";
       hud = "ld";
       ps = "${procs}/bin/procs";
-
-      # Work Related
-      lr = "lein refresh";
-      vpn = "cone get prod.vpn -d 1w";
     };
 
     # # FIXME: This is needed to address bug where the $PATH is re-ordered by

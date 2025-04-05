@@ -36,4 +36,9 @@
     enable = true;
     package = pkgs.jdk11;
   };
+
+  programs.fish.shellAliases = {
+    lr = "lein refresh";
+    vpn = "cone get prod.vpn -d 1w";
+  };
 }
