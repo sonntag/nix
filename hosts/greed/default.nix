@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  sonntag.nix.enable = true;
+  nix.enable = false;
 
   sonntag.darwin.personal-casks.enable = false;
 
