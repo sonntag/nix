@@ -72,6 +72,7 @@
       };
       finder = {
         CreateDesktop = false;
+        FXPreferredViewStyle = "Nlsv";
         FXDefaultSearchScope = "SCcf";
         FXEnableExtensionChangeWarning = false;
         NewWindowTarget = "Home";
