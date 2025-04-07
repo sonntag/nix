@@ -27,11 +27,6 @@ in {
         name = "clownfish";
         src = clownfish.src;
       }
-      # This causes a pager error every time a long process finishes
-      # {
-      #   name = "done";
-      #   src = done.src;
-      # }
       {
         name = "fzf-fish";
         src = fzf-fish.src;
