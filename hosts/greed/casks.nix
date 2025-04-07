@@ -21,7 +21,6 @@
     "chromedriver"
     "docker"
     "google-chrome"
-    "mouseless"
     "slack"
     "snowflake-snowsql"
     "sublime-text"

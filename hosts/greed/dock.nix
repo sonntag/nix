@@ -12,6 +12,7 @@ in {
       {path = "/Applications/Slack.app";}
       {path = "/System/Applications/Calendar.app";}
       {path = "/Applications/Ghostty.app";}
+      {path = "/Applications/zoom.us.app";}
       {
         path = "/Users/${user}/Desktop";
         section = "others";
