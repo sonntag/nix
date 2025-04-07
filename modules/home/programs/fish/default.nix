@@ -27,10 +27,11 @@ in {
         name = "clownfish";
         src = clownfish.src;
       }
-      {
-        name = "done";
-        src = done.src;
-      }
+      # This causes a pager error every time a long process finishes
+      # {
+      #   name = "done";
+      #   src = done.src;
+      # }
       {
         name = "fzf-fish";
         src = fzf-fish.src;
