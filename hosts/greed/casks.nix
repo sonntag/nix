@@ -16,6 +16,7 @@
   ];
 
   homebrew.casks = [
+    "chatbox"
     "chatwise"
     "chromedriver"
     "docker"

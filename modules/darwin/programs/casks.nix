@@ -3,7 +3,6 @@
     "1password"
     "1password-cli"
     "arc"
-    "chatbox"
     "ghostty"
     "gifox"
     "homerow"
