@@ -2,9 +2,10 @@
   userName = "justin";
   userHome = "/Users/${userName}";
 in {
-  nix.settings.trusted-users = [userName];
+  users.knownUsers = [userName];
 
   users.users.${userName} = {
+    uid = 501;
     name = userName;
     home = userHome;
     shell = pkgs.fish;
