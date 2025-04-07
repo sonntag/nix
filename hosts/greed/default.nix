@@ -1,6 +1,4 @@
 {pkgs, ...}: {
-  nix.enable = false;
-
   sonntag.darwin.personal-casks.enable = false;
 
   environment.systemPackages = with pkgs; [
