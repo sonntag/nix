@@ -6,6 +6,7 @@
     ./fzf.nix
     ./ghostty
     ./git
+    ./lazygit.nix
     ./man.nix
     ./nvim
     ./spotify.nix
@@ -25,7 +26,6 @@
     htop
     jq
     just
-    lazygit
     most
     neofetch
     nerd-fonts.victor-mono
