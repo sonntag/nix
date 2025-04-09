@@ -5,7 +5,7 @@
     ./fish
     ./fzf.nix
     ./ghostty
-    ./git
+    ./git.nix
     ./lazygit.nix
     ./man.nix
     ./nixvim.nix
@@ -19,7 +19,6 @@
   home.packages = with pkgs; [
     alejandra # nix formatter
     coreutils
-    difftastic
     eza
     fd
     figlet
