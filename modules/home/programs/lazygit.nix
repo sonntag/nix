@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   programs.lazygit = {
     enable = true;
     settings = {
@@ -6,7 +6,7 @@
         timeFormat = "2006-01-02";
         shortTimeFormat = "13:52";
       };
-      git.paging.externalDiffCommand = "difft --color=always --display=inline";
+      git.paging.externalDiffCommand = "${pkgs.difftastic}/bin/difft --color=always --display=inline";
     };
   };
 }
