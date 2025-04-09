@@ -83,6 +83,11 @@
     };
 
     tmux-sessionx.url = "github:omerxx/tmux-sessionx";
+
+    nixvim = {
+      url = ./flakes/nixvim;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let

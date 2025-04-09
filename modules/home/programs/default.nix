@@ -8,6 +8,7 @@
     ./git
     ./lazygit.nix
     ./man.nix
+    ./nixvim.nix
     ./nvim
     ./spotify.nix
     ./starship
