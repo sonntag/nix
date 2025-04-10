@@ -17,6 +17,7 @@
       "*.ignore.*"
       ".clj-kondo/babashka"
       ".clj-kondo/rewrite-clj"
+      ".clj-kondo/http-kit"
     ];
     difftastic = {
       enable = true;
