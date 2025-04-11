@@ -8,6 +8,7 @@
     cljstyle
     clojure
     clojure-lsp
+    devenv
     direnv
     httpie
     k9s

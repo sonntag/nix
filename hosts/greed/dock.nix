@@ -13,6 +13,7 @@ in {
       {path = "/System/Applications/Calendar.app";}
       {path = "/Applications/Ghostty.app";}
       {path = "/Applications/zoom.us.app";}
+      {path = "/Applications/Sublime Text.app";}
       {
         path = "/Users/${user}/Desktop";
         section = "others";
