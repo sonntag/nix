@@ -4,10 +4,19 @@
   ...
 }:
 with lib; let
-  cfg = config.sonntag.layers.autopair;
+  cfg = config.sonntag.layers.lsp;
 in {
-  options.sonntag.layers.autopair.enable = mkEnableOption "autopair" // {default = true;};
-  config.plugins.nvim-autopairs = {
+  options.sonntag.layers.lsp.enable = mkEnableOption "lsp" // {default = true;};
+  config.plugins.lsp = mkIf cfg.enable {
     enable = true;
+    keymaps = {
+      diagnostic = {
+        "<leader>q" = {
+          mode = "n";
+          action = "setloclist";
+          desc = "Open diagnostic [Q]uickfix list";
+        };
+      };
+    };
   };
 }

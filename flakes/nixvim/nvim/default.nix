@@ -1,7 +1,5 @@
 {
   imports = [
-    ./profiles/coder
-
     ./keymaps.nix
     ./options.nix
 
