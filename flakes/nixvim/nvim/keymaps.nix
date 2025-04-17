@@ -1,43 +1,10 @@
-{
+{util, ...}: {
   keymaps = [
-    {
-      mode = "n";
-      key = "<Esc>";
-      action = "<cmd>nohlsearch<CR>";
-    }
+    (util.keymap "n" "<Esc>" "<cmd>nohlsearch<CR>" "")
 
-    {
-      mode = "n";
-      key = "<left>";
-      action = "<cmd>echo 'Use h to move!!'<CR>";
-    }
-    {
-      mode = "n";
-      key = "<right>";
-      action = "<cmd>echo 'Use l to move!!'<CR>";
-    }
-    {
-      mode = "n";
-      key = "<up>";
-      action = "<cmd>echo 'Use k to move!!'<CR>";
-    }
-    {
-      mode = "n";
-      key = "<down>";
-      action = "<cmd>echo 'Use j to move!!'<CR>";
-    }
-
-    {
-      mode = "n";
-      key = "<leader>bd";
-      action.__raw = ''function() require('snacks').bufdelete() end'';
-      options.desc = "[D]elete Buffer";
-    }
-    {
-      mode = "n";
-      key = "<leader>bo";
-      action.__raw = ''function() require('snacks').bufdelete.other() end'';
-      options.desc = "Delete [O]ther Buffer";
-    }
+    (util.keymap "n" "<left>" "<cmd>echo 'Use h to move!!'<CR>" "")
+    (util.keymap "n" "<right>" "<cmd>echo 'Use l to move!!'<CR>" "")
+    (util.keymap "n" "<up>" "<cmd>echo 'Use k to move!!'<CR>" "")
+    (util.keymap "n" "<down>" "<cmd>echo 'Use j to move!!'<CR>" "")
   ];
 }

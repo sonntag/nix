@@ -1,44 +1,21 @@
-{
+{util, ...}: {
   plugins.which-key = {
     enable = true;
 
     # Document existing key chains
-    settings = {
-      spec = [
-        {
-          __unkeyed-1 = "<leader>c";
-          group = "[C]ode";
-        }
-        {
-          __unkeyed-1 = "<leader>b";
-          group = "[B]uffer";
-        }
-        {
-          __unkeyed-1 = "<leader>d";
-          group = "[D]ocument";
-        }
-        {
-          __unkeyed-1 = "<leader>r";
-          group = "[R]ename";
-        }
-        {
-          __unkeyed-1 = "<leader>s";
-          group = "[S]earch";
-        }
-        {
-          __unkeyed-1 = "<leader>w";
-          group = "[W]orkspace";
-        }
-        {
-          __unkeyed-1 = "<leader>t";
-          group = "[T]oggle";
-        }
-        {
-          __unkeyed-1 = "<leader>h";
-          group = "Git [H]unk";
-          mode = ["n" "v"];
-        }
-      ];
-    };
+    settings.spec = [
+      (util.whichkeyGroup "<leader>c" "[C]ode")
+      (util.whichkeyGroup "<leader>d" "[D]ocument")
+      (util.whichkeyGroup "<leader>r" "[R]ename")
+      (util.whichkeyGroup "<leader>s" "[S]earcch")
+      (util.whichkeyGroup "<leader>w" "[W]orkspace")
+      (util.whichkeyGroup "<leader>t" "[T]oggle")
+      # (util.whichkeyGroup "<leader>h" "Git [H]unk")
+      {
+        __unkeyed-1 = "<leader>h";
+        group = "Git [H]unk";
+        mode = ["n" "v"];
+      }
+    ];
   };
 }

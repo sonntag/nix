@@ -1,5 +1,7 @@
 {
   imports = [
+    ../../layers/buffers.nix
+
     ./plugins/autopair.nix
     ./plugins/blink-cmp.nix
     ./plugins/lsp.nix
