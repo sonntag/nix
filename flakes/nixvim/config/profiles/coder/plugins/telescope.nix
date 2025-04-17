@@ -2,6 +2,10 @@
   plugins.telescope = {
     enable = true;
 
+    # test = {
+    #   something = "foo";
+    # };
+
     extensions = {
       # https://github.com/nvim-telescope/telescope-fzf-native.nvim
       fzf-native.enable = true;

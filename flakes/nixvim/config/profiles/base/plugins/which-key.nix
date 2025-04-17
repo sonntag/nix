@@ -10,6 +10,10 @@
           group = "[C]ode";
         }
         {
+          __unkeyed-1 = "<leader>b";
+          group = "[B]uffer";
+        }
+        {
           __unkeyed-1 = "<leader>d";
           group = "[D]ocument";
         }
@@ -32,10 +36,7 @@
         {
           __unkeyed-1 = "<leader>h";
           group = "Git [H]unk";
-          mode = [
-            "n"
-            "v"
-          ];
+          mode = ["n" "v"];
         }
       ];
     };

@@ -1,8 +1,4 @@
 {
-  globals = {
-    mapleader = " ";
-    maplocalleader = ",";
-  };
   keymaps = [
     {
       mode = "n";
@@ -29,6 +25,19 @@
       mode = "n";
       key = "<down>";
       action = "<cmd>echo 'Use j to move!!'<CR>";
+    }
+
+    {
+      mode = "n";
+      key = "<leader>bd";
+      action.__raw = ''function() require('snacks').bufdelete() end'';
+      options.desc = "[D]elete Buffer";
+    }
+    {
+      mode = "n";
+      key = "<leader>bo";
+      action.__raw = ''function() require('snacks').bufdelete.other() end'';
+      options.desc = "Delete [O]ther Buffer";
     }
   ];
 }
