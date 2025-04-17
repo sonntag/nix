@@ -10,12 +10,7 @@
       (util.whichkeyGroup "<leader>s" "[S]earcch")
       (util.whichkeyGroup "<leader>w" "[W]orkspace")
       (util.whichkeyGroup "<leader>t" "[T]oggle")
-      # (util.whichkeyGroup "<leader>h" "Git [H]unk")
-      {
-        __unkeyed-1 = "<leader>h";
-        group = "Git [H]unk";
-        mode = ["n" "v"];
-      }
+      (util.whichkeyGroup "<leader>h" "Git [H]unk" // {mode = ["n" "v"];})
     ];
   };
 }

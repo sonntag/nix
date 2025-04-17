@@ -1,17 +1,14 @@
 {
   imports = [
-    ../../layers/buffers.nix
-
-    ./plugins/autopair.nix
     ./plugins/blink-cmp.nix
     ./plugins/lsp.nix
     ./plugins/luasnip.nix
     ./plugins/telescope.nix
     ./plugins/todo-comment.nix
     ./plugins/treesitter.nix
-    # ./keymaps.nix
-    # Adding this for testing purposes
-    ../../languages/nix.nix
   ];
+
+  sonntag.nvim.languages.clojure.enable = true;
+
   plugins.sleuth.enable = true;
 }

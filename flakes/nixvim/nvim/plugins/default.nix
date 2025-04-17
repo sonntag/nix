@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [
     ./conform.nix
     ./cursorline.nix
@@ -13,4 +13,10 @@
     snacks.enable = true;
     web-devicons.enable = true;
   };
+
+  extraPlugins = [
+    pkgs.vimPlugins.tabout-nvim
+  ];
+
+  extraConfigLua = "require('tabout').setup({})";
 }

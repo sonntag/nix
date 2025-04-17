@@ -2,12 +2,20 @@
   imports = [
     ./profiles/coder
 
-    ./colorscheme.nix
-    ./globals.nix
     ./keymaps.nix
     ./options.nix
-    ./performance.nix
 
+    ./languages
+    ./layers
     ./plugins
   ];
+
+  colorschemes.rose-pine.enable = true;
+
+  globals = {
+    autoformat = true;
+
+    mapleader = " ";
+    maplocalleader = ",";
+  };
 }

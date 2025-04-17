@@ -1,17 +1,26 @@
 {
+  config,
   lib,
   pkgs,
   ...
 }: let
-  inherit (lib) getExe;
+  inherit (lib) getExe mkEnableOption mkIf;
+  cfg = config.sonntag.nvim.languages.clojure;
 in {
-  plugins.conform-nvim.settings = {
-    formatters = {
-      cljstyle.command = getExe pkgs.cljstyle;
-    };
+  options.sonntag.nvim.languages.clojure.enable = mkEnableOption "clojure";
+  config.plugins = mkIf cfg.enable {
+    treesitter.grammarPackages = [
+      pkgs.vimPlugins.nvim-treesitter.builtGrammars.clojure
+    ];
 
-    formatters_by_ft = {
-      clojure = ["cljstyle"];
-    };
+    # conform-nvim.settings = {
+    #   formatters = {
+    #     cljstyle.command = getExe pkgs.cljstyle;
+    #   };
+    #
+    #   formatters_by_ft = {
+    #     clojure = ["cljstyle"];
+    #   };
+    # };
   };
 }
