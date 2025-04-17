@@ -1,6 +1,5 @@
 {
   imports = [
-    ../base
     ./plugins/autopair.nix
     ./plugins/blink-cmp.nix
     ./plugins/lsp.nix
