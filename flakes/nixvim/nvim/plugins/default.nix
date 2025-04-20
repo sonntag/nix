@@ -11,7 +11,11 @@
     lz-n.enable = true;
     sleuth.enable = true;
     snacks.enable = true;
-    web-devicons.enable = true;
+    mini = {
+      enable = true;
+      mockDevIcons = true;
+      modules.icons = {};
+    };
   };
 
   extraPlugins = [

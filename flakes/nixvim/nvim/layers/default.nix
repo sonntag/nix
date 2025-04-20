@@ -2,6 +2,7 @@
   imports = [
     ./autopair.nix
     ./buffers.nix
+    ./comment.nix
     ./completion.nix
     ./diagnostics.nix
     ./git.nix

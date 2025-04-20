@@ -1,5 +1,5 @@
 {util, ...}: let
-  inherit (util) keymap;
+  inherit (util) keymap keymapLua;
 in {
   # TODO: make delete key jump over whitespace
   keymaps = [
@@ -11,5 +11,20 @@ in {
     (keymap "<down>" "<cmd>echo 'Use j to move!!'<cr>" "")
 
     (keymap "<C-s>" "<cmd>w<cr><esc>" "Save File" // {mode = ["i" "x" "n" "s"];})
+
+    (
+      keymapLua "<bs>"
+      ''
+        local line = vim.fn.getline('.')
+        local col = vim.fn.col('.')
+        if line:sub(1, col - 2):match('^%s+$') then
+            return '<c-o>k<c-o>J'
+        else
+            return '<bs>'
+        end
+      ''
+      ""
+      // {mode = "i";}
+    )
   ];
 }
