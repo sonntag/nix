@@ -18,23 +18,23 @@ in {
     ];
 
     keymaps = [
-      (keymap "n" "<S-h>" "<cmd>bprevious<cr>" "Prev Buffer")
-      (keymap "n" "<S-l>" "<cmd>bpnext<cr>" "Next Buffer")
+      (keymap "<S-h>" "<cmd>bprevious<cr>" "Prev Buffer")
+      (keymap "<S-l>" "<cmd>bpnext<cr>" "Next Buffer")
 
-      (keymap "n" "<leader>bb" "<cmd>e #<cr>" "Switch to Other Buffer")
+      (keymap "<leader>bb" "<cmd>e #<cr>" "Switch to Other Buffer")
 
-      (keymapLua "n" "<leader>bd" "Snacks.bufdelete()" "[D]elete Buffer")
-      (keymapLua "n" "<leader>bo" "Snacks.bufdelete.other()" "Delete [O]ther Buffers")
-      (keymap "n" "<leader>bD" "<cmd>:bd<cr>" "Delete Buffer and Window")
+      (keymapLua "<leader>bd" "Snacks.bufdelete()" "[D]elete Buffer")
+      (keymapLua "<leader>bo" "Snacks.bufdelete.other()" "Delete [O]ther Buffers")
+      (keymap "<leader>bD" "<cmd>:bd<cr>" "Delete Buffer and Window")
 
-      (keymap "n" "<leader>bp" "<Cmd>BufferLineTogglePin<CR>" "Toggle Pin")
-      (keymap "n" "<leader>bP" "<Cmd>BufferLineGroupClose ungrouped<CR>" "Delete Non-Pinned Buffers")
-      (keymap "n" "<leader>br" "<Cmd>BufferLineCloseRight<CR>" "Delete Buffers to the Right")
-      (keymap "n" "<leader>bl" "<Cmd>BufferLineCloseLeft<CR>" "Delete Buffers to the Left")
-      (keymap "n" "<S-h>" "<cmd>BufferLineCyclePrev<cr>" "Prev Buffer")
-      (keymap "n" "<S-l>" "<cmd>BufferLineCycleNext<cr>" "Next Buffer")
-      (keymap "n" "[b" "<cmd>BufferLineMovePrev<cr>" "Move buffer prev")
-      (keymap "n" "]b" "<cmd>BufferLineMoveNext<cr>" "Move buffer next")
+      (keymap "<leader>bp" "<Cmd>BufferLineTogglePin<CR>" "Toggle Pin")
+      (keymap "<leader>bP" "<Cmd>BufferLineGroupClose ungrouped<CR>" "Delete Non-Pinned Buffers")
+      (keymap "<leader>br" "<Cmd>BufferLineCloseRight<CR>" "Delete Buffers to the Right")
+      (keymap "<leader>bl" "<Cmd>BufferLineCloseLeft<CR>" "Delete Buffers to the Left")
+      (keymap "<S-h>" "<cmd>BufferLineCyclePrev<cr>" "Prev Buffer")
+      (keymap "<S-l>" "<cmd>BufferLineCycleNext<cr>" "Next Buffer")
+      (keymap "[b" "<cmd>BufferLineMovePrev<cr>" "Move buffer prev")
+      (keymap "]b" "<cmd>BufferLineMoveNext<cr>" "Move buffer next")
     ];
   };
 }

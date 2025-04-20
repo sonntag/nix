@@ -1,14 +1,15 @@
 {util, ...}: let
   inherit (util) keymap;
 in {
+  # TODO: make delete key jump over whitespace
   keymaps = [
-    (keymap "n" "<esc>" "<cmd>nohlsearch<cr>" "")
+    (keymap "<esc>" "<cmd>nohlsearch<cr>" "")
 
-    (keymap "n" "<left>" "<cmd>echo 'Use h to move!!'<cr>" "")
-    (keymap "n" "<right>" "<cmd>echo 'Use l to move!!'<cr>" "")
-    (keymap "n" "<up>" "<cmd>echo 'Use k to move!!'<cr>" "")
-    (keymap "n" "<down>" "<cmd>echo 'Use j to move!!'<cr>" "")
+    (keymap "<left>" "<cmd>echo 'Use h to move!!'<cr>" "")
+    (keymap "<right>" "<cmd>echo 'Use l to move!!'<cr>" "")
+    (keymap "<up>" "<cmd>echo 'Use k to move!!'<cr>" "")
+    (keymap "<down>" "<cmd>echo 'Use j to move!!'<cr>" "")
 
-    (keymap ["i" "x" "n" "s"] "<C-s>" "<cmd>w<cr><esc>" "Save File")
+    (keymap "<C-s>" "<cmd>w<cr><esc>" "Save File" // {mode = ["i" "x" "n" "s"];})
   ];
 }

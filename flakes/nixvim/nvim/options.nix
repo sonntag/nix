@@ -6,8 +6,8 @@
     expandtab = true; # no tabs!
     ignorecase = true; # ignore case for autocomplete in command mode
     mouse = "a";
-    number = true;
-    relativenumber = true;
+    number = false;
+    # relativenumber = true;
     scrolloff = 4; # makes sure the cursor is buffered by 4 lines when scrolling
     shiftwidth = 4; # set tab width to 4
     showmode = false; # don't show mode

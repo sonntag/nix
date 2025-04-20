@@ -2,7 +2,6 @@
   imports = [
     ./conform.nix
     ./cursorline.nix
-    ./lazygit.nix
     ./oil.nix
     ./which-key.nix
   ];

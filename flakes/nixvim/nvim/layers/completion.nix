@@ -8,6 +8,10 @@ with lib; let
 in {
   options.sonntag.layers.completion.enable = mkEnableOption "completion" // {default = true;};
   # https://nix-community.github.io/nixvim/plugins/blink-cmp/index.html
+
+  # TODO: figure out how to get tab completion to work
+  # TODO: add toggles for autosave
+
   config.plugins = mkIf cfg.enable {
     blink-cmp = {
       enable = true;

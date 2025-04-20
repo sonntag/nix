@@ -1,6 +1,6 @@
 {lib}: {
-  keymap = mode: key: action: desc: {
-    mode = mode;
+  keymap = key: action: desc: {
+    mode = "n";
     key = key;
     action = action;
     options = {
@@ -8,8 +8,8 @@
     };
   };
 
-  keymapLua = mode: key: action: desc: {
-    mode = mode;
+  keymapLua = key: action: desc: {
+    mode = "n";
     key = key;
     action.__raw = "function() ${action} end";
     options = {

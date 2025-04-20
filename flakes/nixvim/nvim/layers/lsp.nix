@@ -9,6 +9,7 @@ in {
   options.sonntag.layers.lsp.enable = mkEnableOption "lsp" // {default = true;};
   config.plugins.lsp = mkIf cfg.enable {
     enable = true;
+    inlayHints = true;
     keymaps = {
       diagnostic = {
         "<leader>q" = {
