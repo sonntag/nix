@@ -9,7 +9,6 @@
   ];
 
   colorschemes.rose-pine.enable = true;
-  sonntag.layers.performance.enable = false;
 
   globals = {
     autoformat = true;

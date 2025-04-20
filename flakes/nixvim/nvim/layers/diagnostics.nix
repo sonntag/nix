@@ -41,20 +41,12 @@ in {
   config = {
     diagnostics = {
       virtual_lines = true;
-      signs = lib.nixvim.toRawKeys {
-        vim.diagnostic.severity.ERROR = cfg.error;
-        vim.diagnostic.severity.WARN = cfg.warn;
-        vim.diagnostic.severity.HINT = cfg.hint;
-        vim.diagnostic.severity.info = cfg.info;
+      signs.text = lib.nixvim.toRawKeys {
+        "vim.diagnostic.severity.ERROR" = cfg.error;
+        "vim.diagnostic.severity.WARN" = cfg.warn;
+        "vim.diagnostic.severity.HINT" = cfg.hint;
+        "vim.diagnostic.severity.INFO" = cfg.info;
       };
     };
-
-    # extraConfigLuaPre = ''
-    #   local signs = ${lib.nixvim.toLuaObject cfg}
-    #   for type, icon in pairs(signs) do
-    #       local hl = "DiagnosticSign" .. type
-    #       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    #   end
-    # '';
   };
 }

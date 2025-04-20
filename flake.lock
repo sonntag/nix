@@ -388,11 +388,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "path": "./flakes/nixvim",
+        "path": "flakes/nixvim",
         "type": "path"
       },
       "original": {
-        "path": "./flakes/nixvim",
+        "path": "flakes/nixvim",
         "type": "path"
       },
       "parent": []

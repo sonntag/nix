@@ -85,7 +85,7 @@
     tmux-sessionx.url = "github:omerxx/tmux-sessionx";
 
     nixvim = {
-      url = "path:./flakes/nixvim";
+      url = ./flakes/nixvim;
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
