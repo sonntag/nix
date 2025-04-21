@@ -1,16 +1,23 @@
-{util, ...}: {
+{util, ...}: let
+  inherit (util) whichkeyGroup;
+in {
   plugins.which-key = {
     enable = true;
 
     # Document existing key chains
     settings.spec = [
-      (util.whichkeyGroup "<leader>c" "[C]ode")
-      (util.whichkeyGroup "<leader>d" "[D]ocument")
-      (util.whichkeyGroup "<leader>r" "[R]ename")
-      (util.whichkeyGroup "<leader>s" "[S]earcch")
-      (util.whichkeyGroup "<leader>w" "[W]orkspace")
-      (util.whichkeyGroup "<leader>t" "[T]oggle")
-      (util.whichkeyGroup "<leader>h" "Git [H]unk" // {mode = ["n" "v"];})
+      (whichkeyGroup "<leader>c" "[c]ode")
+      (whichkeyGroup "<leader>d" "[d]ocument")
+      (whichkeyGroup "<leader>r" "[r]ename")
+      (whichkeyGroup "<leader>s" "[s]earcch")
+      (whichkeyGroup "<leader>w" "[w]indow")
+      (whichkeyGroup "<leader>t" "[t]oggle")
+      (whichkeyGroup "<leader>h" "git [h]unk" // {mode = ["n" "v"];})
+      (whichkeyGroup "<leader>g" "git")
+      (whichkeyGroup "<leader>f" "find")
+      (whichkeyGroup "<leader>x" "diagnostics/quickfix")
+
+      (whichkeyGroup "g" "goto/global")
     ];
   };
 }

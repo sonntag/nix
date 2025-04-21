@@ -9,13 +9,14 @@
   plugins = {
     lualine.enable = true;
     lz-n.enable = true;
-    sleuth.enable = true;
-    snacks.enable = true;
     mini = {
       enable = true;
       mockDevIcons = true;
       modules.icons = {};
     };
+    sleuth.enable = true;
+    snacks.enable = true;
+    tmux-navigator.enable = true;
   };
 
   extraPlugins = [

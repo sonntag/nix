@@ -12,6 +12,7 @@
     ./snippets.nix
     ./todo-comments.nix
     ./treesitter.nix
+    ./trouble.nix
     ./window.nix
   ];
 

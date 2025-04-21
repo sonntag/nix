@@ -6,9 +6,5 @@ in {
     (keymapLua "<leader>gg" "Snacks.lazygit()" "Lazygit")
   ];
 
-  plugins.gitsigns = {
-    enable = true;
-  };
-
-  # TODO: add git signs
+  plugins.gitsigns.enable = true;
 }

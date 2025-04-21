@@ -12,7 +12,7 @@ in {
       event = "BufWritePre";
       keys = [
         {
-          __unkeyed-1 = "<leader>f";
+          __unkeyed-1 = "<leader>bf";
           __unkeyed-2.__raw = ''
             function()
               require("conform").format({ async = true, lsp_format = "fallback" })
