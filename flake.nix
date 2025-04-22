@@ -10,8 +10,8 @@
 
     # NixOS-esque configuration for Darwin (MacOS)
     nix-darwin = {
-      # url = "github:LnL7/nix-darwin/nix-darwin-24.11";
-      url = "github:LnL7/nix-darwin";
+      # url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
+      url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
