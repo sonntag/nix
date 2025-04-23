@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) getExe getExe';
+  inherit (lib) getExe';
 in {
   plugins.conform-nvim = {
     enable = true;
@@ -12,7 +12,7 @@ in {
       event = "BufWritePre";
       keys = [
         {
-          __unkeyed-1 = "<leader>bf";
+          __unkeyed-1 = "<leader>cf";
           __unkeyed-2.__raw = ''
             function()
               require("conform").format({ async = true, lsp_format = "fallback" })

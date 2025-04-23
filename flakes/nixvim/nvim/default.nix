@@ -8,6 +8,8 @@
     ./plugins
   ];
 
+  sonntag.nvim.languages.clojure.enable = true;
+
   colorschemes.rose-pine.enable = true;
 
   globals = {

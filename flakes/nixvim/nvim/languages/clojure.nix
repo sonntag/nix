@@ -13,14 +13,20 @@ in {
       pkgs.vimPlugins.nvim-treesitter.builtGrammars.clojure
     ];
 
-    # conform-nvim.settings = {
-    #   formatters = {
-    #     cljstyle.command = getExe pkgs.cljstyle;
-    #   };
-    #
-    #   formatters_by_ft = {
-    #     clojure = ["cljstyle"];
-    #   };
-    # };
+    conform-nvim.settings = {
+      # formatters = {
+      #   cljstyle.command = getExe pkgs.cljstyle;
+      # };
+
+      # TODO: use cljstyle from nix store instead of from my current environment
+      formatters_by_ft = {
+        clojure = ["cljstyle"];
+      };
+    };
+
+    lsp.servers.clojure_lsp = {
+      enable = true;
+      rootDir = "require('lspconfig.util').root_pattern('.git')";
+    };
   };
 }

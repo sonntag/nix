@@ -9,7 +9,7 @@ in {
       (whichkeyGroup "<leader>c" "[c]ode")
       (whichkeyGroup "<leader>d" "[d]ocument")
       (whichkeyGroup "<leader>r" "[r]ename")
-      (whichkeyGroup "<leader>s" "[s]earcch")
+      (whichkeyGroup "<leader>s" "[s]earch")
       (whichkeyGroup "<leader>w" "[w]indow")
       (whichkeyGroup "<leader>t" "[t]oggle")
       (whichkeyGroup "<leader>h" "git [h]unk" // {mode = ["n" "v"];})
