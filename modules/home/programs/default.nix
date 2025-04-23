@@ -19,6 +19,7 @@
   home.packages = with pkgs; [
     alejandra # nix formatter
     coreutils
+    devenv
     eza
     fd
     figlet
