@@ -23,5 +23,7 @@
     pkgs.vimPlugins.tabout-nvim
   ];
 
-  extraConfigLua = "require('tabout').setup({})";
+  extraConfigLua = "require('tabout').setup({
+    act_as_tab = false,
+  })";
 }

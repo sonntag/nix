@@ -6,8 +6,6 @@
   home.packages = with pkgs; [
     awscli2
     cljstyle
-    clojure
-    clojure-lsp
     devenv
     direnv
     httpie
