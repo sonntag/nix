@@ -85,32 +85,30 @@
     tmux-sessionx.url = "github:omerxx/tmux-sessionx";
 
     nixvim = {
-      url = ./flakes/nixvim;
+      url = "path:./flakes/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = inputs: let
-    inherit (inputs) nixpkgs;
-    inherit (nixpkgs) lib;
-
-    supportedSystems = ["x86_64-linux" "aarch64-darwin"];
-    forAllSystems = lib.genAttrs supportedSystems;
-
+    # inherit (inputs) nixpkgs;
+    # inherit (nixpkgs) lib;
+    # supportedSystems = ["x86_64-linux" "aarch64-darwin"];
+    # forAllSystems = lib.genAttrs supportedSystems;
     overlays = [
       (import ./pkgs)
     ];
 
     mkDarwinConfiguration = import ./modules/darwin {inherit inputs overlays;};
-    mkNixosConfiguration = import ./modules/nixos {inherit inputs overlays;};
+    # mkNixosConfiguration = import ./modules/nixos {inherit inputs overlays;};
   in {
-    devShell = forAllSystems (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      default = pkgs.mkShell {
-        packages = [pkgs.sops pkgs.nixd pkgs.alejandra];
-      };
-    });
+    # devShell = forAllSystems (system: let
+    #   pkgs = nixpkgs.legacyPackages.${system};
+    # in {
+    #   default = pkgs.mkShell {
+    #     packages = [pkgs.sops pkgs.nixd pkgs.alejandra];
+    #   };
+    # });
 
     overlays.default = import ./pkgs;
 
