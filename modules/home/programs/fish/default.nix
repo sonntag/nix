@@ -1,6 +1,6 @@
 {pkgs, ...}: let
   #inherit (config.home.user-info) nixConfigDirectory;
-  nixConfigDirectory = "/Users/justin/.config/nix";
+  nixConfigDirectory = "/Users/justin/Development/sonntag/nix";
 in {
   imports = [
     ./shell-colors.nix
