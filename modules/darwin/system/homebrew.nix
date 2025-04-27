@@ -35,7 +35,6 @@ in {
     taps = with inputs; {
       "homebrew/homebrew-core" = homebrew-core;
       "homebrew/homebrew-cask" = homebrew-cask;
-      "nikitabobko/homebrew-tap" = homebrew-nikitabobko;
     };
   };
 }

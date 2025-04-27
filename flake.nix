@@ -67,13 +67,6 @@
       flake = false;
     };
 
-    # Provides aerospace tiling window manager
-    homebrew-nikitabobko = {
-      # Contains aerospace
-      url = "github:nikitabobko/homebrew-tap";
-      flake = false;
-    };
-
     tmux-sessionx.url = "github:omerxx/tmux-sessionx";
 
     nixvim = {
