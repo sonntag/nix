@@ -39,6 +39,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixvim = {
+      url = "path:./flakes/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    tmux-sessionx.url = "github:omerxx/tmux-sessionx";
+
     # ==== Homebrew taps ====
 
     # Base taps
@@ -66,13 +73,6 @@
       url = "github:conductorone/homebrew-cone";
       flake = false;
     };
-
-    tmux-sessionx.url = "github:omerxx/tmux-sessionx";
-
-    nixvim = {
-      url = "path:./flakes/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs: let
@@ -90,7 +90,7 @@
     # mkNixosConfiguration = import ./modules/nixos {inherit inputs overlays;};
   in {
     devShell.aarch64-darwin = pkgs.mkShell {
-      packages = with pkgs; [sops nixd alejandra];
+      packages = with pkgs; [sops];
     };
 
     overlays.default = import ./pkgs;
