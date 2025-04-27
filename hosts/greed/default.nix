@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     awscli2
     azure-cli
+    jet
     kubelogin
     mkcert
     wget

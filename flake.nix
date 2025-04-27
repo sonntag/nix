@@ -67,14 +67,6 @@
       flake = false;
     };
 
-    # Includes `jet`, like `jq` for EDN
-    # TODO: write/upstream a derivation to do this through nix,
-    # no fundamental reason this needs to come through homebrew
-    homebrew-borkdude = {
-      url = "github:borkdude/homebrew-brew";
-      flake = false;
-    };
-
     # Provides aerospace tiling window manager
     homebrew-nikitabobko = {
       # Contains aerospace
