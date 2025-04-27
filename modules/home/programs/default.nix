@@ -2,6 +2,7 @@
   imports = [
     ./bat.nix
     ./claude-code.nix
+    ./direnv.nix
     ./fish
     ./fzf.nix
     ./ghostty

@@ -91,7 +91,7 @@
   };
 
   outputs = inputs: let
-    # inherit (inputs) nixpkgs;
+    inherit (inputs) nixpkgs;
     # inherit (nixpkgs) lib;
     # supportedSystems = ["x86_64-linux" "aarch64-darwin"];
     # forAllSystems = lib.genAttrs supportedSystems;
@@ -99,16 +99,14 @@
       (import ./pkgs)
     ];
 
+    pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+
     mkDarwinConfiguration = import ./modules/darwin {inherit inputs overlays;};
     # mkNixosConfiguration = import ./modules/nixos {inherit inputs overlays;};
   in {
-    # devShell = forAllSystems (system: let
-    #   pkgs = nixpkgs.legacyPackages.${system};
-    # in {
-    #   default = pkgs.mkShell {
-    #     packages = [pkgs.sops pkgs.nixd pkgs.alejandra];
-    #   };
-    # });
+    devShell.aarch64-darwin = pkgs.mkShell {
+      packages = with pkgs; [sops nixd alejandra];
+    };
 
     overlays.default = import ./pkgs;
 

@@ -7,7 +7,6 @@
     awscli2
     cljstyle
     devenv
-    direnv
     httpie
     k9s
     kubectx
