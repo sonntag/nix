@@ -11,6 +11,7 @@
     ./man.nix
     ./nixvim.nix
     ./nvim
+    ./sketchybar
     ./spotify.nix
     ./starship
     ./tmux.nix
