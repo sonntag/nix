@@ -1,6 +1,7 @@
 ;;(require :plugins.conform)
 (require :plugins.oil)
 (require :plugins.treesitter)
+(require :keymaps)
 
 (vim.cmd.colorscheme :rose-pine)
 
