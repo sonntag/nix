@@ -39,7 +39,7 @@ in {
   };
 
   config = {
-    diagnostics = {
+    diagnostic.settings = {
       virtual_lines = true;
       signs.text = lib.nixvim.toRawKeys {
         "vim.diagnostic.severity.ERROR" = cfg.error;
