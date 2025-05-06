@@ -7,6 +7,7 @@
     ./fzf.nix
     ./ghostty
     ./git.nix
+    ./k9s.nix
     ./lazygit.nix
     ./man.nix
     ./most.nix

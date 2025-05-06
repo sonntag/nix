@@ -8,7 +8,6 @@
     cljstyle
     devenv
     httpie
-    k9s
     kubectx
     kubelogin # for azure
     lazydocker
@@ -48,4 +47,6 @@
       aws configure list
     '';
   };
+
+  sonntag.programs.k9s.enable = true;
 }
