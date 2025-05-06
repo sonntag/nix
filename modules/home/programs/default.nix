@@ -9,6 +9,7 @@
     ./git.nix
     ./lazygit.nix
     ./man.nix
+    ./most.nix
     ./nixvim.nix
     ./nvim
     ./spotify.nix
@@ -28,9 +29,9 @@
     jq
     jujutsu
     just
-    most
     neofetch
     nerd-fonts.victor-mono
+    ov
     presenterm
     ripgrep
     tldr
@@ -43,4 +44,6 @@
   programs.carapace.enable = true;
 
   programs.kakoune.enable = true;
+
+  sonntag.programs.most.enable = true;
 }
