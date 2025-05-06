@@ -39,10 +39,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "path:./flakes/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixvim.url = "path:./flakes/nixvim";
 
     tmux-sessionx.url = "github:omerxx/tmux-sessionx";
 
