@@ -26,6 +26,7 @@
     gnused
     htop
     jq
+    jujutsu
     just
     most
     neofetch
