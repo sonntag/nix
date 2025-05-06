@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./auto-save.nix
     ./conform.nix
     ./cursorline.nix
     ./oil.nix
@@ -19,11 +20,11 @@
     tmux-navigator.enable = true;
   };
 
-  extraPlugins = [
-    pkgs.vimPlugins.tabout-nvim
+  extraPlugins = with pkgs.vimPlugins; [
+    tabout-nvim
   ];
 
-  extraConfigLua = "require('tabout').setup({
-    act_as_tab = false,
-  })";
+  extraConfigLua = ''
+    require("tabout").setup({ act_as_tab = false })
+  '';
 }

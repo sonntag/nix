@@ -34,6 +34,25 @@ in {
         options.silent = true;
       })
 
+    # Tab management
+    (keymap "<leader>tt" "<cmd>tabnew<cr>" "New Tab")
+    (keymap "<leader>td" "<cmd>tabclose<cr>" "Close Tab")
+    (keymap "<leader>to" "<cmd>tabonly<cr>" "Close Other Tab")
+    (keymap "<leader>tf" "<cmd>tabfirst<cr>" "First Tab")
+    (keymap "<leader>tl" "<cmd>tablast<cr>" "Last Tab")
+    (keymap "<leader>tn" "<cmd>tabnext<cr>" "Next Tab")
+    (keymap "<leader>tp" "<cmd>tabprevious<cr>" "Previous Tab")
+
+    # Window sizes
+    (keymap "<C-Up>" "<cmd>resize +2<cr>" "Increase Window Height")
+    (keymap "<C-Down>" "<cmd>resize -2<cr>" "Decrease Window Height")
+    (keymap "<C-Left>" "<cmd>vertical resize -2<cr>" "Decrease Window Width")
+    (keymap "<C-Right>" "<cmd>vertical resize +2<cr>" "Increase Window Width")
+
+    # UI toggles
+    (keymap "<leader>ur" "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>"
+      "Redraw / Clear hlsearch / Diff Update")
+
     # If the line is empty, these 4 keymaps will enter insert mode with the proper indentation
     (keymapLua "i" "return string.match(vim.api.nvim_get_current_line(), '%g') == nil and 'S' or 'i'"
       "insert"
@@ -66,7 +85,7 @@ in {
         local line = vim.fn.getline('.')
         local col = vim.fn.col('.')
         if line:sub(1, col - 1):match('^%s+$') then
-            return '<c-o>k<c-o>J<c-o>l'
+            return '<c-o>k<c-o>J'
         else
             return '<bs>'
         end

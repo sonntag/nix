@@ -14,7 +14,7 @@ in {
     plugins.bufferline.enable = true;
 
     plugins.which-key.settings.spec = [
-      (whichkeyGroup "<leader>b" "[B]uffer")
+      (whichkeyGroup "<leader>b" "buffers")
     ];
 
     keymaps = [

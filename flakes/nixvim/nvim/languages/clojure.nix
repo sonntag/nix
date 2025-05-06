@@ -26,7 +26,7 @@ in {
 
     lsp.servers.clojure_lsp = {
       enable = true;
-      rootDir = "require('lspconfig.util').root_pattern('.git')";
+      # rootDir = "require('lspconfig.util').root_pattern('.git')";
     };
   };
 }
