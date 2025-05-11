@@ -1,7 +1,6 @@
 {util, ...}: let
   inherit (util) keymap keymapLua;
 in {
-  # TODO: make delete key jump over whitespace
   keymaps = [
     (keymap "<esc>" "<cmd>nohlsearch<cr>" "")
 
@@ -78,23 +77,5 @@ in {
         options.expr = true;
         options.noremap = true;
       })
-
-    (
-      keymapLua "<bs>"
-      ''
-        local line = vim.fn.getline('.')
-        local col = vim.fn.col('.')
-        if line:sub(1, col - 1):match('^%s+$') then
-            return '<c-o>k<c-o>J'
-        else
-            return '<bs>'
-        end
-      ''
-      ""
-      // {
-        mode = "i";
-        options.expr = true;
-      }
-    )
   ];
 }
