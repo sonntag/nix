@@ -35,7 +35,21 @@
       }
 
       map_multistep("i", "<bs>", bs_steps)
-      map_multistep("i", "<tab>", {"blink_next", "luasnip_next"})
+
+      -- local tabout_condition = function() return true end
+      --
+      -- local tabout_action = function()
+      --   return "<Plug>(TaboutMulti)"
+      -- end
+
+      local tab_steps = {
+        "blink_next",
+        "luasnip_next",
+        "jump_after_close"
+        -- {condition = tabout_condition, action = tabout_action}
+      }
+
+      map_multistep("i", "<tab>", tab_steps)
     '';
   };
 }

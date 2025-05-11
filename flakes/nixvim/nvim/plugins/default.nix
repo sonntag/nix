@@ -35,6 +35,11 @@
   ];
 
   # extraConfigLua = ''
-  #   require("tabout").setup({ act_as_tab = false })
+  #   require("tabout").setup({
+  #     act_as_tab = false,
+  #     ignore_beginning = true,
+  #     tabkey = "",
+  #     backwards_tabkey = ""
+  #   })
   # '';
 }
