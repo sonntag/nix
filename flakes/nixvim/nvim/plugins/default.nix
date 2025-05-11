@@ -22,7 +22,7 @@
   };
 
   extraPlugins = with pkgs.vimPlugins; [
-    tabout-nvim
+    # tabout-nvim
     (pkgs.vimUtils.buildVimPlugin {
       name = "mini.nvim";
       src = pkgs.fetchFromGitHub {
