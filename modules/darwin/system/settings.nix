@@ -24,7 +24,7 @@
   config.system = {
     defaults = {
       NSGlobalDomain = {
-        AppleShowAllFiles = true;
+        AppleShowAllFiles = false;
         AppleShowAllExtensions = true;
         NSAutomaticCapitalizationEnabled = false;
         NSAutomaticSpellingCorrectionEnabled = false;
