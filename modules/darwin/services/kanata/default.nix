@@ -6,10 +6,6 @@
 }:
 with lib; let
   cfg = config.services.kanata;
-  driverDaemonCmd = "/Library/Application\\ Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon";
-  # driverDaemonCmd = "${pkgs.karabiner-driverkit}/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon";
-  kanataCmd = "${pkgs.kanata}/bin/kanata --nodelay --cfg ${cfg.config}";
-  logPath = /Users/justin/Library/Logs/kanata;
 in {
   options.services.kanata = {
     enable = mkOption {
@@ -30,25 +26,41 @@ in {
   };
 
   config = mkIf cfg.enable {
-    launchd.user.agents.kanata = {
-      script = ''
-        sudo ${driverDaemonCmd} &
-        sleep 2 &&
-        sudo ${kanataCmd}
-      '';
-      serviceConfig = {
-        Label = "org.nixos.kanata";
-        RunAtLoad = true;
-        StandardOutPath = logPath + "/kanata.out.log";
-        StandardErrorPath = logPath + "/kanata.err.log";
-        ProcessType = "Interactive";
+    environment.systemPackages = with pkgs; [
+      kanata
+    ];
+
+    launchd.daemons = {
+      kanata = {
+        command = "${pkgs.kanata}/bin/kanata --nodelay -c ${cfg.config}";
+        serviceConfig = {
+          RunAtLoad = true;
+          KeepAlive = true;
+          StandardErrorPath = "/Library/Logs/Kanata/kanata.err.log";
+          StandardOutPath = "/Library/Logs/Kanata/kanata.out.log";
+        };
+      };
+      karabiner-vhiddaemon = {
+        command = "/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon";
+        serviceConfig = {
+          ProgramArguments = [
+            "/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon"
+          ];
+          RunAtLoad = true;
+          KeepAlive = true;
+        };
+      };
+      karabiner-vhidmanager = {
+        command = "/Applications/.Karabiner-VirtualHIDDevice-Manager.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Manager activate";
+        serviceConfig = {
+          ProgramArguments = [
+            "/Applications/.Karabiner-VirtualHIDDevice-Manager.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Manager"
+            "activate"
+          ];
+          RunAtLoad = true;
+        };
       };
     };
-
-    security.sudo.extraConfig = ''
-      %admin ALL=(root) NOPASSWD: ${driverDaemonCmd}
-      %admin ALL=(root) NOPASSWD: ${kanataCmd}
-    '';
 
     # kmonad setup
     # follows https://github.com/mtoohey31/nixexprs/blob/main/nix-darwin/modules/mtoohey/kmonad.nix
@@ -59,9 +71,10 @@ in {
     # echo will do chown root /Applications/.Karabiner-VirtualHIDDevice-Manager.app/karabiner-daemon-shim
     # system.activationScripts.applications.text = ''
     #   echo copying dext...
-    #   # ${pkgs.rsync}/bin/rsync -a --delete ${pkgs.karabiner-driverkit}/.Karabiner-VirtualHIDDevice-Manager.app /Applications
+    #   ${pkgs.rsync}/bin/rsync -a --delete ${pkgs.karabiner-driverkit}/.Karabiner-VirtualHIDDevice-Manager.app /Applications
+    #   touch /Applications/.Kara
     #   echo activating dext...
-    #   ${pkgs.karabiner-driverkit}/.Karabiner-VirtualHIDDevice-Manager.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Manager activate
+    #   /Applications/.Karabiner-VirtualHIDDevice-Manager.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Manager activate
     #   printf '\x1b[0;31mPlease grant Input Monitoring permissions to /Applications/.Karabiner-VirtualHIDDevice-Manager.app/karabiner-daemon-shim in System Preferences > Security & Privacy > Privacy > Input Monitoring\x1b[0m\n'
     # '';
   };
