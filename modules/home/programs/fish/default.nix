@@ -58,10 +58,6 @@ in {
         starship module time
       '';
 
-      kickstart-kanata.body = ''
-        launchctl kickstart -k gui/$(id -u)/org.nixos.kanata
-      '';
-
       tmux-attach-or-create.body =
         /*
         fish
