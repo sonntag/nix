@@ -9,13 +9,7 @@ with lib; let
   parentAppDir = "/Applications/.Nix-Karabiner";
 in {
   options.services.karabiner-driverkit = {
-    enable = mkOption {
-      type = types.bool;
-      default = true;
-      description = ''
-        Whether to enable karabiner-driverkit.
-      '';
-    };
+    enable = mkEnableOption "karabiner-driverkit";
   };
 
   config = mkIf cfg.enable {
