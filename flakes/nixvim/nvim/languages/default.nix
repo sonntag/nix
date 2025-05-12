@@ -4,7 +4,7 @@
     ./clojure.nix
     ./fennel.nix
     # ./lua.nix
-    # ./markdown.nix
+    ./markdown.nix
     ./nix.nix
     # ./python.nix
     # ./rust.nix
