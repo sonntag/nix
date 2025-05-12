@@ -9,5 +9,6 @@
     # ./python.nix
     # ./rust.nix
     # ./terraform.nix
+    ./yaml.nix
   ];
 }
