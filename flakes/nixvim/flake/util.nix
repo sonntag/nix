@@ -1,10 +1,33 @@
 {lib}: {
   keymap = key: action: desc: {
+    inherit key action;
     mode = "n";
-    key = key;
-    action = action;
     options = {
-      desc = desc;
+      inherit desc;
+    };
+  };
+
+  xmap = mode: key: action: {
+    inherit mode key action;
+  };
+
+  xmapd = mode: key: action: desc: {
+    inherit mode key action;
+    options = {
+      inherit desc;
+    };
+  };
+
+  nmap = key: action: {
+    inherit key action;
+    mode = "n";
+  };
+
+  nmapd = key: action: desc: {
+    inherit key action;
+    mode = "n";
+    options = {
+      inherit desc;
     };
   };
 

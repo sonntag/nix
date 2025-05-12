@@ -1,8 +1,8 @@
 {util, ...}: let
-  inherit (util) keymap keymapLua;
+  inherit (util) nmap keymap keymapLua;
 in {
   keymaps = [
-    (keymap "<esc>" "<cmd>nohlsearch<cr>" "")
+    (nmap "<esc>" "<cmd>nohlsearch<cr>")
 
     (keymap "<left>" "<cmd>echo 'Use h to move!!'<cr>" "Use h to move!!")
     (keymap "<right>" "<cmd>echo 'Use l to move!!'<cr>" "Use l to move!!")
