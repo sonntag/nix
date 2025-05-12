@@ -12,6 +12,6 @@
     "raycast"
     "readdle-spark"
     "xnapper"
-    "zen-browser"
+    "zen"
   ];
 }
