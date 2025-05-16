@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+  sonntag.nvim.languages.lisp.enable = true;
+
   extraPlugins = [
     pkgs.vimPlugins.nfnl
   ];

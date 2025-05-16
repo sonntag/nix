@@ -45,7 +45,7 @@
       local bs_steps = {
         {condition = multiline_hungry_bs_condition, action = multiline_hungry_bs_action},
         "hungry_bs",
-        "nvimautopairs_bs"
+        -- "nvimautopairs_bs"
       }
 
       map_multistep("i", "<bs>", bs_steps)

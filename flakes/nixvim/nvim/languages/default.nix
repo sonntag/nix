@@ -3,6 +3,7 @@
     # ./cljs.nix
     ./clojure.nix
     ./fennel.nix
+    ./lisp.nix
     # ./lua.nix
     ./markdown.nix
     ./nix.nix
