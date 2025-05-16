@@ -31,7 +31,7 @@ in {
             return
           end
 
-          return { timeout_ms = 500, lsp_format = "fallback" }
+          return { timeout_ms = 500, lsp_format = "fallback", undojoin = true }
         end
       '';
 
