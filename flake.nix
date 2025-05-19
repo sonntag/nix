@@ -41,7 +41,7 @@
 
     nixvim.url = "path:./flakes/nixvim";
 
-    tmux-sessionx.url = "github:omerxx/tmux-sessionx";
+    # tmux-sessionx.url = "github:omerxx/tmux-sessionx";
 
     # ==== Homebrew taps ====
 

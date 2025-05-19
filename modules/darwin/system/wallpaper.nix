@@ -15,12 +15,13 @@ with lib; {
     };
   };
 
-  config = mkIf (config.system.wallpaper.image.path != null) {
-    system.activationScripts.postUserActivation.text = ''
-      echo >&2 "Setting wallpaper image..."
-      echo >&2 "Setting wallpaper to ${config.system.wallpaper.image.path}"
-      ${pkgs.desktoppr}/bin/desktoppr ${config.system.wallpaper.image.path}
-      echo >&2 "Wallpaper setup complete."
-    '';
-  };
+  # TODO: re-enable this script or change to a launch agent
+  # config = mkIf (config.system.wallpaper.image.path != null) {
+  #   system.activationScripts.postUserActivation.text = ''
+  #     echo >&2 "Setting wallpaper image..."
+  #     echo >&2 "Setting wallpaper to ${config.system.wallpaper.image.path}"
+  #     ${pkgs.desktoppr}/bin/desktoppr ${config.system.wallpaper.image.path}
+  #     echo >&2 "Wallpaper setup complete."
+  #   '';
+  # };
 }

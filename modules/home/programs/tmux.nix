@@ -92,16 +92,16 @@
           set -g @rose_pine_directory 'on'
         '';
       }
-      {
-        plugin = inputs.tmux-sessionx.packages.${pkgs.system}.default;
-        extraConfig = ''
-          unbind o
-          set -g @sessionx-bind 'o'
-          set -g @sessionx-window-height '85%'
-          set -g @sessionx-window-width '75%'
-          set -g @sessionx-zoxide-mode 'on'
-        '';
-      }
+      # {
+      #   plugin = inputs.tmux-sessionx.packages.${pkgs.system}.default;
+      #   extraConfig = ''
+      #     unbind o
+      #     set -g @sessionx-bind 'o'
+      #     set -g @sessionx-window-height '85%'
+      #     set -g @sessionx-window-width '75%'
+      #     set -g @sessionx-zoxide-mode 'on'
+      #   '';
+      # }
       tmuxPlugins.resurrect
       tmuxPlugins.vim-tmux-navigator
     ];

@@ -2,6 +2,8 @@
   userName = "justin";
   userHome = "/Users/${userName}";
 in {
+  system.primaryUser = userName;
+
   users.knownUsers = [userName];
 
   users.users.${userName} = {

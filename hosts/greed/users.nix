@@ -10,6 +10,8 @@ in {
   #   userName
   # ];
 
+  system.primaryUser = userName;
+
   users.knownUsers = [userName];
 
   users.users.${userName} = {
