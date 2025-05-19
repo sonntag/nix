@@ -1,6 +1,7 @@
 ### Keyboard daemon for kanata
 
-Download the [Karabiner-DriverKit-VirtualHIDDevice](https://github.com/pqrs-org/Karabiner-DriverKit-VirtualHIDDevice/tree/main/dist) manually and install the package. Afterwards make sure it is enabled in System Settings, General -> Login Items & Extensions -> Driver Extensions (At the bottom).
+Download the [Karabiner-DriverKit-VirtualHIDDevice](https://github.com/pqrs-org/Karabiner-DriverKit-VirtualHIDDevice/tree/main/dist) manually and install the package.
+Afterwards make sure it is enabled in System Settings, General -> Login Items & Extensions -> Driver Extensions (At the bottom).
 
 Also make sure that `/run/current-system/sw/bin/kanata` is added as an allowed application under Security & Privacy -> Input Monitoring.
 
