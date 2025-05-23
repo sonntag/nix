@@ -10,6 +10,8 @@
     "conductorone/cone/cone"
     "docker-compose"
     "hashicorp/tap/vault"
+    # TODO: get this from nixpkgs instead
+    "leiningen"
     "tfenv"
   ];
 
