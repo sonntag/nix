@@ -30,6 +30,7 @@
     jq
     jujutsu
     just
+    lazyjj
     neofetch
     nerd-fonts.victor-mono
     ov
@@ -46,5 +47,5 @@
 
   programs.kakoune.enable = true;
 
-  sonntag.programs.most.enable = true;
+  # sonntag.programs.most.enable = true;
 }
