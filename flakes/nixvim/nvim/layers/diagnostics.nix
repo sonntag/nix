@@ -40,7 +40,10 @@ in {
 
   config = {
     diagnostic.settings = {
-      virtual_lines = true;
+      # TODO: make this toggleable
+      virtual_lines = {
+        current_line = true;
+      };
       signs.text = lib.nixvim.toRawKeys {
         "vim.diagnostic.severity.ERROR" = cfg.error;
         "vim.diagnostic.severity.WARN" = cfg.warn;
