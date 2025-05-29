@@ -4,6 +4,7 @@
     "1password-cli"
     "arc"
     "block-goose"
+    "claude"
     "ghostty"
     "gifox"
     "homerow"
