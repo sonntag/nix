@@ -6,6 +6,7 @@
     ./completion.nix
     ./diagnostics.nix
     ./git.nix
+    ./jj.nix
     ./lsp.nix
     ./performance.nix
     ./picker.nix
