@@ -27,11 +27,7 @@
     # `nix-darwin` module to manage a homebrew installation
     # (`nix-darwin` can manage packages/casks from homebrew OOTB,
     #  but doesn't have support for installing homebrew itself)
-    nix-homebrew = {
-      url = "github:zhaofengli/nix-homebrew";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nix-darwin.follows = "nix-darwin";
-    };
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
     # Provides tools for customizing the look and feel of Spotify
     spicetify-nix = {
