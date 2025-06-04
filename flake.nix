@@ -22,6 +22,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    amperity.url = ./flakes/amperity;
+
     # ==== Programs ====
 
     # `nix-darwin` module to manage a homebrew installation
@@ -99,7 +101,10 @@
         hostPlatform = "aarch64-darwin";
         system = "aarch64-darwin";
         hostName = "greed";
-        modules = [./hosts/greed];
+        modules = [
+          ./hosts/greed
+          inputs.amperity.darwinModules
+        ];
       };
     };
   };
