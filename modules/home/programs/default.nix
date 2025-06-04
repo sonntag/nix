@@ -3,6 +3,7 @@
     ./bat.nix
     ./claude-code.nix
     ./direnv.nix
+    ./fabric.nix
     ./fish
     ./fzf.nix
     ./ghostty
