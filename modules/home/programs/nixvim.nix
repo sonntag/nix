@@ -16,5 +16,7 @@ in {
     programs.fish.shellAliases = mkIf cfg.nvim.enable {
       nixvim = "${inputs.nixvim.packages.aarch64-darwin.default}/bin/nvim";
     };
+
+    home.sessionVariables.EDITOR = "nvim";
   };
 }
