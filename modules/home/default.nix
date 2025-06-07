@@ -1,6 +1,7 @@
 {
   imports = [
     ./programs
+    ./secrets
   ];
 
   home.stateVersion = "24.05";

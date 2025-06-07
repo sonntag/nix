@@ -1,0 +1,7 @@
+keys:
+  - &wrath age1wljpjrxx5jw2w50s7lde87y64alm4yyllsped550q5xpel3epfnse2rwdx
+creation_rules:
+  - path_regex: .*/secrets/.*\.yaml$
+    key_groups:
+    - age:
+      - *wrath
