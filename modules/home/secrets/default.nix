@@ -16,7 +16,7 @@ in {
       else "${configHome}/sops/age/keys.txt";
     secrets = {
       ".ssh/id_justin" = {
-        sopsFile = ./ssh/justin.yaml;
+        sopsFile = ./ssh/justin.personal.yaml;
         key = "private-key";
         path = "${home}/.ssh/id_justin";
       };
