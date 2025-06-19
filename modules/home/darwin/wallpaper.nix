@@ -17,18 +17,18 @@ with lib; {
 
   config = mkIf (config.system.wallpaper.image.path != null) {
     launchd.enable = true;
-    launchd.agents.set-wallpaper = {
+    launchd.agents.desktoppr = {
       enable = true;
       config = {
-        Label = "com.sonntag.set-wallpaper";
+        Label = "com.sonntag.desktoppr";
         ProgramArguments = [
           "${pkgs.desktoppr}/bin/desktoppr"
           "${config.system.wallpaper.image.path}"
         ];
         RunAtLoad = true;
         KeepAlive = false;
-        StandardErrorPath = "/Users/justin/Library/Logs/set-wallpaper/set-wallpaper.err.log";
-        StandardOutPath = "/Users/justin/Library/Logs/set-wallpaper/set-wallpaper.out.log";
+        StandardErrorPath = "/Users/justin/Library/Logs/desktoppr/desktoppr.err.log";
+        StandardOutPath = "/Users/justin/Library/Logs/desktoppr/desktoppr.out.log";
       };
     };
   };
