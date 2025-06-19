@@ -6,6 +6,5 @@
     ./homebrew.nix
     ./security.nix
     ./settings.nix
-    ./wallpaper.nix
   ];
 }
