@@ -6,7 +6,7 @@
 }:
 with lib; {
   options = {
-    system.wallpaper.image.path = mkOption {
+    darwin.wallpaper.image.path = mkOption {
       type = types.nullOr types.path;
       default = ../../../backgrounds/rancho-cucamonga-tree.png;
       description = ''
@@ -15,7 +15,7 @@ with lib; {
     };
   };
 
-  config = mkIf (config.system.wallpaper.image.path != null) {
+  config = mkIf (config.darwin.wallpaper.image.path != null) {
     launchd.enable = true;
     launchd.agents.desktoppr = {
       enable = true;
@@ -23,7 +23,7 @@ with lib; {
         Label = "com.sonntag.desktoppr";
         ProgramArguments = [
           "${pkgs.desktoppr}/bin/desktoppr"
-          "${config.system.wallpaper.image.path}"
+          "${config.darwin.wallpaper.image.path}"
         ];
         RunAtLoad = true;
         KeepAlive = false;
