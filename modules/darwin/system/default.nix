@@ -1,7 +1,6 @@
 {
   imports = [
     ./browser.nix
-    ./dock.nix
     ./home-manager.nix
     ./homebrew.nix
     ./security.nix

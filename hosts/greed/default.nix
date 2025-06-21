@@ -10,6 +10,5 @@
   imports = [
     ./users.nix
     ./casks.nix
-    ./dock.nix
   ];
 }

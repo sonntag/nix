@@ -14,7 +14,7 @@
     ./most.nix
     ./nixvim.nix
     ./nvim
-    ./spotify.nix
+    # ./spotify.nix
     ./starship
     ./tmux.nix
     ./zoxide.nix
