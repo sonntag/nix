@@ -21,6 +21,4 @@ in {
       (keymapLua "<leader>sT" "Snacks.picker.todo_comments({ keywords = { 'TODO', 'FIX', 'FIXME' } })" "Todo/Fix/Fixme")
     ];
   };
-
-  # TODO: how do I get a list of the todo comments in trouble?
 }

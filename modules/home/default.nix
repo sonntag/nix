@@ -1,6 +1,8 @@
 {
   imports = [
+    ./darwin
     ./programs
+    ./secrets
   ];
 
   home.stateVersion = "24.05";

@@ -24,6 +24,14 @@
 
     amperity.url = ./flakes/amperity;
 
+    # ==== Deploy ====
+
+    # Secrets decrypted at runtime, for NixOS/nix-darwin and home-manager
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # ==== Programs ====
 
     # `nix-darwin` module to manage a homebrew installation
@@ -85,7 +93,10 @@
     # mkNixosConfiguration = import ./modules/nixos {inherit inputs overlays;};
   in {
     devShell.aarch64-darwin = pkgs.mkShell {
-      packages = with pkgs; [sops];
+      packages = with pkgs; [
+        sops
+        age
+      ];
     };
 
     overlays.default = import ./pkgs;
