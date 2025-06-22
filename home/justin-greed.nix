@@ -4,19 +4,13 @@
   ];
 
   home.packages = with pkgs; [
-    awscli2
-    cljstyle
-    devenv
     httpie
-    kubectx
-    kubelogin # for azure
     lazydocker
     # TODO: pulling from nixpkgs uses the wrong java version.
     # Need to figure out how to overwrite this
     # leiningen
     nb
     neil
-    nodejs
   ];
 
   home.sessionVariables = {
@@ -43,11 +37,11 @@
   };
 
   programs.fish.functions = {
-    aws-profile.body = ''
-      set -gx AWS_PROFILE $argv[1]
-      aws sso login
-      aws configure list
-    '';
+    # aws-profile.body = ''
+    #   set -gx AWS_PROFILE $argv[1]
+    #   aws sso login
+    #   aws configure list
+    # '';
 
     switch-vault.body = ''
       if test (count $argv) -ne 1
