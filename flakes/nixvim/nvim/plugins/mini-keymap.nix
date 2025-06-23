@@ -1,18 +1,4 @@
-{pkgs, ...}: {
-  # TODO remove this once mini.nvim has been updated in nixpkgs
-  # Current version does not contain keymap module
-  extraPlugins = [
-    (pkgs.vimUtils.buildVimPlugin {
-      name = "mini.nvim";
-      src = pkgs.fetchFromGitHub {
-        owner = "echasnovski";
-        repo = "mini.nvim";
-        rev = "c665f30bb372c2ec8cfd61f7531098d3658b6634";
-        hash = "sha256-WM2AiRJA0P2JiW/z6K5wUGKp2BSjSAtTuR/rB66Eg9M=";
-      };
-    })
-  ];
-
+{
   plugins.mini = {
     enable = true;
     modules.keymap = {};

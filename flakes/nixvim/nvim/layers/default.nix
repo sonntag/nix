@@ -17,8 +17,5 @@
     ./window.nix
   ];
 
-  # TODO: Add autosave
-  # TODO: add window splitting and management
   # TODO: try adding different custom modes with hydra
-  # TODO: add trouble
 }

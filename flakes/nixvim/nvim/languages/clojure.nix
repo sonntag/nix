@@ -18,13 +18,12 @@ in {
 
       conform-nvim.settings = {
         formatters = {
-          # cljstyle.command = getExe pkgs.cljstyle;
+          cljstyle.command = getExe pkgs.cljstyle;
           cljstyle.cwd.__raw = ''
             require("conform.util").root_file({ ".cljstyle" })
           '';
         };
 
-        # TODO: use cljstyle from nix store instead of from my current environment
         formatters_by_ft = {
           clojure = ["cljstyle"];
         };
