@@ -9,6 +9,7 @@
   ];
 
   sonntag.nvim.languages.clojure.enable = true;
+  sonntag.nvim.languages.terraform.enable = true;
 
   colorschemes.rose-pine.enable = true;
 
