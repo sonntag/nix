@@ -1,8 +1,8 @@
 keys:
   - &wrath age1wljpjrxx5jw2w50s7lde87y64alm4yyllsped550q5xpel3epfnse2rwdx
-  - &greed age1wljpjrxx5jw2w50s7lde87y64alm4yyllsped550q5xpel3epfnse2rwdx
+  - &greed age1mntwr82lg2hc3tlh2f207cuzu2ukgfxrrqyy0uu3jsf9498ds99qa04uzc
 creation_rules:
-  - path_regex: .*/secrrets/.*\.global\.yaml$
+  - path_regex: .*/secrets/.*\.global\.yaml$
     key_groups:
     - age:
       - *wrath
