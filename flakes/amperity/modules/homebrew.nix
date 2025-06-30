@@ -24,7 +24,7 @@
     casks = [
       "amazon-q"
       "chromedriver"
-      "docker"
+      "docker-desktop"
       "google-chrome"
       "slack"
       "snowflake-snowsql"
