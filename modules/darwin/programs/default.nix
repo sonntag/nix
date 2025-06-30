@@ -6,5 +6,6 @@
     ./personal-casks.nix
   ];
   programs.fish.enable = true;
-  programs.fish.babelfishPackage = true;
+  # TODO: what does this do?
+  # programs.fish.useBabelfish = true;
 }

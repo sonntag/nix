@@ -27,6 +27,11 @@ in {
         name = "clownfish";
         src = clownfish.src;
       }
+      # TODO: Can this be moved to nix-darwin or does it have to be configured in home-manager?
+      {
+        name = "foreign-env";
+        src = foreign-env.src;
+      }
       {
         name = "fzf-fish";
         src = fzf-fish.src;

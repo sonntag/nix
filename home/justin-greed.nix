@@ -47,6 +47,13 @@
     #   aws configure list
     # '';
 
+    # TODO: this should move to amperity flake
+    # TODO: can I reference the script without having to install it?
+    # TODO: is there a better way to do this? such as translating the script into a function and adding it to may environment?
+    aws-profile.body = ''
+      fenv source /run/current-system/sw/bin/aws-profile-script $argv[1]
+    '';
+
     switch-vault.body = ''
       if test (count $argv) -ne 1
         echo "Usage: switch-vault <stack-name>" >&2
