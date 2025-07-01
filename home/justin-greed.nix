@@ -41,18 +41,18 @@
   };
 
   programs.fish.functions = {
-    # aws-profile.body = ''
-    #   set -gx AWS_PROFILE $argv[1]
-    #   aws sso login
-    #   aws configure list
-    # '';
+    aws-profile.body = ''
+      set -gx AWS_PROFILE $argv[1]
+      ${pkgs.awscli2}/bin/aws sso login
+      ${pkgs.awscli2}/bin/aws configure list
+    '';
 
     # TODO: this should move to amperity flake
     # TODO: can I reference the script without having to install it?
     # TODO: is there a better way to do this? such as translating the script into a function and adding it to may environment?
-    aws-profile.body = ''
-      fenv source /run/current-system/sw/bin/aws-profile-script $argv[1]
-    '';
+    # aws-profile.body = ''
+    #   fenv source /run/current-system/sw/bin/aws-profile-script $argv[1]
+    # '';
 
     switch-vault.body = ''
       if test (count $argv) -ne 1
