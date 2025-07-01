@@ -103,7 +103,8 @@
       #   '';
       # }
       tmuxPlugins.resurrect
-      tmuxPlugins.vim-tmux-navigator
+      # TODO: re-enable this once I fix vim-tmux-navigator
+      # tmuxPlugins.vim-tmux-navigator
     ];
   };
 }
