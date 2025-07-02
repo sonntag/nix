@@ -14,6 +14,12 @@ in {
         pkgs.vimPlugins.nvim-treesitter.builtGrammars.terraform
       ];
 
+      conform-nvim.settings = {
+        formatters_by_ft = {
+          terraform = ["terraform_fmt"];
+        };
+      };
+
       lsp.servers.terraformls.enable = true;
     };
   };
