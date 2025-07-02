@@ -12,15 +12,15 @@ in {
       pkgs.vimPlugins.nvim-treesitter.builtGrammars.markdown
     ];
 
-    conform-nvim.settings = {
-      formatters = {
-        mdformat.command = getExe pkgs.mdformat;
-      };
-
-      formatters_by_ft = {
-        markdown = ["mdformat"];
-      };
-    };
+    # conform-nvim.settings = {
+    #   formatters = {
+    #     mdformat.command = getExe pkgs.mdformat;
+    #   };
+    #
+    #   formatters_by_ft = {
+    #     markdown = ["mdformat"];
+    #   };
+    # };
 
     lsp.servers.marksman.enable = true;
   };
