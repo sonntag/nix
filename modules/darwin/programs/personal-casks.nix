@@ -21,7 +21,7 @@
     "dropbox"
     "nordvpn"
     "rekordbox"
-    "todoist"
+    # "todoist"
     "tor-browser"
     "whatsapp"
   ];

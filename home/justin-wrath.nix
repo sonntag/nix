@@ -6,6 +6,7 @@
   imports = [
     ../modules/home
   ];
+  sonntag.secrets.enable = true;
   sonntag.programs.nixvim.enable = true;
   darwin.wallpaper.image.path = ../backgrounds/rose-pine/leafy.png;
 
