@@ -28,7 +28,6 @@
       "temurin@17"
       "google-chrome"
       "slack"
-      "snowflake-snowsql"
       "zoom"
     ];
   };
