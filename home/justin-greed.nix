@@ -19,6 +19,7 @@
 
   home.sessionVariables = {
     VAULT_ADDR = "https://vault.amperity.top:8200";
+    JAVA_HOME = "$(/usr/libexec/java_home -v 17)";
   };
 
   home.sessionPath = [
@@ -30,10 +31,11 @@
   sonntag.programs.nixvim.enable = true;
 
   # Used for Amperity development
-  programs.java = {
-    enable = true;
-    package = pkgs.jdk17;
-  };
+  # TODO: re-enable this
+  # programs.java = {
+  #   enable = true;
+  #   package = pkgs.jdk17;
+  # };
 
   programs.fish.shellAliases = {
     lr = "lein refresh";
