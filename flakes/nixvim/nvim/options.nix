@@ -2,7 +2,7 @@
   opts = {
     autoindent = true;
     backspace = "indent,eol,start";
-    cursorline = true; # puts a line under the cursorline
+    # cursorline = true; # puts a line under the cursorline
     expandtab = true; # no tabs!
     ignorecase = true; # ignore case for autocomplete in command mode
     mouse = "a";
