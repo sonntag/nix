@@ -6,7 +6,9 @@
   inherit (lib) getExe;
 in {
   plugins = {
-    render-markdown.enable = true;
+    # render-markdown.enable = true;
+    markview.enable = true;
+    markdown-preview.enable = true;
 
     treesitter.grammarPackages = [
       pkgs.vimPlugins.nvim-treesitter.builtGrammars.markdown
