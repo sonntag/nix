@@ -12,6 +12,8 @@ in {
     sonntag.nvim.languages.lisp.enable = true;
 
     plugins = {
+      conjure.enable = true;
+
       treesitter.grammarPackages = [
         pkgs.vimPlugins.nvim-treesitter.builtGrammars.clojure
       ];
