@@ -4,6 +4,7 @@ in {
   imports = [
     ./auto-save.nix
     ./conform.nix
+    ./flash.nix
     ./mini-keymap.nix
     ./oil.nix
     ./which-key.nix
