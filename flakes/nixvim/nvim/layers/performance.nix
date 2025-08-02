@@ -6,7 +6,7 @@
 with lib; let
   cfg = config.sonntag.layers.performance;
 in {
-  options.sonntag.layers.performance.enable = mkEnableOption "performance" // {default = true;};
+  options.sonntag.layers.performance.enable = mkEnableOption "performance";
   config = mkIf cfg.enable {
     luaLoader.enable = true;
     performance.byteCompileLua = {

@@ -8,6 +8,8 @@
     ./plugins
   ];
 
+  sonntag.layers.performance.enable = true;
+
   sonntag.nvim.languages.clojure.enable = true;
   sonntag.nvim.languages.terraform.enable = true;
 
