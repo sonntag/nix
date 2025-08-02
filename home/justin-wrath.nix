@@ -34,4 +34,8 @@
       }
     ];
   };
+
+  home.packages = with pkgs; [
+    clojure
+  ];
 }
