@@ -18,6 +18,7 @@ in {
       theme = "rose-pine";
       custom-shader = "${./shaders/cursor-blaze.glsl}";
 
+      confirm-close-surface = false;
       macos-titlebar-style = "hidden";
       window-colorspace = "display-p3";
       window-padding-x = 5;
