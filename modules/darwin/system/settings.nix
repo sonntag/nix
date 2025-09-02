@@ -44,8 +44,8 @@
         "com.apple.trackpad.enableSecondaryClick" = true;
         "com.apple.swipescrolldirection" = true;
         _HIHideMenuBar = true;
-        InitialKeyRepeat = 12;
-        KeyRepeat = 2;
+        InitialKeyRepeat = 25;
+        KeyRepeat = 6;
       };
       dock = {
         autohide = true;
