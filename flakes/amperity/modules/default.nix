@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     awscli2
-    azure-cli
+    # azure-cli
     cljstyle
     jet
     kubectx
