@@ -15,7 +15,7 @@ in {
       font-size = 13;
       font-thicken = true;
 
-      theme = "rose-pine";
+      theme = "Rose Pine";
       custom-shader = "${./shaders/cursor-blaze.glsl}";
 
       confirm-close-surface = false;
