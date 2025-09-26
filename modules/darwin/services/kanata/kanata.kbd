@@ -3,7 +3,6 @@
   process-unmapped-keys true
 )
 
-
 (defsrc
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
@@ -13,16 +12,14 @@
   fn   lctl lalt lmet      spc            rmet ralt           left down rght
 )
 
-
 (deflayer base
   _    brdn brup _    _    _    _    prev pp   next mute vold volu
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  lrld @a   @s   @d   @f   _    _    @j   @k   @l   @;   _    _
-  _    _    _    _    _    _    _    _    _    _    _    _         _
-  _    _    _    _         _              _    _              _    _    _
+  esc  @a   @s   @d   @f   _    _    @j   @k   @l   @;   _    _
+  @lsf _    _    _    _    _    _    _    _    _    _    @rsf      _
+  @fn  _    _    _         _              _    _              _    _    _
 )
-
 
 (deflayer nomods
   _    brdn brup _    _    _    _    prev pp   next mute vold volu
@@ -33,11 +30,18 @@
   _    _    _    _         _              _    _              _    _    _
 )
 
+(deflayer flayer
+  _    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _         _
+  _    _    _    _         _              _    _              _    _    _
+)
 
 (deffakekeys
   to-base (layer-switch base)
 )
-
 
 (defvar
   ;; Set tap/hold time for homerow mods
@@ -65,14 +69,12 @@
   )
 )
 
-
 (defalias
 
   tap (multi
     (layer-switch nomods)
     (on-idle-fakekey to-base tap 100)
   )
-
 
   ;; Homerow mods
   a (tap-hold-release-keys $ctl-tap $ctl-hold (multi a @tap) lctl $lh-keys)
@@ -83,8 +85,14 @@
   k (tap-hold-release-keys $sft-tap $sft-hold (multi k @tap) rsft $rh-keys)
   l (tap-hold-release-keys $alt-tap $alt-hold (multi l @tap) ralt $rh-keys)
   ; (tap-hold-release-keys $ctl-tap $ctl-hold (multi ; @tap) rctl $rh-keys)
-)
 
+  ;; fn layer
+  fn (layer-while-held flayer)
+
+  ;; Left and right shift keys
+  lsf (tap-hold 0 200 S-9 lsft)
+  rsf (tap-hold 0 200 S-0 rsft)
+)
 
 #|
 (deflayer layers
