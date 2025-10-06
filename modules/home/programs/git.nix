@@ -22,7 +22,7 @@
     difftastic = {
       enable = true;
       enableAsDifftool = true;
-      background = "dark";
+      options.background = "dark";
     };
   };
 }
