@@ -11,7 +11,7 @@ in {
   options.sonntag.nvim.layers.buffers.enable = mkEnableOption "buffers layer" // {default = true;};
 
   config = mkIf cfg.enable {
-    plugins.bufferline.enable = true;
+    # plugins.bufferline.enable = true;
 
     plugins.which-key.settings.spec = [
       (whichkeyGroup "<leader>b" "buffers")
