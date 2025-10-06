@@ -5,7 +5,7 @@
     "arc"
     "block-goose"
     "claude"
-    "ghostty@tip"
+    "ghostty"
     "gifox"
     "homerow"
     "little-snitch"
