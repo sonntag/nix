@@ -11,6 +11,7 @@ in {
   ];
 
   plugins = {
+    illuminate.enable = true;
     lualine.enable = true;
     lz-n.enable = true;
     mini = {
