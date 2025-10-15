@@ -4,8 +4,8 @@
     # azure-cli
     cljstyle
     jet
-    kubectx
-    kubelogin
+    # kubectx
+    # kubelogin
     nodejs
     (import ./aws-profile-script.nix {inherit pkgs;})
   ];
