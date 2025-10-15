@@ -730,11 +730,10 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1760557067,
-        "narHash": "sha256-Zh4rpRcIQm/DzwAjP0FfaSIxL2Z+0SsJR1U28iavsmo=",
+        "lastModified": 1760563173,
         "owner": "sonntag",
         "repo": "nvim",
-        "rev": "809493115ebf666c390e9828f9157f393cc751be",
+        "rev": "3d89e6fcbd8cb492d4fbd5e78210bc5fff9fa636",
         "type": "github"
       },
       "original": {
