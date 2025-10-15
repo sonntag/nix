@@ -27,7 +27,7 @@
   ];
 
   sonntag.programs.claude-code.enable = true;
-  # sonntag.programs.nvim.enable = true;
+  sonntag.programs.nvim.enable = true;
   sonntag.programs.nixvim.enable = true;
 
   # Used for Amperity development

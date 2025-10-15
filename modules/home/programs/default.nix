@@ -13,7 +13,7 @@
     ./man.nix
     ./most.nix
     ./nixvim.nix
-    ./nvim
+    ./nvim.nix
     ./spotify.nix
     ./starship
     ./tmux.nix

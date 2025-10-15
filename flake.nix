@@ -46,6 +46,7 @@
     };
 
     nixvim.url = "path:./flakes/nixvim";
+    nvim.url = "github:sonntag/nvim";
 
     # tmux-sessionx.url = "github:omerxx/tmux-sessionx";
 

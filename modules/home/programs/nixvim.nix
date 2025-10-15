@@ -9,14 +9,8 @@ with lib; let
 in {
   options.sonntag.programs.nixvim.enable = mkEnableOption "nixvim";
   config = mkIf cfg.nixvim.enable {
-    home.packages = mkIf (!cfg.nvim.enable) [
-      inputs.nixvim.packages.aarch64-darwin.default
-    ];
-
-    programs.fish.shellAliases = mkIf cfg.nvim.enable {
+    programs.fish.shellAliases = {
       nixvim = "${inputs.nixvim.packages.aarch64-darwin.default}/bin/nvim";
     };
-
-    home.sessionVariables.EDITOR = "nvim";
   };
 }
