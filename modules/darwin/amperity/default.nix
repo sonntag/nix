@@ -10,7 +10,6 @@
     # kubectx
     # kubelogin
     nodejs
-    (import ./aws-profile-script.nix {inherit pkgs;})
   ];
 
   imports = [

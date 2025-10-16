@@ -31,8 +31,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # amperity.url = "path:./flakes/amperity";
-
     # ==== Deploy ====
 
     # Secrets decrypted at runtime, for NixOS/nix-darwin and home-manager
@@ -54,7 +52,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nixvim.url = "path:./flakes/nixvim";
     nvim.url = "github:sonntag/nvim";
 
     # tmux-sessionx.url = "github:omerxx/tmux-sessionx";
@@ -122,10 +119,7 @@
         hostPlatform = "aarch64-darwin";
         system = "aarch64-darwin";
         hostName = "greed";
-        modules = [
-          ./hosts/greed
-          # inputs.amperity.darwinModules
-        ];
+        modules = [./hosts/greed];
       };
     };
   };

@@ -12,6 +12,7 @@
   defaultModules = [
     {
       imports = [
+        ./amperity
         ./programs
         ./services
         ./system
