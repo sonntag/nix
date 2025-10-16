@@ -31,7 +31,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # amperity.url = "path:./flakes/amperity";
+    amperity.url = "path:./flakes/amperity";
 
     # ==== Deploy ====
 
