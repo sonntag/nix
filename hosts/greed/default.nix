@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   sonntag.darwin.personal-casks.enable = false;
+  amperity.enable = true;
 
   environment.systemPackages = with pkgs; [
     mkcert
