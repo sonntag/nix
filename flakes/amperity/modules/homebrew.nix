@@ -22,7 +22,6 @@
     ];
 
     casks = [
-      "amazon-q"
       "chromedriver"
       "docker-desktop"
       "temurin@17"
