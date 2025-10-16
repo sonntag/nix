@@ -12,7 +12,7 @@
     ./lazygit.nix
     ./man.nix
     ./most.nix
-    ./nixvim.nix
+    # ./nixvim.nix
     ./nvim.nix
     ./spotify.nix
     ./starship

@@ -54,7 +54,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim.url = "path:./flakes/nixvim";
+    # nixvim.url = "path:./flakes/nixvim";
     nvim.url = "github:sonntag/nvim";
 
     # tmux-sessionx.url = "github:omerxx/tmux-sessionx";
@@ -124,7 +124,7 @@
         hostName = "greed";
         modules = [
           ./hosts/greed
-          inputs.amperity.darwinModules
+          # inputs.amperity.darwinModules
         ];
       };
     };
