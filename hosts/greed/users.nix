@@ -2,13 +2,11 @@
   userName = "justin";
   userHome = "/Users/${userName}";
 in {
-  # TODO: figure out how to set trusted-users properly for determinate-nix.
-  # Currently I have this set manually
-  # nix.settings.trusted-users = [
-  #   "root"
-  #   "@admin"
-  #   userName
-  # ];
+  nix.settings.trusted-users = [
+    "root"
+    "@admin"
+    userName
+  ];
 
   system.primaryUser = userName;
 
