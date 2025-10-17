@@ -3,6 +3,7 @@
     ./darwin
     ./programs
     ./secrets
+    ./services
   ];
 
   home.stateVersion = "24.05";
