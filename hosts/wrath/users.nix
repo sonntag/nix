@@ -2,11 +2,6 @@
   userName = "justin";
   userHome = "/Users/${userName}";
 in {
-  nix.settings.trusted-users = [
-    "root"
-    userName
-  ];
-
   system.primaryUser = userName;
 
   users.knownUsers = [userName];
