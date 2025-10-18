@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.tmux = rec {
     enable = true;
 
@@ -41,6 +37,10 @@
       bind b last-window
       bind C-p previous-window
       bind C-n next-window
+
+      # Allows image.nvim to work
+      set -gq allow-passthrough on
+      #set -g visual-activity off
 
       # Appearance
       set -g status-position top
