@@ -21,7 +21,7 @@
         NSWindowShouldDragOnGesture = true;
         "com.apple.trackpad.enableSecondaryClick" = true;
         "com.apple.swipescrolldirection" = true;
-        _HIHideMenuBar = true;
+        _HIHideMenuBar = false;
         InitialKeyRepeat = 15;
         KeyRepeat = 3;
       };
