@@ -14,7 +14,7 @@ in {
     remotes = [
       {
         name = "origin";
-        url = "github:sonntag/nix";
+        url = "https://github.com/sonntag/nix.git";
         branches.main.name = "main";
       }
     ];
