@@ -17,6 +17,11 @@
     # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
+    determinate = {
+      url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # NixOS-esque configuration for Darwin (MacOS)
     nix-darwin = {
       # url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
@@ -36,6 +41,11 @@
     # Secrets decrypted at runtime, for NixOS/nix-darwin and home-manager
     sops-nix = {
       url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    comin = {
+      url = "github:sonntag/comin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

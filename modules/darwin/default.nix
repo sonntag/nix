@@ -7,7 +7,7 @@
   modules ? [],
   ...
 } @ args: let
-  inherit (inputs) nix-darwin home-manager;
+  inherit (inputs) comin determinate nix-darwin home-manager;
 
   defaultModules = [
     {
@@ -27,6 +27,8 @@
       };
     }
     home-manager.darwinModules.home-manager
+    determinate.darwinModules.default
+    comin.darwinModules.comin
   ];
 in
   nix-darwin.lib.darwinSystem {
