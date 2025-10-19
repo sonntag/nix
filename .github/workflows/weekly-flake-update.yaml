@@ -6,51 +6,93 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-flake:
-    name: Update Flake
+  update-lock:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      actions: read
+    outputs:
+      lock_changed: ${{ steps.update.outputs.lock_changed }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
-      - name: Install Determinate Nix
-        uses: DeterminateSystems/nix-installer-action@main
-        with:
-          determinate: true
-      - name: Set up binary cache
-        uses: cachix/cachix-action@v16
-        with:
-          name: sonntag
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-      - name: Update flake.lock
-        run: |
-          MESSAGE="
-          flake input updates:
-          $(nix flake update --no-warn-dirty 2>&1 | { grep -v 'unpacking.*' || true; } | sed '1d')"
+        uses: actions/checkout@v4
 
-          if [ -n "$(git diff-files 2>&1)" ]; then
-            git add -A
-            {
-              echo "message<<EOF"
-              echo "$MESSAGE"
-              echo "EOF"
-            } >> "$GITHUB_OUTPUT"
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v12
+
+      - name: Update flake.lock
+        id: update
+        run: |
+          nix flake update
+          if git diff --quiet flake.lock; then
+            echo "No lockfile changes detected."
+            echo "lock_changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git add flake.lock
+            echo "lock_changed=true" >> "$GITHUB_OUTPUT"
           fi
-      - name: Build flake
-        run: |
-          set -euo pipefail
-          nix build .# --accept-flake-config
-          echo "Build succeeded ✅"
+
+      - name: Upload updated flake for build jobs
+        if: steps.update.outputs.lock_changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: updated-flake
+          path: .
+
+  build:
+    needs: update-lock
+    if: needs.update-lock.outputs.lock_changed == 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: wrath
+            flake_output: darwinConfigurations.wrath
+            runner: macos-latest
+          - name: greed
+            flake_output: darwinConfigurations.greed
+            runner: macos-latest
+    runs-on: ${{ matrix.runner }}
+
+    steps:
+      - name: Download updated flake
+        uses: actions/download-artifact@v4
+        with:
+          name: updated-flake
+          path: .
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v12
+
+      - name: Set up Cachix
+        uses: cachix/cachix-action@v14
+        with:
+          name: ${{ env.CACHIX_CACHE }}
+          authToken: ${{ env.CACHIX_AUTH_TOKEN }}
+
+      - name: Build ${{ matrix.name }} configuration
+        run: nix build .#${{ matrix.flake_output }} --accept-flake-config
+
       - name: Push build to Cachix
-        if: success()
+        run: nix path-info .#${{ matrix.flake_output }} | cachix push $CACHIX_CACHE
+
+  commit:
+    needs: [update-lock, build]
+    if: needs.update-lock.outputs.lock_changed == 'true' && needs.build.result == 'success'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download updated flake
+        uses: actions/download-artifact@v4
+        with:
+          name: updated-flake
+          path: .
+
+      - name: Commit and push updated lock file
         run: |
-          nix path-info .# | cachix push $CACHIX_CACHE
-      - name: Commit and push changes
-        if: success()
-        run: |
-          git diff --quiet && echo "No updates to commit" && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet flake.lock && echo "No changes to commit." && exit 0
           git add flake.lock
           git commit -m "chore: weekly flake update"
           git push origin main
