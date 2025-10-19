@@ -45,8 +45,4 @@
 
   # Enable carapace completions
   programs.carapace.enable = true;
-
-  programs.kakoune.enable = true;
-
-  # sonntag.programs.most.enable = true;
 }
