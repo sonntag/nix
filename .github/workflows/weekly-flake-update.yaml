@@ -70,9 +70,6 @@ jobs:
       - name: Build ${{ matrix.name }} configuration
         run: nix build .#${{ matrix.flake_output }}.system --accept-flake-config
 
-      - name: Push build to Cachix
-        run: nix path-info .#${{ matrix.flake_output }}.system | cachix push $CACHIX_CACHE
-
   commit:
     needs: [update-lock, build]
     if: needs.update-lock.outputs.lock_changed == 'true' && needs.build.result == 'success'
