@@ -1,0 +1,56 @@
+name: Weekly Nix Flake Update
+
+on:
+  schedule:
+    - cron: 0 7 * * 1 # Runs weekly on Monday at 7 am
+  workflow_dispatch:
+
+jobs:
+  update-flake:
+    name: Update Flake
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+      - name: Install Determinate Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          determinate: true
+      - name: Set up binary cache
+        uses: cachix/cachix-action@v16
+        with:
+          name: sonntag
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      - name: Update flake.lock
+        run: |
+          MESSAGE="
+          flake input updates:
+          $(nix flake update --no-warn-dirty 2>&1 | { grep -v 'unpacking.*' || true; } | sed '1d')"
+
+          if [ -n "$(git diff-files 2>&1)" ]; then
+            git add -A
+            {
+              echo "message<<EOF"
+              echo "$MESSAGE"
+              echo "EOF"
+            } >> "$GITHUB_OUTPUT"
+          fi
+      - name: Build flake
+        run: |
+          set -euo pipefail
+          nix build .# --accept-flake-config
+          echo "Build succeeded ✅"
+      - name: Push build to Cachix
+        if: success()
+        run: |
+          nix path-info .# | cachix push $CACHIX_CACHE
+      - name: Commit and push changes
+        if: success()
+        run: |
+          git diff --quiet && echo "No updates to commit" && exit 0
+          git add flake.lock
+          git commit -m "chore: weekly flake update"
+          git push origin main
