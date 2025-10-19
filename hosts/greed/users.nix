@@ -2,9 +2,8 @@
   userName = "justin";
   userHome = "/Users/${userName}";
 in {
-  sonntag.darwin.nix = {
-    enable = true;
-    trusted-users = ["@admin" userName];
+  sonntag.nix = {
+    trusted-users = ["root" "@admin" userName];
   };
 
   system.primaryUser = userName;
