@@ -1,8 +1,10 @@
 {lib, ...}: {
-  programs.git = {
+  programs.git = with lib; {
     enable = true;
-    userName = "Justin Sonntag";
-    userEmail = lib.mkDefault "justin.sonntag@gmail.com";
+    settings.user = {
+      name = "Justin Sonntag";
+      email = mkDefault "justin.sonntag@gmail.com";
+    };
     iniContent = {
       core = {
         untrackedCache = true;
@@ -19,10 +21,5 @@
       ".clj-kondo/rewrite-clj"
       ".clj-kondo/http-kit"
     ];
-    difftastic = {
-      enable = true;
-      enableAsDifftool = true;
-      options.background = "dark";
-    };
   };
 }

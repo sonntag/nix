@@ -2,6 +2,7 @@
   imports = [
     ./bat.nix
     ./claude-code.nix
+    ./difftastic.nix
     ./direnv.nix
     ./fabric.nix
     ./fish
@@ -12,7 +13,6 @@
     ./lazygit.nix
     ./man.nix
     ./most.nix
-    # ./nixvim.nix
     ./nvim.nix
     ./spotify.nix
     ./starship
