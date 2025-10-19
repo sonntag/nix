@@ -1,14 +1,15 @@
 {
   description = "Justin's nix config";
 
-  # nixConfig = {
-  #   substitutors = [
-  #     "https://sonntag.cachix.org"
-  #   ];
-  #   trusted-public-keys = [
-  #     "sonntag.cachix.org-1:4rHXwjmC/EpRwVkCyH0xLQaoeZT9C0oq8TINGSap1Wk="
-  #   ];
-  # };
+  nixConfig = {
+    substitutors = [
+      "https://cache.nixos.org"
+      "https://sonntag.cachix.org"
+    ];
+    trusted-public-keys = [
+      "sonntag.cachix.org-1:4rHXwjmC/EpRwVkCyH0xLQaoeZT9C0oq8TINGSap1Wk="
+    ];
+  };
 
   inputs = {
     # ==== Core ====
