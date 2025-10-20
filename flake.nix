@@ -2,11 +2,11 @@
   description = "Justin's nix config";
 
   nixConfig = {
-    substitutors = [
+    extra-substitutors = [
       "https://cache.nixos.org"
       "https://sonntag.cachix.org"
     ];
-    trusted-public-keys = [
+    extra-trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "sonntag.cachix.org-1:4rHXwjmC/EpRwVkCyH0xLQaoeZT9C0oq8TINGSap1Wk="
     ];
