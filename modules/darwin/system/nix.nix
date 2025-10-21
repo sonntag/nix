@@ -54,6 +54,14 @@ in {
         "build-time-fetch-tree" # Enables build-time flake inputs
         "parallel-eval" # Enables parallel evaluation
       ];
+      extra-substituters = [
+        "https://cache.nixos.org"
+        "https://sonntag.cachix.org"
+      ];
+      extra-trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "sonntag.cachix.org-1:4rHXwjmC/EpRwVkCyH0xLQaoeZT9C0oq8TINGSap1Wk="
+      ];
     };
   };
 }

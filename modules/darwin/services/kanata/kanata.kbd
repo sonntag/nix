@@ -17,7 +17,7 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   esc  @a   @s   @d   @f   _    _    @j   @k   @l   @;   _    _
-  @lsf _    _    _    _    _    _    _    _    _    _    @rsf      _
+  _    _    _    _    _    _    _    _    _    _    _    _         _
   @fn  _    _    _         _              _    _              _    _    _
 )
 
@@ -90,8 +90,8 @@
   fn (layer-while-held flayer)
 
   ;; Left and right shift keys
-  lsf (tap-hold 0 200 S-9 lsft)
-  rsf (tap-hold 0 200 S-0 rsft)
+  ;; lsf (tap-hold 0 200 S-9 lsft)
+  ;; rsf (tap-hold 0 200 S-0 rsft)
 )
 
 #|

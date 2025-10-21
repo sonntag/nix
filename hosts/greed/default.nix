@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  sonntag.system.auto-update.enable = true;
   sonntag.darwin.personal-casks.enable = false;
   amperity.enable = true;
 
