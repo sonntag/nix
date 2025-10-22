@@ -1,0 +1,18 @@
+name: Notify Nix Flake
+description: Notifies this repo that there's an update to the nvim flake input
+
+inputs:
+  auth-token:
+    description: Auth token used to send event to sonntag/nix repository dispatches
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Trigger update workflow
+      run: |
+        curl -X POST \
+        -H "Accept: application/vnd.github.v3+json" \
+        -H "Authorization: token ${{ inputs.auth-token }}" \
+        https://api.github.com/repos/sonntag/nix/dispatches \
+        -d '{"event_type":"nvim-flake-changes"}'

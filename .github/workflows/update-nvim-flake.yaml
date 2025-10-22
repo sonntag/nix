@@ -1,0 +1,95 @@
+name: Weekly Nix Flake Update
+
+on:
+  repository_dispatch:
+    types: [nvim-flake-changes]
+  workflow_dispatch:
+
+jobs:
+  update-lock:
+    runs-on: ubuntu-latest
+    outputs:
+      lock_changed: ${{ steps.update.outputs.lock_changed }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v12
+
+      - name: Update flake.lock
+        id: update
+        run: |
+          nix flake update nvim
+          if git diff --quiet flake.lock; then
+            echo "No lockfile changes detected."
+            echo "lock_changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git add flake.lock
+            echo "lock_changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Upload updated flake for build jobs
+        if: steps.update.outputs.lock_changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: updated-flake
+          path: .
+
+  build:
+    needs: update-lock
+    if: needs.update-lock.outputs.lock_changed == 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: wrath
+            flake_output: darwinConfigurations.wrath
+            runner: macos-latest
+          - name: greed
+            flake_output: darwinConfigurations.greed
+            runner: macos-latest
+    runs-on: ${{ matrix.runner }}
+
+    steps:
+      - name: Download updated flake
+        uses: actions/download-artifact@v4
+        with:
+          name: updated-flake
+          path: .
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v12
+
+      - name: Set up Cachix
+        uses: cachix/cachix-action@v14
+        with:
+          name: sonntag
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - name: Build ${{ matrix.name }} configuration
+        run: nix build .#${{ matrix.flake_output }}.system --accept-flake-config
+
+  commit:
+    needs: [update-lock, build]
+    if: needs.update-lock.outputs.lock_changed == 'true' && needs.build.result == 'success'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download updated flake
+        uses: actions/download-artifact@v4
+        with:
+          name: updated-flake
+          path: .
+
+      - name: Commit and push updated lock file
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet flake.lock && echo "No changes to commit." && exit 0
+          git add flake.lock
+          git commit -m "chore: update nvim flake"
+          git push origin main
