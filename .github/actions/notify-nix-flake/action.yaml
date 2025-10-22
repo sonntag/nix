@@ -16,3 +16,4 @@ runs:
         -H "Authorization: token ${{ inputs.auth-token }}" \
         https://api.github.com/repos/sonntag/nix/dispatches \
         -d '{"event_type":"nvim-flake-changes"}'
+      shell: bash
