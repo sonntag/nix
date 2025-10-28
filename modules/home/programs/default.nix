@@ -25,17 +25,17 @@
     devenv
     eza
     fd
-    figlet
+    # figlet
     gnused
     htop
     jq
-    jujutsu
-    just
-    lazyjj
+    # jujutsu
+    # just
+    # lazyjj
     neofetch
     nerd-fonts.victor-mono
     ov
-    presenterm
+    # presenterm
     ripgrep
     tldr
     tree
