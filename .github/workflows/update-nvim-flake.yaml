@@ -1,4 +1,4 @@
-name: Weekly Nix Flake Update
+name: Update nvim flake
 
 on:
   repository_dispatch:
