@@ -1,16 +1,16 @@
 {
   description = "Justin's nix config";
 
-  nixConfig = {
-    extra-substitutors = [
-      "https://cache.nixos.org"
-      "https://sonntag.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "sonntag.cachix.org-1:4rHXwjmC/EpRwVkCyH0xLQaoeZT9C0oq8TINGSap1Wk="
-    ];
-  };
+  # nixConfig = {
+  #   extra-substitutors = [
+  #     "https://cache.nixos.org"
+  #     "https://sonntag.cachix.org"
+  #   ];
+  #   extra-trusted-public-keys = [
+  #     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+  #     "sonntag.cachix.org-1:4rHXwjmC/EpRwVkCyH0xLQaoeZT9C0oq8TINGSap1Wk="
+  #   ];
+  # };
 
   inputs = {
     # ==== Core ====
@@ -47,7 +47,7 @@
     };
 
     comin = {
-      url = "github:sonntag/comin";
+      url = "github:nlewo/comin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
