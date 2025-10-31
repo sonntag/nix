@@ -3,7 +3,6 @@
     "1password"
     "1password-cli"
     "arc"
-    "block-goose"
     "claude"
     "ghostty"
     "gifox"
