@@ -34,10 +34,10 @@
           vertical = 5;
         };
         outer = {
-          left = 5;
+          left = [{monitor.dell = 128;} 5];
           bottom = 5;
           top = 5;
-          right = 5;
+          right = [{monitor.dell = 128;} 5];
         };
       };
 
@@ -144,6 +144,14 @@
         alt-shift-l = ["join-with right" "mode main"];
       };
 
+      workspace-to-monitor-force-assignment = {
+        "C" = "built-in";
+        "G" = "built-in";
+        "M" = "built-in";
+        "R" = "built-in";
+        "S" = "built-in";
+      };
+
       # Find these app-ids using `aerospace list-apps`
       on-window-detected = [
         {
@@ -176,10 +184,6 @@
         }
         {
           "if".app-id = "com.culturedcode.ThingsMac";
-          run = "move-node-to-workspace R";
-        }
-        {
-          "if".app-id = "com.todoist.mac.Todoist";
           run = "move-node-to-workspace R";
         }
         {
