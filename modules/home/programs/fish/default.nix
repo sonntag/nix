@@ -96,8 +96,8 @@ in {
 
       # Other
       cat = "${bat}/bin/bat";
-      du = "${du-dust}/bin/dust";
-      g = "${gitAndTools.git}/bin/git";
+      du = "${dust}/bin/dust";
+      g = "${git}/bin/git";
       l = "ll --all";
       ll = "ls -l --icons";
       ld = "ll | grep ^d";
