@@ -155,6 +155,10 @@
       # Find these app-ids using `aerospace list-apps`
       on-window-detected = [
         {
+          "if".app-id = "com.sublimetext.4";
+          run = "move-node-to-workspace 2";
+        }
+        {
           "if".app-id = "com.ableton.live";
           run = "move-node-to-workspace A";
         }
