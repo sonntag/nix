@@ -36,6 +36,7 @@ in {
       ];
 
       brews = [
+        "azure-cli"
         "conductorone/cone/cone"
         "docker-compose"
         "hashicorp/tap/vault"
