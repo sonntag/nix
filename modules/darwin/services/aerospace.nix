@@ -150,6 +150,7 @@
         "M" = "built-in";
         "R" = "built-in";
         "S" = "built-in";
+        "Y" = "built-in";
       };
 
       # Find these app-ids using `aerospace list-apps`
