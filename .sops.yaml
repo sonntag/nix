@@ -2,16 +2,11 @@ keys:
   - &wrath age1wljpjrxx5jw2w50s7lde87y64alm4yyllsped550q5xpel3epfnse2rwdx
   - &greed age1mntwr82lg2hc3tlh2f207cuzu2ukgfxrrqyy0uu3jsf9498ds99qa04uzc
 creation_rules:
-  - path_regex: .*/secrets/.*\.global\.yaml$
+  - path_regex: .*/ssh/personal/.*\.yaml$
     key_groups:
     - age:
       - *wrath
-      - *greed
-  - path_regex: .*/secrets/.*\.personal\.yaml$
-    key_groups:
-    - age:
-      - *wrath
-  - path_regex: .*/secrets/.*\.work\.yaml$
+  - path_regex: .*/ssh/work/.*\.yaml$
     key_groups:
     - age:
       - *greed

@@ -26,6 +26,7 @@
     "$HOME/Development/amperity/app/bin"
   ];
 
+  sonntag.ssh.profile = "work";
   sonntag.programs.claude-code.enable = true;
   sonntag.programs.nvim.enable = true;
   # sonntag.programs.nixvim.enable = true;

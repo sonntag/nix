@@ -2,8 +2,9 @@
   imports = [
     ./darwin
     ./programs
-    ./secrets
+    ./secrets.nix
     ./services
+    ./ssh
   ];
 
   home.stateVersion = "24.05";
