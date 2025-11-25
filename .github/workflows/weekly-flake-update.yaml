@@ -2,7 +2,7 @@ name: Weekly Nix Flake Update
 
 on:
   schedule:
-    - cron: 0 7 * * 1 # Runs weekly on Monday at 7 am
+    - cron: 0 11 * * 1 # Runs weekly on Monday at 4 am PDT
   workflow_dispatch:
 
 jobs:
