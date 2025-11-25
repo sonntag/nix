@@ -2,7 +2,9 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  pnpm-path = "$HOME/Library/pnpm";
+in {
   imports = [
     ../modules/home
   ];
@@ -15,15 +17,19 @@
     # leiningen
     nb
     neil
+    nodejs
+    pnpm
   ];
 
   home.sessionVariables = {
     VAULT_ADDR = "https://vault.amperity.top:8200";
     JAVA_HOME = "$(/usr/libexec/java_home -v 17)";
+    PNPM_HOME = "${pnpm-path}";
   };
 
   home.sessionPath = [
     "$HOME/Development/amperity/app/bin"
+    "${pnpm-path}"
   ];
 
   sonntag.ssh.profile = "work";
@@ -43,7 +49,14 @@
   programs.fish.shellAliases = {
     lr = "lein refresh";
     vpn = "cone get prod.vpn -d 1w";
+    # pnpm = "${pnpm-path}/aikido-pnpm";
   };
+
+  # This is super hacky, but needed for getting AikidoSec/safe-chain setup
+  # TODO: figure out how to configure safe-chain as a nix module
+  programs.fish.shellInit = ''
+    source ~/.safe-chain/scripts/init-fish.fish
+  '';
 
   programs.fish.functions = {
     aws-profile.body = ''

@@ -19,7 +19,6 @@ in {
       jet
       # kubectx
       # kubelogin
-      nodejs
     ];
 
     # Configure homebrew.
