@@ -37,7 +37,7 @@ in {
   sonntag.programs.nvim.enable = true;
   # sonntag.programs.nixvim.enable = true;
 
-  sonntag.services.ollama.enable = true;
+  # sonntag.services.ollama.enable = true;
 
   # Used for Amperity development
   # TODO: re-enable this
