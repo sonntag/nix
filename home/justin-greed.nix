@@ -46,6 +46,10 @@ in {
   #   package = pkgs.jdk17;
   # };
 
+  programs.awscli = {
+    enable = true;
+  };
+
   programs.fish.shellAliases = {
     lr = "lein refresh";
     vpn = "cone get prod.vpn -d 1w";

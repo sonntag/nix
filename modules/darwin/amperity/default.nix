@@ -10,7 +10,6 @@ in {
   options.amperity.enable = mkEnableOption "amperity";
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      awscli2
       # azure-cli
       babashka
       cljstyle
