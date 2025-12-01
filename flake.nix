@@ -17,7 +17,7 @@
 
     # Main package repository
     # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
-    nixpkgs.url = "github:NixOS/nixpkgs/master";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     determinate = {
       url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
