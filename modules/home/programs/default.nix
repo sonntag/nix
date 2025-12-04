@@ -29,9 +29,9 @@
     gnused
     htop
     jq
-    # jujutsu
+    jujutsu
     # just
-    # lazyjj
+    lazyjj
     neofetch
     nerd-fonts.victor-mono
     ov
