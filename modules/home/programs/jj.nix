@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   programs.jjui.enable = true;
   programs.jujutsu = with lib; {
     enable = true;
@@ -7,7 +11,7 @@
         name = "Justin Sonntag";
         email = mkDefault "justin.sonntag@gmail.com";
       };
-      ui.diff-formatter = ["difft" "--color=always" "$left" "$right"];
+      ui.diff-formatter = ["${pkgs.difftastic}/bin/difft" "--color=always" "$left" "$right"];
     };
   };
 }
