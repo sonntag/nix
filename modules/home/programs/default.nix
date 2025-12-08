@@ -9,6 +9,7 @@
     ./fzf.nix
     ./ghostty
     ./git.nix
+    ./jj.nix
     ./k9s.nix
     ./lazygit.nix
     ./man.nix
@@ -29,7 +30,6 @@
     gnused
     htop
     jq
-    jujutsu
     # just
     lazyjj
     neofetch
