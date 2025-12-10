@@ -34,6 +34,7 @@
     lazyjj
     neofetch
     nerd-fonts.victor-mono
+    nps
     ov
     # presenterm
     ripgrep

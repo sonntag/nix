@@ -15,8 +15,21 @@
         diff-formatter = ["${pkgs.difftastic}/bin/difft" "--color=always" "$left" "$right"];
         default-command = "status";
       };
+      remotes = {
+        origin.auto-track-bookmarks = "glob:sonntag/*";
+        upstream.auto-track-bookmarks = "main";
+      };
+      templates.git_push_bookmark = ''"sonntag/push-" ++ change_id.short()'';
+      # fsmonitor = {
+      #   backend = "watchman";
+      #   watchman.register-snapshot-trigger = true;
+      # };
     };
   };
+
+  # home.packages = with pkgs; [
+  #   watchman
+  # ];
 
   home.shellAliases = {
     je = "${pkgs.jujutsu}/bin/jj edit";
