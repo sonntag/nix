@@ -30,6 +30,10 @@ in {
       kanata
     ];
 
+    environment.shellAliases = {
+      kickstart-kanata = "sudo launchctl kickstart -k system/org.nixos.kanata";
+    };
+
     launchd.daemons = {
       kanata = {
         command = "${pkgs.kanata}/bin/kanata --nodelay -c ${cfg.config}";
