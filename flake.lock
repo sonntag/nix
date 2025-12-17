@@ -681,11 +681,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1765783332,
-        "narHash": "sha256-DhqywShLfNSnsb1jaZzouKc8Hr5svnZ1ujwo2Np3+PQ=",
+        "lastModified": 1765951421,
+        "narHash": "sha256-Zn8xInTdnq80nKDvOqEQPPmcP9zWvSX+qhqvyfcSV4g=",
         "owner": "sonntag",
         "repo": "nvim",
-        "rev": "147cbcb0708b87c33ab07437a367dcb9dab39e7d",
+        "rev": "76883b8cc421f5df4f47b19b1c18a43d9f63422a",
         "type": "github"
       },
       "original": {
