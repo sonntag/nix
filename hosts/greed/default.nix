@@ -4,6 +4,7 @@
   amperity.enable = true;
 
   environment.systemPackages = with pkgs; [
+    bun
     mkcert
     wget
     yq-go
