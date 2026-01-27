@@ -1,39 +1,26 @@
 {
   description = "Justin's nix config";
 
-  # nixConfig = {
-  #   extra-substitutors = [
-  #     "https://cache.nixos.org"
-  #     "https://sonntag.cachix.org"
-  #   ];
-  #   extra-trusted-public-keys = [
-  #     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-  #     "sonntag.cachix.org-1:4rHXwjmC/EpRwVkCyH0xLQaoeZT9C0oq8TINGSap1Wk="
-  #   ];
-  # };
-
   inputs = {
     # ==== Core ====
 
     # Main package repository
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     determinate = {
       url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nix.inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # NixOS-esque configuration for Darwin (MacOS)
     nix-darwin = {
-      # url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
       url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # NixOS-esque configuration of home directories
     home-manager = {
-      # url = "github:nix-community/home-manager/release-24.11";
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -64,7 +51,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nvim.url = "github:sonntag/nvim";
+    nvim = {
+      url = "github:sonntag/nvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # tmux-sessionx.url = "github:omerxx/tmux-sessionx";
 

@@ -1,3 +1,4 @@
 .config/tmux/plugins/*
 .direnv/
 .DS_Store
+.claude/settings.local.json
