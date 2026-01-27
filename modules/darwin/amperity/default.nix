@@ -12,6 +12,7 @@ in {
     environment.systemPackages = with pkgs; [
       # azure-cli
       babashka
+      bbin
       cljstyle
       clojure
       clojure-lsp
