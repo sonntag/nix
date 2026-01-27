@@ -29,9 +29,9 @@ in {
   ];
 
   sonntag.ssh.profile = "work";
-  sonntag.programs.claude-code.enable = true;
   sonntag.programs.nvim.enable = true;
-  # sonntag.programs.nixvim.enable = true;
+
+  sonntag.mcp.atlassian.enable = true;
 
   # sonntag.services.ollama.enable = true;
 

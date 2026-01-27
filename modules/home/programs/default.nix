@@ -13,6 +13,7 @@
     ./k9s.nix
     ./lazygit.nix
     ./man.nix
+    ./mcp
     ./most.nix
     ./nvim.nix
     ./spotify.nix
