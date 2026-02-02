@@ -11,6 +11,7 @@
     "obsidian"
     "raycast"
     "readdle-spark"
+    "voiceink"
     "xnapper"
     "zen"
   ];
