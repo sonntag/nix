@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./bat.nix
-    ./claude-code.nix
+    ./claude-code
     ./difftastic.nix
     ./direnv.nix
     ./fabric.nix
