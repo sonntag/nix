@@ -28,6 +28,7 @@
     eza
     fd
     # figlet
+    gh
     gnused
     htop
     jq
