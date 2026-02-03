@@ -2,6 +2,7 @@
   imports = [
     ./bat.nix
     ./claude-code
+    ./codex
     ./difftastic.nix
     ./direnv.nix
     ./fabric.nix

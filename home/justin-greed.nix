@@ -43,6 +43,16 @@ in {
   #   package = pkgs.jdk17;
   # };
 
+  programs.codex.settings = {
+    model = "azure/gpt-5.2-codex";
+    model_provider = "azure";
+    model_providers.azure = {
+      name = "Azure OpenAI";
+      base_url = "http://0.0.0.0:8080/v1";
+      wire_api = "responses";
+    };
+  };
+
   programs.awscli = {
     enable = true;
   };
@@ -124,6 +134,19 @@ in {
 
       set -e password
       set -gx VAULT_ADDR $current_addr
+    '';
+
+    codex-setup.body = ''
+      set original_addr $VAULT_ADDR
+      switch-vault az-stage
+      set -gx OPENAI_AMPERITY_UE2_KEY (vault read -field=key secret/service/openai/amperity-ue2)
+      if test $status -eq 0
+          echo "OPENAI_AMPERITY_UE2_KEY loaded from vault"
+      else
+          echo "Failed to load API key from vault" >&2
+          echo "Make sure you're logged in (run vault-login)" >&2
+      end
+      set -gx VAULT_ADDR $original_addr
     '';
   };
 
