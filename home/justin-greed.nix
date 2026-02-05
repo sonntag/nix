@@ -44,11 +44,11 @@ in {
   # };
 
   programs.codex.settings = {
-    model = "azure/gpt-5.2-codex";
-    model_provider = "azure";
-    model_providers.azure = {
-      name = "Azure OpenAI";
-      base_url = "http://0.0.0.0:8080/v1";
+    model = "gpt-5.2-codex";
+    model_provider = "litellm";
+    model_providers.litellm = {
+      name = "LiteLLM Proxy";
+      base_url = "http://localhost:4000/v1";
       wire_api = "responses";
     };
   };

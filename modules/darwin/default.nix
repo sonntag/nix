@@ -7,13 +7,14 @@
   modules ? [],
   ...
 } @ args: let
-  inherit (inputs) comin determinate nix-darwin home-manager;
+  inherit (inputs) comin determinate nix-darwin home-manager sops-nix;
 
   defaultModules = [
     {
       imports = [
         ./amperity
         ./programs
+        ./secrets.nix
         ./services
         ./system
       ];
@@ -29,6 +30,7 @@
     home-manager.darwinModules.home-manager
     determinate.darwinModules.default
     comin.darwinModules.comin
+    sops-nix.darwinModules.sops
   ];
 in
   nix-darwin.lib.darwinSystem {

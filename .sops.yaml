@@ -10,3 +10,7 @@ creation_rules:
     key_groups:
     - age:
       - *greed
+  - path_regex: .*/darwin/secrets/.*\.yaml$
+    key_groups:
+    - age:
+      - *greed
