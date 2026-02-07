@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib; let
@@ -9,8 +10,8 @@ in {
   options.sonntag.mcp.slack.enable = mkEnableOption "slack mcp";
   config = mkIf cfg.enable {
     programs.mcp.servers.slack = {
-      type = "http";
-      url = "https://mcp.slack.com/mcp";
+      command = "${pkgs.slack-mcp-server}/bin/slack-mcp-server";
+      args = ["--transport" "stdio"];
     };
   };
 }
