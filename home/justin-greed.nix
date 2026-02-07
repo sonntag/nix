@@ -32,6 +32,7 @@ in {
   sonntag.programs.nvim.enable = true;
 
   sonntag.mcp.atlassian.enable = true;
+  sonntag.mcp.playwright.enable = true;
   sonntag.mcp.slack.enable = true;
 
   # sonntag.services.ollama.enable = true;
