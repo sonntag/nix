@@ -4,6 +4,7 @@
     "1password-cli"
     "arc"
     "claude"
+    "codex-app"
     "ghostty"
     "gifox"
     "homerow"
