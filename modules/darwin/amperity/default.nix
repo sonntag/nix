@@ -50,6 +50,7 @@ in {
         # TODO: get this from nixpkgs instead
         "leiningen"
         "tfenv"
+        "uv"
       ];
 
       casks = [
