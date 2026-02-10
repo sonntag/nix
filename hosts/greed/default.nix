@@ -7,8 +7,15 @@
   azureEngBase = "https://amperity-engineering.openai.azure.com/";
   azureUe2Key = "os.environ/OPENAI_AMPERITY_UE2_KEY";
   azureEngKey = "os.environ/OPENAI_API_KEY";
+
+  # Amperity developer flake (private repo).
+  # Fetched lazily via builtins.getFlake so that the personal machine (wrath)
+  # never evaluates this — it only runs when building greed.
+  # Rebuild with: darwin-rebuild switch --flake . --impure
+  # TODO: uncomment when github:amperity/nix is ready
+  # amperity = builtins.getFlake "github:amperity/nix";
 in {
-  sonntag.system.auto-update.enable = true;
+  sonntag.system.auto-update.enable = false;
   sonntag.darwin.personal-casks.enable = false;
   sonntag.secrets.enable = true;
   amperity.enable = true;
@@ -243,8 +250,15 @@ in {
     };
   };
 
+  # TODO: uncomment when github:amperity/nix is ready
+  # home-manager.users.justin.imports = [
+  #   amperity.homeManagerModules.default
+  # ];
+
   imports = [
     ./users.nix
     ./casks.nix
+    # TODO: uncomment when github:amperity/nix is ready
+    # amperity.darwinModules.default
   ];
 }
