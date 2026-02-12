@@ -35,6 +35,7 @@
     jq
     # just
     lazyjj
+    mdts
     neofetch
     nerd-fonts.victor-mono
     nps
