@@ -7,6 +7,7 @@
     "codex-app"
     "ghostty"
     "gifox"
+    "gitbutler"
     "homerow"
     "little-snitch"
     "obsidian"
