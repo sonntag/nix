@@ -42,6 +42,8 @@
     ov
     # presenterm
     ripgrep
+    sidecar
+    td
     tldr
     tree
     yazi
