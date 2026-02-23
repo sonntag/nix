@@ -5,6 +5,7 @@
     "arc"
     "claude"
     "codex-app"
+    "docker-desktop"
     "ghostty"
     "gifox"
     "gitbutler"
