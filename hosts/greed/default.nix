@@ -7,7 +7,6 @@
   azureEngBase = "https://amperity-engineering.openai.azure.com/";
   azureUe2Key = "os.environ/OPENAI_AMPERITY_UE2_KEY";
   azureEngKey = "os.environ/OPENAI_API_KEY";
-
   # Amperity developer flake (private repo).
   # Fetched lazily via builtins.getFlake so that the personal machine (wrath)
   # never evaluates this — it only runs when building greed.
@@ -22,7 +21,6 @@ in {
 
   system.defaults.dock = {
     persistent-apps = [
-      "/System/Applications/Messages.app"
       "/Applications/Arc.app"
       "/Applications/Spark Desktop.app"
       "/Applications/Things3.app"
@@ -70,6 +68,16 @@ in {
     };
     settings = {
       model_list = [
+        # {
+        #   model_name = "gpt-5.3-codex";
+        #   litellm_params = {
+        #     model = "azure/gpt-5.3-codex";
+        #     api_base = azureUe2Base;
+        #     api_version = "2025-04-01-preview";
+        #     api_key = azureUe2Key;
+        #     base_model = "gpt-5.3-codex";
+        #   };
+        # }
         {
           model_name = "gpt-5.2-codex";
           litellm_params = {
