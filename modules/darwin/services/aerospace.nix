@@ -163,10 +163,10 @@
           "if".app-id = "com.ableton.live";
           run = "move-node-to-workspace A";
         }
-        {
-          "if".app-id = "company.thebrowser.Browser";
-          run = "move-node-to-workspace B";
-        }
+        # {
+        #   "if".app-id = "company.thebrowser.Browser";
+        #   run = "move-node-to-workspace B";
+        # }
         {
           "if".app-id = "com.apple.iCal";
           run = "move-node-to-workspace C";
