@@ -45,7 +45,7 @@ in {
   # };
 
   programs.codex.settings = {
-    model = "gpt-5.2-codex";
+    model = "gpt-5.3-codex";
     model_provider = "litellm";
     model_providers.litellm = {
       name = "LiteLLM Proxy";

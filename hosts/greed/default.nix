@@ -68,16 +68,16 @@ in {
     };
     settings = {
       model_list = [
-        # {
-        #   model_name = "gpt-5.3-codex";
-        #   litellm_params = {
-        #     model = "azure/gpt-5.3-codex";
-        #     api_base = azureUe2Base;
-        #     api_version = "2025-04-01-preview";
-        #     api_key = azureUe2Key;
-        #     base_model = "gpt-5.3-codex";
-        #   };
-        # }
+        {
+          model_name = "gpt-5.3-codex";
+          litellm_params = {
+            model = "azure/gpt-5.3-codex";
+            api_base = azureUe2Base;
+            api_version = "2025-04-01-preview";
+            api_key = azureUe2Key;
+            base_model = "gpt-5.3-codex";
+          };
+        }
         {
           model_name = "gpt-5.2-codex";
           litellm_params = {
