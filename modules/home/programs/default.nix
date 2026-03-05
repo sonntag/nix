@@ -36,7 +36,7 @@
     # just
     lazyjj
     mdts
-    neofetch
+    fastfetch
     nerd-fonts.victor-mono
     nps
     ov
