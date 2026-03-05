@@ -35,6 +35,7 @@ in {
     taps = with inputs; {
       "homebrew/homebrew-core" = homebrew-core;
       "homebrew/homebrew-cask" = homebrew-cask;
+      "manaflow-ai/homebrew-cmux" = cmux;
     };
   };
 }

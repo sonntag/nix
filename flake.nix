@@ -85,6 +85,12 @@
       url = "github:conductorone/homebrew-cone";
       flake = false;
     };
+
+    # Provides 'cmux' terminal app
+    cmux = {
+      url = "github:manaflow-ai/cmux";
+      flake = false;
+    };
   };
 
   outputs = inputs: let

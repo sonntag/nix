@@ -17,6 +17,22 @@
         "type": "github"
       }
     },
+    "cmux": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1772676273,
+        "narHash": "sha256-BcMMu6huoDFd4N6ldu7sqLIOWi3hbqBA9m13PeGAUXg=",
+        "owner": "manaflow-ai",
+        "repo": "cmux",
+        "rev": "895fb802c85af63be3d06de6bece684425195a72",
+        "type": "github"
+      },
+      "original": {
+        "owner": "manaflow-ai",
+        "repo": "cmux",
+        "type": "github"
+      }
+    },
     "comin": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -736,6 +752,7 @@
     },
     "root": {
       "inputs": {
+        "cmux": "cmux",
         "comin": "comin",
         "determinate": "determinate",
         "home-manager": "home-manager",
