@@ -1,5 +1,6 @@
 {
   sonntag.system.auto-update.enable = true;
+  services.tailscale.enable = true;
 
   system.defaults.dock = {
     persistent-apps = [
