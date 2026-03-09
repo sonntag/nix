@@ -1,6 +1,6 @@
 {inputs, ...}: {
   homebrew.casks = [
-    "fathom"
+    # "fathom"
     "racket"
   ];
 }
