@@ -7,8 +7,6 @@
   };
 
   homebrew.casks = [
-    "chatbox"
-    "chatwise"
     "sublime-text"
     "tableplus"
   ];
