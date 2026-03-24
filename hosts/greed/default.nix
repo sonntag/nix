@@ -61,7 +61,7 @@ in {
   ];
 
   services.litellm = {
-    enable = true;
+    enable = false;
     secretFiles = {
       OPENAI_AMPERITY_UE2_KEY = config.sops.secrets.openai_amperity_ue2_key.path;
       OPENAI_API_KEY = config.sops.secrets.openai_api_key.path;
