@@ -36,6 +36,7 @@ in {
       "homebrew/homebrew-core" = homebrew-core;
       "homebrew/homebrew-cask" = homebrew-cask;
       "manaflow-ai/homebrew-cmux" = cmux;
+      "mikker/homebrew-tap" = homebrew-mikker;
     };
   };
 }

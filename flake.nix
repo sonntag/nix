@@ -91,6 +91,12 @@
       url = "github:manaflow-ai/cmux";
       flake = false;
     };
+
+    # provides tuna
+    homebrew-mikker = {
+      url = "github:mikker/homebrew-tap";
+      flake = false;
+    };
   };
 
   outputs = inputs: let

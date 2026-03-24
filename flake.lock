@@ -407,6 +407,22 @@
         "type": "github"
       }
     },
+    "homebrew-mikker": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1774310314,
+        "narHash": "sha256-b5Hd0DSh0hMjwMxyECYaoqAH05ZMZYfeLC0E3PZpC3U=",
+        "owner": "mikker",
+        "repo": "homebrew-tap",
+        "rev": "a105b1db7b3163624d247a47dcb6a3cedc416613",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mikker",
+        "repo": "homebrew-tap",
+        "type": "github"
+      }
+    },
     "homebrew-services": {
       "flake": false,
       "locked": {
@@ -760,6 +776,7 @@
         "homebrew-cone": "homebrew-cone",
         "homebrew-core": "homebrew-core",
         "homebrew-hashicorp": "homebrew-hashicorp",
+        "homebrew-mikker": "homebrew-mikker",
         "homebrew-services": "homebrew-services",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
