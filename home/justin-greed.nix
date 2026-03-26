@@ -2,7 +2,7 @@
   pnpm-path = "$HOME/Library/pnpm";
 in {
   imports = [
-    ../modules/home
+    ../modules/_home
   ];
 
   home.packages = with pkgs; [

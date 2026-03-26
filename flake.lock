@@ -55,6 +55,21 @@
         "type": "github"
       }
     },
+    "den": {
+      "locked": {
+        "lastModified": 1774498900,
+        "narHash": "sha256-THw/ly8KvXGQ0EI+Nhu/Eo9w8w7wtgHhAeWpteNiz/Q=",
+        "owner": "vic",
+        "repo": "den",
+        "rev": "eb92bbfdefd22b76fa5781e8adbeff42c4fe429e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vic",
+        "repo": "den",
+        "type": "github"
+      }
+    },
     "determinate": {
       "inputs": {
         "determinate-nixd-aarch64-darwin": "determinate-nixd-aarch64-darwin",
@@ -110,6 +125,21 @@
       "original": {
         "type": "file",
         "url": "https://install.determinate.systems/determinate-nixd/tag/v3.17.1/x86_64-linux"
+      }
+    },
+    "flake-aspects": {
+      "locked": {
+        "lastModified": 1773552804,
+        "narHash": "sha256-a0kjpCZGnD5lt7yW6C3hzPhSf5KjnTyvX6XZ2NuhGs4=",
+        "owner": "vic",
+        "repo": "flake-aspects",
+        "rev": "56fa8d4d4772d58eb7f9d66c28c1cd2762b60423",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vic",
+        "repo": "flake-aspects",
+        "type": "github"
       }
     },
     "flake-compat": {
@@ -454,6 +484,21 @@
         "type": "github"
       }
     },
+    "import-tree_2": {
+      "locked": {
+        "lastModified": 1773693634,
+        "narHash": "sha256-BtZ2dtkBdSUnFPPFc+n0kcMbgaTxzFNPv2iaO326Ffg=",
+        "owner": "vic",
+        "repo": "import-tree",
+        "rev": "c41e7d58045f9057880b0d85e1152d6a4430dbf1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vic",
+        "repo": "import-tree",
+        "type": "github"
+      }
+    },
     "luvit-meta": {
       "flake": false,
       "locked": {
@@ -684,7 +729,7 @@
         "flake-parts": "flake-parts_2",
         "gen-luarc": "gen-luarc",
         "git-hooks": "git-hooks",
-        "import-tree": "import-tree",
+        "import-tree": "import-tree_2",
         "mnw": "mnw",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": [
@@ -770,7 +815,9 @@
       "inputs": {
         "cmux": "cmux",
         "comin": "comin",
+        "den": "den",
         "determinate": "determinate",
+        "flake-aspects": "flake-aspects",
         "home-manager": "home-manager",
         "homebrew-cask": "homebrew-cask",
         "homebrew-cone": "homebrew-cone",
@@ -778,6 +825,7 @@
         "homebrew-hashicorp": "homebrew-hashicorp",
         "homebrew-mikker": "homebrew-mikker",
         "homebrew-services": "homebrew-services",
+        "import-tree": "import-tree",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs_4",

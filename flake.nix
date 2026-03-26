@@ -13,6 +13,10 @@
       # inputs.nix.inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    import-tree.url = "github:vic/import-tree";
+    flake-aspects.url = "github:vic/flake-aspects";
+    den.url = "github:vic/den";
+
     # NixOS-esque configuration for Darwin (MacOS)
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin";
@@ -110,8 +114,15 @@
 
     pkgs = nixpkgs.legacyPackages.aarch64-darwin;
 
-    mkDarwinConfiguration = import ./modules/darwin {inherit inputs overlays;};
+    mkDarwinConfiguration = import ./modules/_darwin {inherit inputs overlays;};
     # mkNixosConfiguration = import ./modules/nixos {inherit inputs overlays;};
+
+    den =
+      (inputs.nixpkgs.lib.evalModules {
+        modules = [(inputs.import-tree ./modules)];
+        specialArgs.inputs = inputs;
+      }).config;
+    inherit (den.den.hosts.aarch64-darwin) wrath greed;
   in {
     devShell.aarch64-darwin = pkgs.mkShell {
       packages = with pkgs; [
@@ -127,13 +138,19 @@
         hostPlatform = "aarch64-darwin";
         system = "aarch64-darwin";
         hostName = "wrath";
-        modules = [./hosts/wrath];
+        modules = [
+          ./hosts/wrath
+          wrath.mainModule
+        ];
       };
       greed = mkDarwinConfiguration {
         hostPlatform = "aarch64-darwin";
         system = "aarch64-darwin";
         hostName = "greed";
-        modules = [./hosts/greed];
+        modules = [
+          ./hosts/greed
+          greed.mainModule
+        ];
       };
     };
   };

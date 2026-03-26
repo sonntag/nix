@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   imports = [
-    ../modules/home
+    ../modules/_home
   ];
   sonntag.programs.nvim.enable = true;
   # sonntag.programs.nixvim.enable = true;
