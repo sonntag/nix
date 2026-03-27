@@ -6,7 +6,7 @@
       sonntag.system.auto-update.enable = true;
       services.tailscale.enable = true;
 
-      home-manager.users.justin.imports = [../../../home/justin-wrath.nix];
+      home-manager.users.justin.imports = [../../users/justin/_personal.nix];
     };
   };
 }

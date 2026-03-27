@@ -16,7 +16,7 @@
         yq-go
       ];
 
-      home-manager.users.justin.imports = [../../../home/justin-greed.nix];
+      home-manager.users.justin.imports = [../../users/justin/_work.nix];
     };
   };
 }
