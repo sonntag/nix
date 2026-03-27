@@ -116,8 +116,6 @@
 
     pkgs = nixpkgs.legacyPackages.aarch64-darwin;
 
-    mkDarwinConfiguration = import ./modules/_darwin {inherit inputs;};
-
     den =
       (inputs.nixpkgs.lib.evalModules {
         modules = [(inputs.import-tree ./modules)];
@@ -133,17 +131,13 @@
     };
 
     darwinConfigurations = {
-      wrath = mkDarwinConfiguration {
-        hostPlatform = "aarch64-darwin";
-        system = "aarch64-darwin";
-        hostName = "wrath";
+      wrath = inputs.nix-darwin.lib.darwinSystem {
         modules = [wrath.mainModule];
+        specialArgs = {inherit inputs;};
       };
-      greed = mkDarwinConfiguration {
-        hostPlatform = "aarch64-darwin";
-        system = "aarch64-darwin";
-        hostName = "greed";
+      greed = inputs.nix-darwin.lib.darwinSystem {
         modules = [greed.mainModule];
+        specialArgs = {inherit inputs;};
       };
     };
   };
