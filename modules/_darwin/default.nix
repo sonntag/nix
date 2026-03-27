@@ -1,7 +1,4 @@
-{
-  inputs,
-  overlays ? [],
-}: {
+{inputs}: {
   hostName,
   hostPlatform,
   modules ? [],
@@ -23,7 +20,8 @@
       system.stateVersion = 6;
       networking.hostName = hostName;
       nixpkgs = {
-        inherit overlays hostPlatform;
+        inherit hostPlatform;
+        overlays = [inputs.nix-custom-pkgs.overlays.default];
         config.allowUnfree = true;
       };
     }

@@ -29,6 +29,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-custom-pkgs = {
+      url = "github:sonntag/nix-custom-pkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # ==== Deploy ====
 
     # Secrets decrypted at runtime, for NixOS/nix-darwin and home-manager
@@ -108,14 +113,10 @@
     # inherit (nixpkgs) lib;
     # supportedSystems = ["x86_64-linux" "aarch64-darwin"];
     # forAllSystems = lib.genAttrs supportedSystems;
-    overlays = [
-      (import ./pkgs)
-    ];
 
     pkgs = nixpkgs.legacyPackages.aarch64-darwin;
 
-    mkDarwinConfiguration = import ./modules/_darwin {inherit inputs overlays;};
-    # mkNixosConfiguration = import ./modules/nixos {inherit inputs overlays;};
+    mkDarwinConfiguration = import ./modules/_darwin {inherit inputs;};
 
     den =
       (inputs.nixpkgs.lib.evalModules {
@@ -130,8 +131,6 @@
         age
       ];
     };
-
-    overlays.default = import ./pkgs;
 
     darwinConfigurations = {
       wrath = mkDarwinConfiguration {
