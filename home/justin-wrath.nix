@@ -1,8 +1,4 @@
 {pkgs, ...}: {
-  imports = [
-    ../modules/_home
-  ];
-  sonntag.programs.nvim.enable = true;
   # sonntag.programs.nixvim.enable = true;
   darwin.wallpaper.image.path = ../backgrounds/rose-pine/rose_pine_shape.png;
 

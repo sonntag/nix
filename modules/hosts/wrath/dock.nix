@@ -1,8 +1,5 @@
 {
-  sonntag.system.auto-update.enable = true;
-  services.tailscale.enable = true;
-
-  system.defaults.dock = {
+  den.aspects.wrath.darwin.system.defaults.dock = {
     persistent-apps = [
       "/System/Applications/Messages.app"
       "/Applications/Arc.app"
@@ -32,9 +29,4 @@
       }
     ];
   };
-
-  imports = [
-    ./casks.nix
-    ./users.nix
-  ];
 }

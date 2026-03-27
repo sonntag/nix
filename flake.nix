@@ -137,19 +137,13 @@
         hostPlatform = "aarch64-darwin";
         system = "aarch64-darwin";
         hostName = "wrath";
-        modules = [
-          ./hosts/wrath
-          wrath.mainModule
-        ];
+        modules = [wrath.mainModule];
       };
       greed = mkDarwinConfiguration {
         hostPlatform = "aarch64-darwin";
         system = "aarch64-darwin";
         hostName = "greed";
-        modules = [
-          ./hosts/greed
-          greed.mainModule
-        ];
+        modules = [greed.mainModule];
       };
     };
   };
