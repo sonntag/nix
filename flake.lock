@@ -20,11 +20,11 @@
     "cmux": {
       "flake": false,
       "locked": {
-        "lastModified": 1774732636,
-        "narHash": "sha256-VK5zztx2K012dikZoAWi3tQI9PP/dQQTjEjXndZzON4=",
+        "lastModified": 1774868041,
+        "narHash": "sha256-hB7x962bKkTiqy9tuf4Ri4XnsKU6vEROW8UfB+My6sI=",
         "owner": "manaflow-ai",
         "repo": "cmux",
-        "rev": "386f5abf67247b853bdbbbbe8d85f81969e199d1",
+        "rev": "d6d9130c72d65a7f5d866a8acbc05d1f5860f8d5",
         "type": "github"
       },
       "original": {
@@ -42,11 +42,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1774377311,
-        "narHash": "sha256-bLV4omx8CFhSugOR0LJjwNkpJeOh3H3j8V/zFErA78s=",
+        "lastModified": 1774763083,
+        "narHash": "sha256-g8PZMQCJcwEHwKuRHCpk5aI500zoaCC5kN+SUPOnx4M=",
         "owner": "nlewo",
         "repo": "comin",
-        "rev": "f2456912d27519ffd969e162938fac079c2f739e",
+        "rev": "7ecfc7f6299be8ffe08754dddb6e915fcd56c3d7",
         "type": "github"
       },
       "original": {
@@ -57,11 +57,11 @@
     },
     "den": {
       "locked": {
-        "lastModified": 1774597022,
-        "narHash": "sha256-QEYG3SBlX35TDVV/wyBonrEDEK4Mr3dtXSfnzvM0lII=",
+        "lastModified": 1774843778,
+        "narHash": "sha256-o8mzc+4fzC1wdx16E6+Xon+IIjysu9jtaVDExs7h9/Y=",
         "owner": "vic",
         "repo": "den",
-        "rev": "b7f910ab47260c91a0ae8d55fa72cd2178ba2458",
+        "rev": "a28272a6c108e8be03da7f720c8e33263f981810",
         "type": "github"
       },
       "original": {
@@ -378,11 +378,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774727795,
-        "narHash": "sha256-2gGCjGBGljL2eRCxkGXD73T+5+MBEKQeCHAoCYELhE8=",
+        "lastModified": 1774869263,
+        "narHash": "sha256-cIlpcMKhNH5BEAGVsdYnDlIabog8m7O53sByLhCJnFA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "4a8e31396a7a3ef64dae53269528e7af9c0ec4d7",
+        "rev": "5ed75a0312adb90e7a0b39bceae8b8b4ea946e5f",
         "type": "github"
       },
       "original": {
@@ -394,11 +394,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1774726528,
-        "narHash": "sha256-BpbGgiyzLsT7I66Whd+4rkCHa17O9IyofdeE3iYQj40=",
+        "lastModified": 1774861507,
+        "narHash": "sha256-f/VujsOHeKdEjh1370RZcy4+pwcX6L7V9CCLv2S2eWA=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "dc60fd0b8c29bbe663f19041a8f51a95440153f5",
+        "rev": "47817d96ba845ccedf309ed3f1e820076cecd0ba",
         "type": "github"
       },
       "original": {
@@ -426,11 +426,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1774731596,
-        "narHash": "sha256-7LT3lVQip4dilBCqQupLWnRAdup4vrENaNvEr4TP4/A=",
+        "lastModified": 1774868917,
+        "narHash": "sha256-qCdzjq+t7BklYSyl9rRFCWAs+5l3rWj51jr4G1x18W4=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "0e27429b2f6f3e07d7694e8161fa0502c5342cb5",
+        "rev": "f8f6b108f597f99e74ac289fce33c60fbaab7e21",
         "type": "github"
       },
       "original": {
@@ -458,11 +458,11 @@
     "homebrew-mikker": {
       "flake": false,
       "locked": {
-        "lastModified": 1774623332,
-        "narHash": "sha256-aPMHbseu/OEPei2g7om3cqTXQqxNzEcsOSHGqg2FL8I=",
+        "lastModified": 1774867445,
+        "narHash": "sha256-0zoIUw0/MAbnVI62UryTN/srhw036jR7JUhTEj/6BRg=",
         "owner": "mikker",
         "repo": "homebrew-tap",
-        "rev": "a5eda3c8b8e027cae4876b79911fb13703b282bc",
+        "rev": "345ae81fcfd97573a5b0640368406a58cf28675e",
         "type": "github"
       },
       "original": {
@@ -797,11 +797,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1774610258,
-        "narHash": "sha256-HaThtroVD9wRdx7KQk0B75JmFcXlMUoEdDFNOMOlsOs=",
+        "lastModified": 1774701658,
+        "narHash": "sha256-CIS/4AMUSwUyC8X5g+5JsMRvIUL3YUfewe8K4VrbsSQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "832efc09b4caf6b4569fbf9dc01bec3082a00611",
+        "rev": "b63fe7f000adcfa269967eeff72c64cafecbbebe",
         "type": "github"
       },
       "original": {
@@ -872,11 +872,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774303811,
-        "narHash": "sha256-fhG4JAcLgjKwt+XHbjs8brpWnyKUfU4LikLm3s0Q/ic=",
+        "lastModified": 1774760784,
+        "narHash": "sha256-D+tgywBHldTc0klWCIC49+6Zlp57Y4GGwxP1CqfxZrY=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "614e256310e0a4f8a9ccae3fa80c11844fba7042",
+        "rev": "8adb84861fe70e131d44e1e33c426a51e2e0bfa5",
         "type": "github"
       },
       "original": {
@@ -893,11 +893,11 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1774157037,
-        "narHash": "sha256-kJpgEIF0sxMW0vx543m3AwyqptJOxPoOJY1DfJ4jQas=",
+        "lastModified": 1774790928,
+        "narHash": "sha256-/JO77td8AOH45kg9IJl2DXDwbhn+cyQxYbCMu4Ae1CA=",
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
-        "rev": "2e2234c2932a3aff5f845cda33cb1972a9e889aa",
+        "rev": "2bfdf55faf76fed12950b17d4af501e5a463607f",
         "type": "github"
       },
       "original": {
