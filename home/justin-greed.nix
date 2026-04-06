@@ -126,7 +126,7 @@ in {
       for stack in aws-mantle aws-dev aws-stage aws-prod aws-prod-cc1 az-stage az-prod az-prod-en1
           switch-vault $stack
           echo "Logging into $stack"
-          echo -n $password | vault login -method=okta username=sonntag password=-
+          echo -n $password | vault login -method=oidc
           if test $status -ne 0
               echo "Failed to login to $stack"
               continue
