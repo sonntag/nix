@@ -1,10 +1,6 @@
 {pkgs, ...}: let
   pnpm-path = "$HOME/Library/pnpm";
 in {
-  imports = [
-    ../modules/_home
-  ];
-
   home.packages = with pkgs; [
     codebase-memory-mcp
     httpie
@@ -30,7 +26,6 @@ in {
   ];
 
   sonntag.ssh.profile = "work";
-  sonntag.programs.nvim.enable = true;
 
   sonntag.mcp.atlassian.enable = true;
   sonntag.mcp.playwright.enable = true;

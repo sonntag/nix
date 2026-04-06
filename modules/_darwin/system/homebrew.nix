@@ -10,8 +10,6 @@ in {
   homebrew = {
     enable = true;
 
-    caskArgs.no_quarantine = true;
-
     # nix-homebrew is handling homebrew updates
     global.autoUpdate = false;
 

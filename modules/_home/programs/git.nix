@@ -1,6 +1,7 @@
 {lib, ...}: {
   programs.git = with lib; {
     enable = true;
+    signing.format = null;
     settings.user = {
       name = "Justin Sonntag";
       email = mkDefault "justin.sonntag@gmail.com";

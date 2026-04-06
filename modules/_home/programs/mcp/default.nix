@@ -1,7 +1,6 @@
 {
   imports = [
     ./atlassian.nix
-    ./codebase-memory.nix
     ./playwright.nix
     ./slack.nix
   ];
