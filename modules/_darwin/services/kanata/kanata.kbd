@@ -58,13 +58,13 @@
   ;; Define left and right hand keys for high-speed typing
   lh-keys (
     q w e r t
-    a s d f g
+    g
     z x c v b
   )
 
   rh-keys (
     y u i o p
-    h j k l ;
+    h
     n m , . /
   )
 )
