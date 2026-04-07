@@ -35,7 +35,6 @@ in {
     # it behaves as if it is not managed by nix.
     homebrew = {
       enable = true;
-      caskArgs.no_quarantine = lib.mkDefault true;
 
       taps = [
         "conductorone/homebrew-cone"
