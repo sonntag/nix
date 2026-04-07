@@ -1,7 +1,41 @@
 {pkgs, ...}: let
   pnpm-path = "$HOME/Library/pnpm";
+
+  app-worktree = pkgs.writeShellScriptBin "app-worktree" ''
+    set -euo pipefail
+
+    usage() {
+      echo "Usage: app-worktree <name> [base-branch]" >&2
+      echo "Creates a git worktree and tmux session for the app repo." >&2
+      exit 1
+    }
+
+    if [ $# -lt 1 ]; then
+      usage
+    fi
+
+    NAME="$1"
+    BASE_BRANCH="''${2:-origin/main}"
+    REPO_DIR="$HOME/Development/amperity/app"
+    WORKTREE_DIR="$HOME/Development/amperity/app-worktrees/$NAME"
+    BRANCH_NAME="sonntag/$NAME"
+    SESSION_NAME="app/$NAME"
+
+    git -C "$REPO_DIR" fetch origin
+
+    if ! git -C "$REPO_DIR" worktree add -b "$BRANCH_NAME" "$WORKTREE_DIR" "$BASE_BRANCH"; then
+      echo "Failed to create worktree" >&2
+      exit 1
+    fi
+
+    tmux new-session -d -s "$SESSION_NAME" -c "$WORKTREE_DIR"
+    echo "Created worktree at $WORKTREE_DIR"
+    echo "Created tmux session: $SESSION_NAME"
+    echo "Attach with: tmux attach -t $SESSION_NAME"
+  '';
 in {
   home.packages = with pkgs; [
+    app-worktree
     httpie
     lazydocker
     # TODO: pulling from nixpkgs uses the wrong java version.
