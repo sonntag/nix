@@ -5,4 +5,6 @@
   home.packages = with pkgs; [
     clojure
   ];
+
+  sonntag.services.ollama.enable = true;
 }
