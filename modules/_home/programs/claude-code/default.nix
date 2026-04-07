@@ -4,6 +4,6 @@
     enableMcpIntegration = true;
     memory.source = ./claude-memory.md;
     settings.includeCoAuthoredBy = false;
-    skillsDir = ./skills;
+    skills.jujutsu = ./skills/jujutsu;
   };
 }

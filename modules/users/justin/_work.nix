@@ -2,7 +2,6 @@
   pnpm-path = "$HOME/Library/pnpm";
 in {
   home.packages = with pkgs; [
-    codebase-memory-mcp
     httpie
     lazydocker
     # TODO: pulling from nixpkgs uses the wrong java version.
