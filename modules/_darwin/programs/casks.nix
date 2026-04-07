@@ -20,6 +20,6 @@
     "tuna"
     "voiceink"
     "xnapper"
-    "zen"
+    # "zen"
   ];
 }
