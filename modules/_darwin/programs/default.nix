@@ -1,7 +1,6 @@
 {
   imports = [
     ./casks.nix
-    # ./goose.nix
     ./mas.nix
     ./personal-casks.nix
   ];

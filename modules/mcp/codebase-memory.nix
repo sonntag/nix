@@ -1,4 +1,4 @@
-{den, ...}: {
+{
   den.aspects.justin.homeManager = {pkgs, ...}: let
     pkg = pkgs.codebase-memory-mcp;
     skill = name: builtins.readFile "${pkg}/share/claude-code-skills/${name}/SKILL.md";
