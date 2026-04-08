@@ -8,7 +8,6 @@
       sonntag.darwin.personal-casks.enable = false;
       sonntag.secrets.enable = true;
       amperity.enable = true;
-      sonntag.services.aerospace.enable = true;
 
       environment.systemPackages = with pkgs; [
         bun
