@@ -73,16 +73,6 @@ in {
   #   package = pkgs.jdk17;
   # };
 
-  programs.codex.settings = {
-    model = "gpt-5.3-codex";
-    model_provider = "litellm";
-    model_providers.litellm = {
-      name = "LiteLLM Proxy";
-      base_url = "http://localhost:4000/v1";
-      wire_api = "responses";
-    };
-  };
-
   programs.awscli = {
     enable = true;
   };

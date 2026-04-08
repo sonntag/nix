@@ -6,7 +6,6 @@
       ./_darwin/amperity
       ./_darwin/programs
       ./_darwin/secrets.nix
-      ./_darwin/services
       ./_darwin/system
       inputs.home-manager.darwinModules.home-manager
       inputs.determinate.darwinModules.default
