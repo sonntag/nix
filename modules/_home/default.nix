@@ -1,6 +1,5 @@
 {
   imports = [
-    ./darwin
     ./programs
     ./secrets.nix
     ./services

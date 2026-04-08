@@ -47,6 +47,8 @@ in {
     pnpm
   ];
 
+  sonntag.wallpaper.image.path = ../../../backgrounds/rancho-cucamonga-tree.png;
+
   home.sessionVariables = {
     VAULT_ADDR = "https://vault.amperity.top:8200";
     JAVA_HOME = "$(/usr/libexec/java_home -v 17)";
