@@ -1,6 +1,7 @@
 {
   imports = [
     ./atlassian.nix
+    ./fli.nix
     ./playwright.nix
     ./slack.nix
   ];
