@@ -9,7 +9,6 @@
       sonntag.secrets.enable = true;
       amperity.enable = true;
       sonntag.services.aerospace.enable = true;
-      sonntag.services.kanata.enable = true;
 
       environment.systemPackages = with pkgs; [
         bun
