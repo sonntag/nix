@@ -15,23 +15,10 @@ in {
         name = "autopair";
         src = autopair.src;
       }
-      # {
-      #   name = "babelfish";
-      #   src = pkgs.babelfish;
-      # }
-      # {
-      #   name = "bass";
-      #   src = bass.src;
-      # }
       {
-        name = "clownfish";
-        src = clownfish.src;
+        name = "bass";
+        src = bass.src;
       }
-      # TODO: Can this be moved to nix-darwin or does it have to be configured in home-manager?
-      # {
-      #   name = "foreign-env";
-      #   src = foreign-env.src;
-      # }
       {
         name = "fzf-fish";
         src = fzf-fish.src;
