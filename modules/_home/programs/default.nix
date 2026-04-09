@@ -2,7 +2,6 @@
   imports = [
     ./bat.nix
     ./claude-code
-    ./codex
     ./difftastic.nix
     ./direnv.nix
     ./fish
