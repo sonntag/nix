@@ -2,8 +2,8 @@
   programs.claude-code = {
     enable = true;
     enableMcpIntegration = true;
-    memory.source = ./claude-memory.md;
+    # memory.source = ./claude-memory.md;
     settings.includeCoAuthoredBy = false;
-    skills.jujutsu = ./skills/jujutsu;
+    # skills.jujutsu = ./skills/jujutsu;
   };
 }
