@@ -26,22 +26,16 @@
     devenv
     eza
     fd
-    # figlet
     gh
     gnused
     htop
     jq
-    # just
-    lazyjj
     mdts
     fastfetch
     nerd-fonts.victor-mono
     nps
     ov
-    # presenterm
     ripgrep
-    # sidecar
-    # td
     tldr
     tree
     yazi
