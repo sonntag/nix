@@ -5,7 +5,6 @@
     ./codex
     ./difftastic.nix
     ./direnv.nix
-    ./fabric.nix
     ./fish
     ./fzf.nix
     ./ghostty
