@@ -10,7 +10,6 @@
     "codex-app"
     "cmux"
     "docker-desktop"
-    "ghostty"
     "gifox"
     "gitbutler"
     "homerow"

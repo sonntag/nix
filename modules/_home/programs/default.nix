@@ -7,7 +7,6 @@
     ./direnv.nix
     ./fish
     ./fzf.nix
-    ./ghostty
     ./git.nix
     ./jj.nix
     ./k9s.nix
