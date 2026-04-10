@@ -1,5 +1,5 @@
 {
-  programs.fish = {
+  den.aspects.justin.homeManager.programs.fish = {
     interactiveShellInit =
       /*
       fish

@@ -4,7 +4,6 @@
     ./claude-code
     ./difftastic.nix
     ./direnv.nix
-    ./fish
     ./fzf.nix
     ./git.nix
     ./jj.nix
