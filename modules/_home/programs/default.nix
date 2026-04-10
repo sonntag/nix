@@ -13,7 +13,6 @@
     ./most.nix
     ./nvim.nix
     ./spotify.nix
-    ./starship
     ./tmux.nix
     ./zoxide.nix
   ];
