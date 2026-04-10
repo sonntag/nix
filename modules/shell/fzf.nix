@@ -1,5 +1,5 @@
 {
-  programs.fzf = {
+  den.aspects.justin.homeManager.programs.fzf = {
     enable = true;
     enableFishIntegration = true;
     colors = {

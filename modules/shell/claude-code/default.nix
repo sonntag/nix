@@ -1,5 +1,5 @@
 {
-  programs.claude-code = {
+  den.aspects.justin.homeManager.programs.claude-code = {
     enable = true;
     enableMcpIntegration = true;
     # memory.source = ./claude-memory.md;

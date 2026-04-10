@@ -1,6 +1,5 @@
 {
   imports = [
-    ./programs
     ./secrets.nix
     ./services
     ./ssh
