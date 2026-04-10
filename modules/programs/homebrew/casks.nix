@@ -1,8 +1,5 @@
 {
-  homebrew.brews = [
-    "googleworkspace-cli"
-  ];
-  homebrew.casks = [
+  den.default.darwin.homebrew.casks = [
     "1password"
     "1password-cli"
     "arc"
@@ -19,6 +16,5 @@
     "tuna"
     "voiceink"
     "xnapper"
-    # "zen"
   ];
 }

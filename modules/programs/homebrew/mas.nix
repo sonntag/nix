@@ -1,5 +1,5 @@
 {
-  homebrew = {
+  den.default.darwin.homebrew = {
     brews = ["mas"];
     masApps = {
       DaisyDisk = 411643860;
