@@ -20,6 +20,4 @@
   '';
 
   sonntag.mcp.fli.enable = true;
-
-  sonntag.services.ollama.enable = true;
 }

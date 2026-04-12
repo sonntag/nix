@@ -66,8 +66,6 @@ in {
   sonntag.mcp.playwright.enable = true;
   sonntag.mcp.slack.enable = true;
 
-  # sonntag.services.ollama.enable = true;
-
   # Used for Amperity development
   # TODO: re-enable this
   # programs.java = {
