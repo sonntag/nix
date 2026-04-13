@@ -11,9 +11,8 @@
         shell = pkgs.fish;
       };
     };
-    homeManager = {pkgs, ...}: {
+    homeManager = {
       imports = [../../_home];
-      sonntag.programs.nvim.enable = true;
     };
   };
 }
