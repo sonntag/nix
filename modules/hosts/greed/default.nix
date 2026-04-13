@@ -9,7 +9,6 @@
       sonntag.nix.trusted-users = ["root" "@admin" "justin"];
       sonntag.system.auto-update.enable = false;
       sonntag.darwin.personal-casks.enable = false;
-      sonntag.secrets.enable = true;
 
       environment.systemPackages = with pkgs; [
         bun

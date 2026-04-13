@@ -3,7 +3,6 @@
 
   den.default.darwin = {inputs, ...}: {
     imports = [
-      ./_darwin/secrets.nix
       ./_darwin/system
       inputs.home-manager.darwinModules.home-manager
       inputs.determinate.darwinModules.default
