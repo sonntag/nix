@@ -1,6 +1,9 @@
 {den, ...}: {
   den.aspects.wrath = {
-    includes = [den.provides.hostname];
+    includes = [
+      den.provides.hostname
+      den.aspects.personal
+    ];
     darwin = {
       nix-homebrew.user = "justin";
       sonntag.system.auto-update.enable = true;

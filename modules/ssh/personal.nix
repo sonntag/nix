@@ -1,16 +1,9 @@
 {
-  config,
-  lib,
-  ...
-}: let
-  home = config.home.homeDirectory;
-  profile = config.sonntag.ssh.profile;
-in {
-  config = lib.mkIf (profile == "personal") {
+  den.aspects.personal.homeManager = {config, ...}: {
     sops.secrets.".ssh/id_justin" = {
       sopsFile = ./justin.yaml;
       key = "private-key";
-      path = "${home}/.ssh/id_justin";
+      path = "${config.home.homeDirectory}/.ssh/id_justin";
     };
 
     programs.ssh = {

@@ -1,16 +1,9 @@
 {
-  config,
-  lib,
-  ...
-}: let
-  home = config.home.homeDirectory;
-  profile = config.sonntag.ssh.profile;
-in {
-  config = lib.mkIf (profile == "work") {
+  den.aspects.amperity.homeManager = {config, ...}: {
     sops.secrets.".ssh/id_amperity" = {
       sopsFile = ./amperity.yaml;
       key = "private-key";
-      path = "${home}/.ssh/id_amperity";
+      path = "${config.home.homeDirectory}/.ssh/id_amperity";
     };
 
     programs.ssh = {

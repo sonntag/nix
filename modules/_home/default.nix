@@ -1,7 +1,6 @@
 {
   imports = [
     ./secrets.nix
-    ./ssh
   ];
 
   home.stateVersion = "24.05";
