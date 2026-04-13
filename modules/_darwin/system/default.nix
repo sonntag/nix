@@ -4,6 +4,5 @@
     ./browser.nix
     ./home-manager.nix
     ./nix.nix
-    ./settings.nix
   ];
 }
