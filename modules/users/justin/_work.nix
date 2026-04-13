@@ -60,8 +60,6 @@ in {
     "${pnpm-path}"
   ];
 
-  sonntag.ssh.profile = "work";
-
   sonntag.mcp.atlassian.enable = true;
   sonntag.mcp.playwright.enable = true;
   sonntag.mcp.slack.enable = true;
