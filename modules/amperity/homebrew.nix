@@ -1,10 +1,15 @@
-{
+{inputs, ...}: {
   # Configure homebrew.
   # Goal of this default configuration is to have nix install the apps that are
   # listed, but to otherwise leave the homebrew installation untouched so that
   # it behaves as if it is not managed by nix.
   den.aspects.amperity.darwin.homebrew = {
     enable = true;
+
+    nix-homebrew.taps = with inputs; {
+      "conductorone/homebrew-cone" = homebrew-cone;
+      "hashicorp/homebrew-tap" = homebrew-hashicorp;
+    };
 
     taps = [
       "conductorone/homebrew-cone"
