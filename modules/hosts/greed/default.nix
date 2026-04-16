@@ -3,6 +3,7 @@
     includes = [
       den.provides.hostname
       den.aspects.amperity
+      den.aspects.work
     ];
     darwin = {pkgs, ...}: {
       nix-homebrew.user = "justin";
@@ -15,8 +16,6 @@
         wget
         yq-go
       ];
-
-      home-manager.users.justin.imports = [../../users/justin/_work.nix];
     };
   };
 }

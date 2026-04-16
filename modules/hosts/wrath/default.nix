@@ -8,8 +8,6 @@
     darwin = {
       nix-homebrew.user = "justin";
       services.tailscale.enable = true;
-
-      home-manager.users.justin.imports = [../../users/justin/_personal.nix];
     };
   };
 }
