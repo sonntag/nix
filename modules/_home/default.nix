@@ -1,8 +1,4 @@
 {
-  imports = [
-    ./secrets.nix
-  ];
-
   home.stateVersion = "24.05";
 
   # Let home-manager install and manage itself.
