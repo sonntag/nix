@@ -22,5 +22,9 @@
 
     # Enable carapace completions
     programs.carapace.enable = true;
+
+    home.sessionVariables = {
+      CARAPACE_BRIDGES = "fish,zsh,bash,inshellisense";
+    };
   };
 }

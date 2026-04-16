@@ -4,9 +4,5 @@
   # Let home-manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home.sessionVariables = {
-    CARAPACE_BRIDGES = "fish,zsh,bash,inshellisense";
-  };
-
   fonts.fontconfig.enable = true;
 }
