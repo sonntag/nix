@@ -11,8 +11,5 @@
         shell = pkgs.fish;
       };
     };
-    homeManager = {
-      imports = [../../_home];
-    };
   };
 }

@@ -1,6 +1,4 @@
 {
-  den.default.homeManager.home.stateVersion = "24.05";
-
   den.default.darwin = {inputs, ...}: {
     imports = [
       ./_darwin/system
@@ -13,5 +11,10 @@
     nixpkgs.hostPlatform = "aarch64-darwin";
     nixpkgs.overlays = [inputs.nix-custom-pkgs.overlays.default];
     nixpkgs.config.allowUnfree = true;
+  };
+
+  den.default.homeManager = {
+    home.stateVersion = "24.05";
+    fonts.fontconfig.enable = true;
   };
 }
