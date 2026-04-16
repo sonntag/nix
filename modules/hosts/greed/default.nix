@@ -7,7 +7,6 @@
     darwin = {pkgs, ...}: {
       nix-homebrew.user = "justin";
       sonntag.nix.trusted-users = ["root" "@admin" "justin"];
-      sonntag.system.auto-update.enable = false;
       sonntag.darwin.personal-casks.enable = false;
 
       environment.systemPackages = with pkgs; [
