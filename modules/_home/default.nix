@@ -13,8 +13,4 @@
   };
 
   fonts.fontconfig.enable = true;
-
-  # home.file.".dircolors" = {
-  #   source = ./dircolors;
-  # };
 }
