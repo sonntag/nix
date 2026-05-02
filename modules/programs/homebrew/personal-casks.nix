@@ -17,7 +17,6 @@
         "blackhole-2ch"
         "chatgpt"
         "dropbox"
-        "freecad"
         "nordvpn"
         "rekordbox"
         "tor-browser"
