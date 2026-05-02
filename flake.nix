@@ -29,11 +29,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-custom-pkgs = {
-      url = "github:sonntag/nix-custom-pkgs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # ==== Deploy ====
 
     # Secrets decrypted at runtime, for NixOS/nix-darwin and home-manager
@@ -110,11 +105,23 @@
 
   outputs = inputs: let
     inherit (inputs) nixpkgs;
-    # inherit (nixpkgs) lib;
-    # supportedSystems = ["x86_64-linux" "aarch64-darwin"];
-    # forAllSystems = lib.genAttrs supportedSystems;
+    lib = nixpkgs.lib;
 
-    pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+    # Auto-load all .nix files in ./pkgs as an overlay
+    pkgsOverlay = final: prev:
+      builtins.listToAttrs
+      (map (name: {
+          name = lib.removeSuffix ".nix" name;
+          value = final.callPackage (./pkgs + "/${name}") {};
+        })
+        (builtins.attrNames (lib.filterAttrs
+          (name: type: type == "regular" && lib.hasSuffix ".nix" name)
+          (builtins.readDir ./pkgs))));
+
+    pkgs = import nixpkgs {
+      system = "aarch64-darwin";
+      overlays = [pkgsOverlay];
+    };
 
     den =
       (inputs.nixpkgs.lib.evalModules {
@@ -132,11 +139,11 @@
 
     darwinConfigurations = {
       wrath = inputs.nix-darwin.lib.darwinSystem {
-        modules = [wrath.mainModule];
+        modules = [wrath.mainModule {nixpkgs.overlays = [pkgsOverlay];}];
         specialArgs = {inherit inputs;};
       };
       greed = inputs.nix-darwin.lib.darwinSystem {
-        modules = [greed.mainModule];
+        modules = [greed.mainModule {nixpkgs.overlays = [pkgsOverlay];}];
         specialArgs = {inherit inputs;};
       };
     };

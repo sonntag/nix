@@ -8,7 +8,6 @@
     ];
     system.stateVersion = 6;
     nixpkgs.hostPlatform = "aarch64-darwin";
-    nixpkgs.overlays = [inputs.nix-custom-pkgs.overlays.default];
     nixpkgs.config.allowUnfree = true;
 
     home-manager = {
