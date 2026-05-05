@@ -8,6 +8,7 @@
       gh
       gnused
       htop
+      httpie
       jq
       mdts
       fastfetch

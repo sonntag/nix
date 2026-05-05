@@ -37,7 +37,6 @@
   in {
     home.packages = with pkgs; [
       app-worktree
-      httpie
       lazydocker
       # TODO: pulling from nixpkgs uses the wrong java version.
       # Need to figure out how to overwrite this
