@@ -39,6 +39,7 @@
 
         # Appearance
         set -g status-position top
+        set -g status-justify absolute-centre
 
         # Copy Mode
         #bind-key -T copy-mode-vi v send-keys -X begin-selection
@@ -84,7 +85,10 @@
           extraConfig = ''
             set -g @rose_pine_variant 'main'
             set -g @rose_pine_host 'on'
+            set -g @rose_pine_hostname_short 'on'
             set -g @rose_pine_directory 'on'
+
+            set -g @rose_pine_disable_active_window_menu 'off'
           '';
         }
         # {
