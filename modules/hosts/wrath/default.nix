@@ -2,7 +2,6 @@
   den.aspects.wrath = {
     includes = [
       den.provides.hostname
-      den.aspects.personal
       den.aspects.auto-update
     ];
     darwin = {

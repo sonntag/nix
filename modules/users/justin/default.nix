@@ -3,6 +3,15 @@
     includes = [
       den.provides.define-user
       den.provides.primary-user
+      ({host, ...}: {
+        includes =
+          {
+            greed = [den.aspects.amperity den.aspects.work];
+            wrath = [den.aspects.personal];
+          }
+          .${host.name}
+          or [];
+      })
     ];
     darwin = {pkgs, ...}: {
       users.knownUsers = ["justin"];

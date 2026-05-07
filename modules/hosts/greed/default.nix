@@ -3,7 +3,6 @@
     includes = [
       den.provides.hostname
       den.aspects.amperity
-      den.aspects.work
     ];
     darwin = {pkgs, ...}: {
       nix-homebrew.user = "justin";
