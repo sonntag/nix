@@ -1,6 +1,8 @@
 {
   description = "Justin's nix config";
 
+  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
+
   inputs = {
     # ==== Core ====
 
@@ -17,8 +19,13 @@
     flake-aspects.url = "github:vic/flake-aspects";
     den.url = "github:vic/den";
 
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
     # NixOS-esque configuration for Darwin (MacOS)
-    nix-darwin = {
+    darwin = {
       url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -100,52 +107,6 @@
     homebrew-mikker = {
       url = "github:mikker/homebrew-tap";
       flake = false;
-    };
-  };
-
-  outputs = inputs: let
-    inherit (inputs) nixpkgs;
-    lib = nixpkgs.lib;
-
-    # Auto-load all .nix files in ./pkgs as an overlay
-    pkgsOverlay = final: prev:
-      builtins.listToAttrs
-      (map (name: {
-          name = lib.removeSuffix ".nix" name;
-          value = final.callPackage (./pkgs + "/${name}") {};
-        })
-        (builtins.attrNames (lib.filterAttrs
-          (name: type: type == "regular" && lib.hasSuffix ".nix" name)
-          (builtins.readDir ./pkgs))));
-
-    pkgs = import nixpkgs {
-      system = "aarch64-darwin";
-      overlays = [pkgsOverlay];
-    };
-
-    den =
-      (inputs.nixpkgs.lib.evalModules {
-        modules = [(inputs.import-tree ./modules)];
-        specialArgs.inputs = inputs;
-      }).config;
-    inherit (den.den.hosts.aarch64-darwin) wrath greed;
-  in {
-    devShell.aarch64-darwin = pkgs.mkShell {
-      packages = with pkgs; [
-        sops
-        age
-      ];
-    };
-
-    darwinConfigurations = {
-      wrath = inputs.nix-darwin.lib.darwinSystem {
-        modules = [wrath.mainModule {nixpkgs.overlays = [pkgsOverlay];}];
-        specialArgs = {inherit inputs;};
-      };
-      greed = inputs.nix-darwin.lib.darwinSystem {
-        modules = [greed.mainModule {nixpkgs.overlays = [pkgsOverlay];}];
-        specialArgs = {inherit inputs;};
-      };
     };
   };
 }
