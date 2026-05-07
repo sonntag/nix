@@ -3,7 +3,11 @@
   den.aspects.justin.homeManager = {pkgs, ...}: let
     #inherit (config.home.user-info) nixConfigDirectory;
     nixConfigDirectory = "/Users/justin/Development/sonntag/nix";
+    drs = pkgs.writeShellScriptBin "drs" ''
+      sudo darwin-rebuild switch --flake ${nixConfigDirectory} |& ${pkgs.nix-output-monitor}/bin/nom
+    '';
   in {
+    home.packages = [drs];
     programs.fish = {
       enable = true;
 
@@ -51,7 +55,7 @@
       shellAliases = with pkgs; {
         # Nix related
         drb = "darwin-rebuild build --flake ${nixConfigDirectory}";
-        drs = "sudo darwin-rebuild switch --flake ${nixConfigDirectory}";
+        # drs is installed as a script via home.packages
         flakeup = "nix flake update --flake ${nixConfigDirectory}";
         # nb = "nix build";
         # nd = "nix develop";
