@@ -6,6 +6,7 @@
     settings.includeCoAuthoredBy = false;
     skills.manage-skills = ./skills/manage-skills;
     skills.architecture-overview = ./skills/architecture-overview;
+    skills.email-writing = ./skills/email-writing;
     skills.pr-fix = ./skills/pr-fix;
     skills.system-design = ./skills/system-design;
   };
