@@ -134,15 +134,12 @@
       '';
 
       vault-login.body = ''
-        read -s -P "Enter Okta password \(hidden\): " password
-        echo
-
         set current_addr $VAULT_ADDR
 
         for stack in aws-mantle aws-dev aws-stage aws-prod aws-prod-cc1 az-stage az-prod az-prod-en1
             switch-vault $stack
             echo "Logging into $stack"
-            echo -n $password | vault login -method=oidc
+            vault login -method=oidc
             if test $status -ne 0
                 echo "Failed to login to $stack"
                 continue
@@ -150,7 +147,6 @@
             echo "Logged into $stack"
         end
 
-        set -e password
         set -gx VAULT_ADDR $current_addr
       '';
 
