@@ -7,6 +7,7 @@
       cljstyle
       clojure
       clojure-lsp
+      colima
       jet
       kubectx
       kubelogin
