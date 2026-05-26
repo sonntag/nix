@@ -9,15 +9,13 @@
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks = {
+      settings = {
         "github.com" = {
-          hostname = "github.com";
-          addKeysToAgent = "yes";
-          identityFile = "~/.ssh/id_justin";
-          extraOptions = {
-            # This should only be for darwin
-            "UseKeychain" = "yes";
-          };
+          HostName = "github.com";
+          AddKeysToAgent = "yes";
+          IdentityFile = "~/.ssh/id_justin";
+          # This should only be for darwin
+          UseKeychain = "yes";
         };
       };
     };
