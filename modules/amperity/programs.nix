@@ -8,8 +8,9 @@
       clojure
       clojure-lsp
       jet
-      # kubectx
-      # kubelogin
+      kubectx
+      kubelogin
+      kubernetes-helm
     ];
 
     # Make claude-code use bedrock globally

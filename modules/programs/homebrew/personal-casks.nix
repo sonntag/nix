@@ -15,7 +15,6 @@
         "ableton-live-suite"
         "bambu-studio"
         "blackhole-2ch"
-        "chatgpt"
         "dropbox"
         "nordvpn"
         "rekordbox"

@@ -3,6 +3,7 @@
     "1password"
     "1password-cli"
     "arc"
+    "chatgpt"
     "claude"
     "codex-app"
     "cmux"
