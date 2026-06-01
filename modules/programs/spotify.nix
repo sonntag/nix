@@ -1,5 +1,5 @@
 {
-  den.aspects.justin.homeManager = {
+  den.aspects.spotify.homeManager = {
     pkgs,
     inputs,
     ...
