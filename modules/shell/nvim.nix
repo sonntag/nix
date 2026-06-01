@@ -1,8 +1,11 @@
 {
-  den.aspects.justin.homeManager = {inputs, ...}: {
+  den.aspects.justin.homeManager = {
+    inputs,
+    pkgs,
+    ...
+  }: {
     home.packages = [
-      # TODO: this should depend on ${system}
-      inputs.nvim.packages.aarch64-darwin.default
+      inputs.nvim.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
     home.sessionVariables.EDITOR = "nvim";
   };
