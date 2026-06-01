@@ -30,7 +30,6 @@
 
       casks = [
         "chromedriver"
-        "docker-desktop"
         "temurin@17"
         "google-chrome"
         "slack"

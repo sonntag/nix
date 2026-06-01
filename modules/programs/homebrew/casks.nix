@@ -7,7 +7,6 @@
     "claude"
     "codex-app"
     "cmux"
-    "docker-desktop"
     "gifox"
     "gitbutler"
     "homerow"
