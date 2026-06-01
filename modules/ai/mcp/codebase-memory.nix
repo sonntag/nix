@@ -1,8 +1,8 @@
 {
-  den.aspects.justin.homeManager = {pkgs, ...}: let
+  den.aspects.justin.homeManager = {pkgs, lib, ...}: let
     pkg = pkgs.codebase-memory-mcp;
     skill = name: builtins.readFile "${pkg}/share/claude-code-skills/${name}/SKILL.md";
-  in {
+  in lib.mkIf pkgs.stdenv.isDarwin {
     programs.mcp.servers.codebase-memory-mcp = {
       command = "${pkg}/bin/codebase-memory-mcp";
     };

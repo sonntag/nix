@@ -17,8 +17,8 @@ let
   hash =
     {
       "aarch64-darwin" = "sha256-sOZJodUmgL4teEherr/N0Qd6mu81EQE6L36OpTlkvK0=";
-      "x86_64-linux" = "";
-      "aarch64-linux" = "";
+      "x86_64-linux" = "sha256-8n21ozEXyI8sF18az4bOasy83YaatL6cqUNugbtPV00=";
+      "aarch64-linux" = "sha256-bF+a4PjJTL0o75lvgaD9phjAC0Mi1zz+m8R8uaiXvug=";
     }
     .${stdenv.hostPlatform.system}
       or (throw "Unsupported system: ${stdenv.hostPlatform.system}");

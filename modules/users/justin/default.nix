@@ -3,14 +3,16 @@
     includes = [
       den.provides.define-user
       den.provides.primary-user
-      ({host, ...}: {
+      ({host ? null, ...}: {
         includes =
-          {
-            greed = [den.aspects.amperity den.aspects.work];
-            wrath = [den.aspects.personal];
-          }
-          .${host.name}
-          or [];
+          if host == null then []
+          else
+            {
+              greed = [den.aspects.amperity den.aspects.work];
+              wrath = [den.aspects.personal];
+            }
+            .${host.name}
+            or [];
       })
     ];
     darwin = {pkgs, ...}: {
