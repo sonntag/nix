@@ -31,8 +31,13 @@ in {
     };
   };
 
-  den.default.homeManager = {
+  den.default.homeManager = {pkgs, ...}: {
     home.stateVersion = "24.05";
     fonts.fontconfig.enable = true;
+
+    # On Darwin, home-manager runs as a nix-darwin module (driven by
+    # darwin-rebuild), so the standalone CLI isn't needed. On Linux it's a
+    # standalone install, so let home-manager manage its own CLI declaratively.
+    programs.home-manager.enable = !pkgs.stdenv.hostPlatform.isDarwin;
   };
 }

@@ -8,8 +8,13 @@
     with lib; let
       isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
     in {
+      # On Linux (e.g. SSH targets) we don't want the GUI app, just the
+      # terminfo entry so tmux/etc. accept TERM=xterm-ghostty.
+      home.packages = mkIf (!isDarwin) [pkgs.ghostty.terminfo];
+
       programs.ghostty = {
-        enable = true;
+        # The GUI app and its settings only make sense on Darwin.
+        enable = isDarwin;
         # Ghostty is installed via homebrew on mac
         package = mkIf isDarwin null;
         settings = {
