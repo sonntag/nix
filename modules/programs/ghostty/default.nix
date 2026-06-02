@@ -3,6 +3,7 @@
   den.aspects.justin.homeManager = {
     lib,
     pkgs,
+    config,
     ...
   }:
     with lib; let
@@ -11,6 +12,13 @@
       # On Linux (e.g. SSH targets) we don't want the GUI app, just the
       # terminfo entry so tmux/etc. accept TERM=xterm-ghostty.
       home.packages = mkIf (!isDarwin) [pkgs.ghostty.terminfo];
+
+      # home-manager doesn't set TERMINFO_DIRS on a standalone (non-NixOS)
+      # install, so ncurses never finds terminfo entries in the profile.
+      # Point it at the profile's terminfo dir; the trailing empty entry
+      # keeps ncurses' compiled-in default locations on the search path.
+      home.sessionVariables.TERMINFO_DIRS =
+        mkIf (!isDarwin) "${config.home.profileDirectory}/share/terminfo:";
 
       programs.ghostty = {
         # The GUI app and its settings only make sense on Darwin.
