@@ -413,6 +413,22 @@
         "type": "github"
       }
     },
+    "homebrew-amperity-dev": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1780505941,
+        "narHash": "sha256-ecI07UelGNTE58Rco/yZsBY1lOTUZ17VWnVpcez8yco=",
+        "ref": "refs/heads/main",
+        "rev": "54eb7902760390df6a03bd004b1d9181d47ff138",
+        "revCount": 9,
+        "type": "git",
+        "url": "ssh://git@github.com/amperity/homebrew-dev"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/amperity/homebrew-dev"
+      }
+    },
     "homebrew-cask": {
       "flake": false,
       "locked": {
@@ -783,6 +799,7 @@
         "flake-aspects": "flake-aspects",
         "flake-parts": "flake-parts_2",
         "home-manager": "home-manager",
+        "homebrew-amperity-dev": "homebrew-amperity-dev",
         "homebrew-cask": "homebrew-cask",
         "homebrew-cone": "homebrew-cone",
         "homebrew-core": "homebrew-core",

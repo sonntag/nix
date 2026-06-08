@@ -108,5 +108,12 @@
       url = "github:mikker/homebrew-tap";
       flake = false;
     };
+
+    # Amperity dev tap — provides 'devbox'. Private repo, so fetched over SSH
+    # (uses your GitHub SSH key) rather than the github: fetcher (token-only).
+    homebrew-amperity-dev = {
+      url = "git+ssh://git@github.com/amperity/homebrew-dev";
+      flake = false;
+    };
   };
 }
