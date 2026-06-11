@@ -17,22 +17,6 @@
         "type": "github"
       }
     },
-    "cmux": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1780910590,
-        "narHash": "sha256-TQBV/BcpnE1QlCnaxs3ySKgkoUR39360vCboKa1YXes=",
-        "owner": "manaflow-ai",
-        "repo": "cmux",
-        "rev": "ee222554a5c1d425abdcc247217020305b880595",
-        "type": "github"
-      },
-      "original": {
-        "owner": "manaflow-ai",
-        "repo": "cmux",
-        "type": "github"
-      }
-    },
     "comin": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -413,118 +397,6 @@
         "type": "github"
       }
     },
-    "homebrew-amperity-dev": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1780505941,
-        "narHash": "sha256-ecI07UelGNTE58Rco/yZsBY1lOTUZ17VWnVpcez8yco=",
-        "ref": "refs/heads/main",
-        "rev": "54eb7902760390df6a03bd004b1d9181d47ff138",
-        "revCount": 9,
-        "type": "git",
-        "url": "ssh://git@github.com/amperity/homebrew-dev"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/amperity/homebrew-dev"
-      }
-    },
-    "homebrew-cask": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1780951222,
-        "narHash": "sha256-o4YIZFSf+mKOK6RAox1Om7M2T3FcOQrfJCLj+IiIJh0=",
-        "owner": "homebrew",
-        "repo": "homebrew-cask",
-        "rev": "1e288c6e63e3252f1e056664b668767079847a46",
-        "type": "github"
-      },
-      "original": {
-        "owner": "homebrew",
-        "repo": "homebrew-cask",
-        "type": "github"
-      }
-    },
-    "homebrew-cone": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1775242596,
-        "narHash": "sha256-CYj89tA9YEUQlyO6dqnAL1MzgAxB+jDzhiUw12Kxtu4=",
-        "owner": "conductorone",
-        "repo": "homebrew-cone",
-        "rev": "67bbdf199469656905986cadd7cc850f896c36c6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "conductorone",
-        "repo": "homebrew-cone",
-        "type": "github"
-      }
-    },
-    "homebrew-core": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1780953478,
-        "narHash": "sha256-KHeH6BWi2T/rryxeRJ2684rO/E7jIcj+M9+pi6mLY28=",
-        "owner": "homebrew",
-        "repo": "homebrew-core",
-        "rev": "dc685c111a7282eb311767245a06478de83e5a85",
-        "type": "github"
-      },
-      "original": {
-        "owner": "homebrew",
-        "repo": "homebrew-core",
-        "type": "github"
-      }
-    },
-    "homebrew-hashicorp": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1780952826,
-        "narHash": "sha256-LFp2HzTQHco/NFQw3gIZxfxm7OoEsZ5U8eacRCiVRdI=",
-        "owner": "hashicorp",
-        "repo": "homebrew-tap",
-        "rev": "4a78f12d11573a436bdd83183dc454cc5a7e6238",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hashicorp",
-        "repo": "homebrew-tap",
-        "type": "github"
-      }
-    },
-    "homebrew-mikker": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1780516951,
-        "narHash": "sha256-AYr09oRhPW7lPxBNZxD57hQw/LmoZXcAg+wGUBONcLk=",
-        "owner": "mikker",
-        "repo": "homebrew-tap",
-        "rev": "8fa1baef65866cbae6e815dc2744b8215fc8ac57",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mikker",
-        "repo": "homebrew-tap",
-        "type": "github"
-      }
-    },
-    "homebrew-services": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1742475690,
-        "narHash": "sha256-qg3/+iHtnFe6VxGapisTatGnoH0XG4BnWWqwwzWYzk0=",
-        "owner": "homebrew",
-        "repo": "homebrew-services",
-        "rev": "2c294ab9515576d961cea28c93148c6452db2def",
-        "type": "github"
-      },
-      "original": {
-        "owner": "homebrew",
-        "repo": "homebrew-services",
-        "type": "github"
-      }
-    },
     "import-tree": {
       "locked": {
         "lastModified": 1778781969,
@@ -791,7 +663,6 @@
     },
     "root": {
       "inputs": {
-        "cmux": "cmux",
         "comin": "comin",
         "darwin": "darwin",
         "den": "den",
@@ -799,13 +670,6 @@
         "flake-aspects": "flake-aspects",
         "flake-parts": "flake-parts_2",
         "home-manager": "home-manager",
-        "homebrew-amperity-dev": "homebrew-amperity-dev",
-        "homebrew-cask": "homebrew-cask",
-        "homebrew-cone": "homebrew-cone",
-        "homebrew-core": "homebrew-core",
-        "homebrew-hashicorp": "homebrew-hashicorp",
-        "homebrew-mikker": "homebrew-mikker",
-        "homebrew-services": "homebrew-services",
         "import-tree": "import-tree",
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs_4",

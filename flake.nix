@@ -66,54 +66,5 @@
       url = "github:sonntag/nvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # tmux-sessionx.url = "github:omerxx/tmux-sessionx";
-
-    # ==== Homebrew taps ====
-
-    # Base taps
-    homebrew-core = {
-      url = "github:homebrew/homebrew-core";
-      flake = false;
-    };
-    homebrew-cask = {
-      url = "github:homebrew/homebrew-cask";
-      flake = false;
-    };
-    homebrew-services = {
-      url = "github:homebrew/homebrew-services";
-      flake = false;
-    };
-
-    # Provides `vault` on darwin, as building it takes forever.
-    homebrew-hashicorp = {
-      url = "github:hashicorp/homebrew-tap";
-      flake = false;
-    };
-
-    # Provides 'cone' command line for SSO
-    homebrew-cone = {
-      url = "github:conductorone/homebrew-cone";
-      flake = false;
-    };
-
-    # Provides 'cmux' terminal app
-    cmux = {
-      url = "github:manaflow-ai/cmux";
-      flake = false;
-    };
-
-    # provides tuna
-    homebrew-mikker = {
-      url = "github:mikker/homebrew-tap";
-      flake = false;
-    };
-
-    # Amperity dev tap — provides 'devbox'. Private repo, so fetched over SSH
-    # (uses your GitHub SSH key) rather than the github: fetcher (token-only).
-    homebrew-amperity-dev = {
-      url = "git+ssh://git@github.com/amperity/homebrew-dev";
-      flake = false;
-    };
   };
 }
