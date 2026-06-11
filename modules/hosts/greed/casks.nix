@@ -1,8 +1,7 @@
 {
-  den.aspects.greed.darwin = {
-    homebrew.casks = [
-      "sublime-text"
-      "tableplus"
-    ];
-  };
+  den.aspects.greed.darwin.homebrew.casks = [
+    "sublime-text"
+    "tableplus"
+    "zed"
+  ];
 }

@@ -6,10 +6,10 @@
       "/Applications/Things3.app"
       "/Applications/Obsidian.app"
       "/Applications/Slack.app"
-      "/System/Applications/Calendar.app"
       "/Applications/Ghostty.app"
       "/Applications/Codex.app"
       "/Applications/Claude.app"
+      "/Applications/Zed.app"
       "/Applications/zoom.us.app"
       "/Applications/Sublime Text.app"
     ];
