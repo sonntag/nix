@@ -3,6 +3,7 @@
     includes = [
       den.provides.hostname
       den.aspects.auto-update
+      den.aspects.personal
     ];
     darwin = {
       nix-homebrew.user = "justin";

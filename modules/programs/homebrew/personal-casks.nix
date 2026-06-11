@@ -1,25 +1,13 @@
 {
-  den.default.darwin = {
-    config,
-    lib,
-    ...
-  }:
-    with lib; let
-      cfg = config.sonntag.darwin.personal-casks;
-    in {
-      options.sonntag.darwin.personal-casks.enable =
-        mkEnableOption "personal casks" // {default = true;};
-
-      # These are the casks that should only be on my personal macs
-      config.homebrew.casks = lib.mkIf cfg.enable [
-        "ableton-live-suite"
-        "bambu-studio"
-        "blackhole-2ch"
-        "dropbox"
-        "nordvpn"
-        "rekordbox"
-        "tor-browser"
-        "whatsapp"
-      ];
-    };
+  # These are the casks that should only be on my personal macs
+  den.aspects.personal.darwin.config.homebrew.casks = [
+    "ableton-live-suite"
+    "bambu-studio"
+    "blackhole-2ch"
+    "dropbox"
+    "nordvpn"
+    "rekordbox"
+    "tor-browser"
+    "whatsapp"
+  ];
 }
