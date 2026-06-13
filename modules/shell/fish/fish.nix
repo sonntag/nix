@@ -85,12 +85,12 @@
         ''
           # Start/attach to a tmux session if not already attached.
           # Only auto-tmux when running in Ghostty to keep other terminals (e.g. Codex Desktop) tmux-free.
-          if not set -q TMUX
-            set -l term_program (string lower -- "$TERM_PROGRAM")
-            if test "$term_program" = "ghostty"
-              tmux-attach-or-create
-            end
-          end
+          # if not set -q TMUX
+          #   set -l term_program (string lower -- "$TERM_PROGRAM")
+          #   if test "$term_program" = "ghostty"
+          #     tmux-attach-or-create
+          #   end
+          # end
 
           # Enable vi keybindings
           fish_vi_key_bindings
