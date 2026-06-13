@@ -30,7 +30,6 @@
         "temurin@17"
         "google-chrome"
         "slack"
-        "zoom"
       ];
     };
   };
