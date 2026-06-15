@@ -13,7 +13,6 @@
         "arc"
         "chatgpt"
         "claude"
-        "claude-code@latest"
         "codex-app"
         "cmux"
         "gifox"
