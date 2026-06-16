@@ -28,9 +28,9 @@
           starship module character
         '';
 
-        starship_transient_rprompt_func.body = ''
-          starship module time
-        '';
+        # starship_transient_rprompt_func.body = ''
+        #   starship module time
+        # '';
 
         tmux-attach-or-create.body =
           /*
