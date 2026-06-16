@@ -15,6 +15,11 @@
         tasks = [
           {
             name = "Run the claude.ai native installer";
+            # The installer shells out to system tools (`shasum` for checksum
+            # verification, etc.) that aren't on PATH during home-manager
+            # activation. Append the standard system bin dirs so it can find
+            # them, keeping the pinned curl/bash the nixible wrapper puts first.
+            environment.PATH = "{{ lookup('env', 'PATH') }}:/usr/bin:/bin:/usr/sbin:/sbin";
             # `creates` makes this idempotent: skipped once the binary the
             # installer drops in ~/.local/bin exists, so it only actually hits
             # the network on first install.
