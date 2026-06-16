@@ -6,7 +6,12 @@
 
     homebrew = {
       enable = true;
-      onActivation.cleanup = "zap";
+      onActivation = {
+        cleanup = "zap";
+        extraFlags = [
+          "--force-cleanup"
+        ];
+      };
     };
 
     nix-homebrew = {
