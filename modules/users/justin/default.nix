@@ -3,6 +3,7 @@
     includes = [
       den.provides.define-user
       den.provides.primary-user
+      den.aspects.claude-code
       ({host ? null, ...}: {
         includes =
           if host == null

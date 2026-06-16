@@ -66,5 +66,9 @@
       url = "github:sonntag/nvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Run Ansible playbooks defined in Nix, for imperative configuration
+    # that doesn't fit the declarative nix-darwin/home-manager model.
+    nixible.url = "gitlab:TECHNOFAB/nixible?dir=lib";
   };
 }

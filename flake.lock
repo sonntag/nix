@@ -539,6 +539,23 @@
         "type": "github"
       }
     },
+    "nixible": {
+      "locked": {
+        "dir": "lib",
+        "lastModified": 1767290102,
+        "narHash": "sha256-XmTqZH8tYRFPvRm5ZtcUTn1wYDLn767vq4ed0wr87Ok=",
+        "owner": "TECHNOFAB",
+        "repo": "nixible",
+        "rev": "f87cd73c98cae38e5a6eaafb1beb28e05a46905f",
+        "type": "gitlab"
+      },
+      "original": {
+        "dir": "lib",
+        "owner": "TECHNOFAB",
+        "repo": "nixible",
+        "type": "gitlab"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1770107345,
@@ -672,6 +689,7 @@
         "home-manager": "home-manager",
         "import-tree": "import-tree",
         "nix-homebrew": "nix-homebrew",
+        "nixible": "nixible",
         "nixpkgs": "nixpkgs_4",
         "nvim": "nvim",
         "sops-nix": "sops-nix",
