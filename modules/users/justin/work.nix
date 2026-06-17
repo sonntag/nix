@@ -60,8 +60,6 @@
       "${pnpm-path}"
     ];
 
-    sonntag.mcp.playwright.enable = true;
-
     # Used for Amperity development
     # TODO: re-enable this
     # programs.java = {
