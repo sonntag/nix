@@ -60,9 +60,7 @@
       "${pnpm-path}"
     ];
 
-    sonntag.mcp.atlassian.enable = true;
     sonntag.mcp.playwright.enable = true;
-    sonntag.mcp.slack.enable = true;
 
     # Used for Amperity development
     # TODO: re-enable this
