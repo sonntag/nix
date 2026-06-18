@@ -15,6 +15,7 @@
         "claude"
         "codex-app"
         "cmux"
+        "discord"
         "gifox"
         "gitbutler"
         "homerow"
