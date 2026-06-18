@@ -159,7 +159,5 @@
         set -gx VAULT_ADDR $original_addr
       '';
     };
-
-    sonntag.programs.k9s.enable = true;
   };
 }
