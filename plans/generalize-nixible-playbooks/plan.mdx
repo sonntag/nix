@@ -1,0 +1,197 @@
+<RichText id="intro">
+
+# Generalize nixible playbooks into a declarative home-manager option
+
+Today the nixible integration is one bespoke file, `modules/nixible/claude-code.nix`, that hand-wires three things specifically for Claude Code: the playbook data, a `nix run .#nixible:claude-code` app, and a `den.aspects.claude-code` aspect with a `home.activation.installClaudeCode` hook. Adding a second playbook means copy-pasting all of that boilerplate and inventing new hardcoded names.
+
+This plan replaces the per-playbook boilerplate with a single declarative option: **`nixible.playbooks.<name>`**, a home-manager option that any aspect can set. One small infra module declares the option and merges every declared playbook into a **single nixible run** on activation. Because playbooks live in home-manager config, whether a playbook is applied is governed entirely by **whether the aspect carrying it is included** in the active configuration — exactly like `programs.claude-code.skills.*` works today. The aspect name has nothing to do with whether it carries a playbook.
+
+After this, adding a playbook is: write the Ansible data structure, assign it to `nixible.playbooks.<name>` under whichever aspect should own it (`justin` for global, `amperity`/`work` for work-only, a host aspect for host-only), done. No new aspect, no new activation-hook name, no flake-level wiring.
+
+</RichText>
+
+<RichText id="reuse-heading">
+
+### What this reuses vs. adds
+
+</RichText>
+
+<Callout id="reuse-callout" tone="info">
+
+**Reuses** the exact composition model already in the repo: aspects merge their `homeManager` modules into one home config, and option assignments across aspects merge (proven by `amperity/claude-code.nix` contributing `programs.claude-code.skills.*` to the work-only `amperity` aspect). It also reuses nixible's own `mkNixibleCli` builder and the `lib.hm.dag.entryAfter ["writeBoundary"]` activation pattern from the current code.
+
+**Adds** one infra module that *declares* a `nixible.playbooks` option and *merges* all enabled entries into a single nixible call behind one activation hook. That's the only genuinely new piece — everything else is moving existing data behind the option.
+
+</Callout>
+
+<RichText id="arch-heading">
+
+### Current vs. generalized wiring
+
+</RichText>
+
+<Diagram
+  id="wiring-diagram"
+  data={{
+    html: '<div class="diagram-panel"><div class="diagram-col"><div class="diagram-title">Today — hardcoded per playbook</div><div class="diagram-card" data-rough><div class="diagram-node">modules/nixible/claude-code.nix</div><div class="diagram-muted">mkPlaybook + 3 hand-wired outputs</div></div><div class="diagram-arrow">┬</div><div class="diagram-row"><div class="diagram-box" data-rough>perSystem.nixible.claude-code<div class="diagram-muted">nix run .#nixible:claude-code</div></div><div class="diagram-box" data-rough>den.aspects.claude-code<div class="diagram-muted">home.activation.installClaudeCode</div></div></div><div class="diagram-muted">+1 line: justin.includes = [ … den.aspects.claude-code ]</div></div><div class="diagram-col"><div class="diagram-title">Generalized — one option, any aspect</div><div class="diagram-card" data-rough><div class="diagram-node">modules/nixible/playbooks.nix</div><div class="diagram-muted">declares nixible.playbooks + generates hooks</div></div><div class="diagram-arrow">┬</div><div class="diagram-row"><div class="diagram-box" data-rough>den.aspects.justin<div class="diagram-muted">nixible.playbooks.claude-code = { … }</div></div><div class="diagram-box" data-rough>den.aspects.amperity<div class="diagram-muted">nixible.playbooks.work-tool = { … }</div></div></div><div class="diagram-arrow">▼</div><div class="diagram-pill" data-rough>home.activation.nixible — single ansible run, all enabled plays merged</div></div></div>',
+    css: '.diagram-panel{display:flex;gap:20px;flex-wrap:wrap}.diagram-col{flex:1;min-width:260px;display:flex;flex-direction:column;gap:8px;align-items:center}.diagram-title{font-weight:600;color:var(--wf-text)}.diagram-card{padding:10px 14px;border-radius:8px;background:var(--wf-surface);text-align:center;width:100%}.diagram-row{display:flex;gap:10px;width:100%}.diagram-box{flex:1;padding:8px 10px;border-radius:8px;background:var(--wf-surface);text-align:center;font-size:13px}.diagram-node{font-weight:600;color:var(--wf-text)}.diagram-muted{color:var(--wf-muted);font-size:12px;margin-top:4px}.diagram-arrow{color:var(--wf-muted)}.diagram-pill{padding:8px 14px;border-radius:999px;background:var(--wf-accent-soft,var(--wf-surface));text-align:center;font-size:13px;width:100%}',
+    caption: "Three hardcoded outputs per playbook collapse into one declarative option; all enabled playbooks merge into one nixible run.",
+  }}
+/>
+
+<RichText id="option-heading">
+
+## The option schema
+
+`nixible.playbooks.<name>` is an attrset of submodules. Each entry carries just the inputs `mkNixibleCli` needs, plus an `enable` toggle. All enabled entries are merged into one nixible config and run in a single `ansible-playbook` call (nixible's `playbook` field is itself a list of plays), so adding playbooks costs no extra process startups.
+
+</RichText>
+
+<Table
+  id="option-table"
+  columns={["Field", "Type", "Default", "Purpose"]}
+  rows={[
+    ["enable", "bool", "true", "Set false to keep a definition around without running it."],
+    ["dependencies", "listOf package", "[ ]", "Packages put on PATH while the playbook runs (e.g. curl, bash)."],
+    ["collections", "attrsOf { version; hash; }", "{ }", "Ansible Galaxy collections to fetch, passed through to nixible."],
+    ["playbook", "listOf attrs", "(required)", "The Ansible playbook itself, as a Nix data structure."],
+  ]}
+/>
+
+<RichText id="impl-heading">
+
+## Implementation
+
+### 1. New infra module: declare the option, merge into one run
+
+This is the only new file. It is imported normally by `import-tree ./modules` (it has no `/_` in its path, so it is not filtered out). It defines an always-on aspect `den.aspects.nixible` whose home-manager module declares `nixible.playbooks` and folds every *enabled* entry into a single combined nixible config — concatenating the plays, unioning the dependencies, and merging the collections — fired by one `home.activation.nixible` hook. The `inputs` arg is captured from the file's top-level scope, exactly as the current `claude-code.nix` does.
+
+</RichText>
+
+<AnnotatedCode
+  id="infra-module"
+  filename="modules/nixible/playbooks.nix"
+  language="nix"
+  code={"{inputs, ...}: {\n  # Always-on aspect: declares `nixible.playbooks` and runs every declared\n  # playbook. All enabled playbooks are merged into a SINGLE nixible CLI and\n  # run in one `ansible-playbook` call. Plays run in alphabetical order of key.\n  den.aspects.nixible.homeManager = {\n    config,\n    lib,\n    pkgs,\n    ...\n  }: let\n    inherit (lib) types mkOption attrValues filterAttrs concatMap foldl' unique optionalAttrs hm;\n    cfg = config.nixible.playbooks;\n    enabled = attrValues (filterAttrs (_: pb: pb.enable) cfg);\n\n    # Fold every enabled playbook into a single nixible config.\n    combined = {\n      dependencies = unique (concatMap (pb: pb.dependencies) enabled);\n      collections = foldl' (acc: pb: acc // pb.collections) {} enabled;\n      playbook = concatMap (pb: pb.playbook) enabled;\n    };\n\n    cli = (inputs.nixible.lib {inherit pkgs lib;}).mkNixibleCli combined;\n\n    playbookType = types.submodule {\n      options = {\n        enable = mkOption {\n          type = types.bool;\n          default = true;\n          description = \"Include this playbook in the activation run.\";\n        };\n        dependencies = mkOption {\n          type = types.listOf types.package;\n          default = [];\n          description = \"Packages on PATH while the playbooks run.\";\n        };\n        collections = mkOption {\n          type = types.attrsOf (types.attrsOf types.str);\n          default = {};\n          description = \"Ansible Galaxy collections (version + hash).\";\n        };\n        playbook = mkOption {\n          type = types.listOf types.attrs;\n          description = \"One or more Ansible plays, as a Nix data structure.\";\n        };\n      };\n    };\n  in {\n    options.nixible.playbooks = mkOption {\n      type = types.attrsOf playbookType;\n      default = {};\n      description = \"Nixible playbooks applied during home-manager activation.\";\n    };\n\n    config.home.activation = optionalAttrs (enabled != []) {\n      nixible = hm.dag.entryAfter [\"writeBoundary\"] ''\n        $DRY_RUN_CMD ${cli}/bin/nixible\n      '';\n    };\n  };\n}\n"}
+  annotations={[
+    {"lines": "1", "label": "Captured inputs", "note": "`inputs` comes from the file's outer scope and is closed over by the homeManager function — same trick as today's claude-code.nix."},
+    {"lines": "16-20", "label": "Merge, don't fan out", "note": "Plays are concatenated, deps unioned, collections merged (last wins on a key clash). nixible's `playbook` field is a list of plays, so one CLI runs them all."},
+    {"lines": "22", "label": "Reuses nixible lib", "note": "A single mkNixibleCli call over the combined config — one ansible-playbook invocation for the whole set."},
+    {"lines": "52-56", "label": "One hook", "note": "A single home.activation.nixible entry, only when at least one playbook is enabled. Re-runs are idempotent via each play's `creates`/state."},
+  ]}
+/>
+
+<RichText id="refactor-heading">
+
+### 2. Refactor `claude-code.nix` to just set the option
+
+The whole file collapses to a data assignment on the `justin` aspect (keeping Claude Code global, as it is today). The `mkPlaybook` closure, the `perSystem.nixible` registration, and the bespoke activation hook all disappear — that logic now lives once in the infra module.
+
+</RichText>
+
+<Diff
+  id="claude-code-diff"
+  filename="modules/nixible/claude-code.nix"
+  language="nix"
+  mode="split"
+  before={"{inputs, ...}: let\n  mkPlaybook = pkgs: {\n    dependencies = [pkgs.curl pkgs.bash];\n    playbook = [\n      {\n        name = \"Install Claude Code\";\n        hosts = \"localhost\";\n        connection = \"local\";\n        gather_facts = false;\n        tasks = [\n          {\n            name = \"Run the claude.ai native installer\";\n            environment.PATH = \"{{ lookup('env', 'PATH') }}:/usr/bin:/bin:/usr/sbin:/sbin\";\n            shell = {\n              cmd = \"curl -fsSL https://claude.ai/install.sh | bash\";\n              creates = \"{{ lookup('env', 'HOME') }}/.local/bin/claude\";\n              executable = \"${pkgs.bash}/bin/bash\";\n            };\n          }\n        ];\n      }\n    ];\n  };\nin {\n  imports = [inputs.nixible.flakeModule];\n\n  perSystem = {pkgs, ...}: {\n    nixible.claude-code = mkPlaybook pkgs;\n  };\n\n  den.aspects.claude-code.homeManager = {\n    lib,\n    pkgs,\n    ...\n  }: let\n    cli = (inputs.nixible.lib {inherit pkgs lib;}).mkNixibleCli (mkPlaybook pkgs);\n  in {\n    home.activation.installClaudeCode = lib.hm.dag.entryAfter [\"writeBoundary\"] ''\n      $DRY_RUN_CMD ${cli}/bin/nixible\n    '';\n  };\n}\n"}
+  after={"{\n  den.aspects.justin.homeManager = {pkgs, ...}: {\n    nixible.playbooks.claude-code = {\n      dependencies = [pkgs.curl pkgs.bash];\n      playbook = [\n        {\n          name = \"Install Claude Code\";\n          hosts = \"localhost\";\n          connection = \"local\";\n          gather_facts = false;\n          tasks = [\n            {\n              name = \"Run the claude.ai native installer\";\n              environment.PATH = \"{{ lookup('env', 'PATH') }}:/usr/bin:/bin:/usr/sbin:/sbin\";\n              shell = {\n                cmd = \"curl -fsSL https://claude.ai/install.sh | bash\";\n                creates = \"{{ lookup('env', 'HOME') }}/.local/bin/claude\";\n                executable = \"${pkgs.bash}/bin/bash\";\n              };\n            }\n          ];\n        }\n      ];\n    };\n  };\n}\n"}
+  annotations={[
+    {"side": "after", "lines": "2", "label": "Attach to any aspect", "note": "Setting it under `justin` keeps it global. Move this to `amperity`/`work`/a host aspect to scope it — the aspect, not the playbook, decides where it applies."},
+    {"side": "after", "lines": "3", "label": "Pure data", "note": "No closure, no app registration, no named hook — the infra module supplies all of that."},
+    {"side": "before", "lines": "37", "label": "Dropped import", "note": "`inputs.nixible.flakeModule` was imported only here, only to register the perSystem app. With the apps gone, nothing in the repo imports the flakeModule anymore — only `inputs.nixible.lib`, used by the infra module."},
+  ]}
+/>
+
+<RichText id="include-heading">
+
+### 3. Include the infra aspect once in the base
+
+`den.aspects.nixible` must be present in every home where playbooks are set, so it declares the option. Add it next to the other base provides in the user aspect. This is the one-time wiring; no per-playbook edits to this file ever again.
+
+</RichText>
+
+<Diff
+  id="include-diff"
+  filename="modules/users/justin/default.nix"
+  language="nix"
+  mode="unified"
+  before={"    includes = [\n      den.provides.define-user\n      den.provides.primary-user\n      den.aspects.claude-code\n      ({host ? null, ...}: {\n"}
+  after={"    includes = [\n      den.provides.define-user\n      den.provides.primary-user\n      den.aspects.nixible\n      ({host ? null, ...}: {\n"}
+  annotations={[
+    {"side": "after", "lines": "4", "note": "Swap the playbook-specific aspect for the generic infra aspect. claude-code now rides in via its `nixible.playbooks.claude-code` assignment on the already-included `justin` aspect."},
+  ]}
+/>
+
+<RichText id="example-heading">
+
+## Adding a new playbook after this
+
+A new playbook is a single file (or a few lines in an existing aspect file). Example: an `atuin` shell-history sync, scoped global by attaching to `justin`. Drop the file under `modules/`; `import-tree` picks it up; it applies on the next activation. To make it work-only instead, the exact same block goes under `den.aspects.amperity.homeManager`.
+
+</RichText>
+
+<Code
+  id="new-playbook-example"
+  filename="modules/nixible/atuin.nix"
+  language="nix"
+  caption="A brand-new playbook: no new aspect, no new hook name, no flake wiring."
+  code={"{\n  den.aspects.justin.homeManager = {pkgs, ...}: {\n    nixible.playbooks.atuin = {\n      dependencies = [pkgs.bash];\n      playbook = [\n        {\n          name = \"Install atuin\";\n          hosts = \"localhost\";\n          connection = \"local\";\n          gather_facts = false;\n          tasks = [\n            {\n              name = \"Run the atuin installer\";\n              shell = {\n                cmd = \"curl -fsSL https://setup.atuin.sh | bash\";\n                creates = \"{{ lookup('env', 'HOME') }}/.atuin/bin/atuin\";\n                executable = \"${pkgs.bash}/bin/bash\";\n              };\n            }\n          ];\n        }\n      ];\n    };\n  };\n}\n"}
+/>
+
+<RichText id="files-heading">
+
+## Files touched
+
+</RichText>
+
+<FileTree
+  id="files"
+  title="Changes"
+  entries={[
+    {"path": "modules/nixible/playbooks.nix", "change": "added", "note": "Infra: declares `nixible.playbooks`, generates one activation hook per enabled entry."},
+    {"path": "modules/nixible/claude-code.nix", "change": "modified", "note": "Collapses to a `nixible.playbooks.claude-code` assignment on the justin aspect."},
+    {"path": "modules/users/justin/default.nix", "change": "modified", "note": "Include `den.aspects.nixible` instead of `den.aspects.claude-code`."},
+  ]}
+/>
+
+<RichText id="tradeoff-heading">
+
+## Key decision: the `nix run` apps go away
+
+Today `perSystem.nixible.claude-code` exposes `nix run .#nixible:claude-code` as a side effect. Once playbooks live inside per-aspect home-manager config (per user, per host), there is no single flake-level list to generate those apps from. **Decision: drop the standalone apps entirely** — the activation hook is the real integration and the apps were never the point. No manual-run path and no `home.packages` exposure; re-running a playbook means re-activating home-manager. This also removes the now-unused `inputs.nixible.flakeModule` import repo-wide.
+
+</RichText>
+
+<RichText id="risks-heading">
+
+### Risks & notes
+
+</RichText>
+
+<Checklist
+  id="risks"
+  items={[
+    {"id": "option-present", "label": "Setting `nixible.playbooks.*` on an aspect without `den.aspects.nixible` included errors with \"option does not exist\"", "note": "Mitigated by including the infra aspect in the base user aspect. Document it as a hard requirement."},
+    {"id": "darwin-linux", "label": "Works identically on darwin (home-manager via nix-darwin) and standalone linux", "note": "Both compose aspects the same way; the activation hook is plain home-manager, matching the current claude-code behavior."},
+    {"id": "idempotency", "label": "The combined run re-runs all plays on every activation", "note": "Idempotency relies on each play using `creates`/state, exactly as the current Claude Code task does. No change in behavior."},
+    {"id": "single-run", "label": "All enabled playbooks share one ansible run, one PATH, and one collections set", "note": "One process startup instead of N. Trade-offs: plays run in alphabetical order of their key; deps are unioned (every play sees every dep); a collection named by two playbooks must agree on version (last definition wins)."},
+    {"id": "rebuild", "label": "Changing any playbook rebuilds the single combined CLI derivation", "note": "Coarser than per-playbook rebuilds, but cheap — it is just regenerating a YAML + wrapper."},
+  ]}
+/>
+
+<RichText id="decisions-heading">
+
+### Decisions (resolved)
+
+</RichText>
+
+<Table
+  id="decisions"
+  columns={["Decision", "Choice", "Rationale"]}
+  rows={[
+    ["Manual-run path", "Drop the `nix run` apps entirely", "The activation hook is the real integration; re-run via home-manager re-activation. Also removes the unused `inputs.nixible.flakeModule` import."],
+    ["Option namespace", "`nixible.playbooks.<name>`", "Custom top-level option that reads as 'run these playbooks', rather than implying a configured `programs.*` module."],
+    ["Infra aspect / file", "`den.aspects.nixible` / `modules/nixible/playbooks.nix`", "Short and obvious; the file declares the option and generates hooks but is not itself a playbook."],
+  ]}
+/>
