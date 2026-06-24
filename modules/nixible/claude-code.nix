@@ -1,6 +1,6 @@
 # Installs Claude Code via its native installer on activation. Attached to the
 # `justin` aspect so it applies wherever justin is configured. Move this block
-# to a narrower aspect (e.g. `amperity`/`work`/a host) to scope it.
+# to a narrower aspect to scope it.
 {
   den.aspects.justin.homeManager = {pkgs, ...}: {
     nixible.playbooks.claude-code = {

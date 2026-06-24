@@ -1,6 +1,6 @@
 # Installs the Pi coding agent on activation via its native installer. Attached
 # to the `justin` aspect so it applies wherever justin is configured. Move this
-# block to a different aspect (e.g. `amperity`/`work`/a host) to scope it.
+# block to a different aspect to scope it.
 #
 # The installer is interactive when it can open /dev/tty (it shows a y/n menu
 # and reads a keypress); with no controlling terminal it auto-installs without

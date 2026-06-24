@@ -10,7 +10,6 @@
           then []
           else
             {
-              greed = [den.aspects.amperity den.aspects.work];
               wrath = [den.aspects.personal];
             }
             .${
