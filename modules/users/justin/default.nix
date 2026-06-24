@@ -29,6 +29,7 @@
 
     homeManager = {
       home.sessionPath = ["$HOME/.local/bin"];
+      sonntag.wallpaper.image.path = ../../../backgrounds/rancho-cucamonga-tree.png;
     };
   };
 }
