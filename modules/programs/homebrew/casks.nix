@@ -4,7 +4,6 @@
       taps = [
         # provides tuna
         "mikker/tap"
-        "manaflow-ai/cmux"
       ];
 
       casks = [
@@ -14,7 +13,6 @@
         "chatgpt"
         "claude"
         "codex-app"
-        "cmux"
         "discord"
         "gifox"
         "gitbutler"
