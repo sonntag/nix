@@ -23,6 +23,7 @@
         set -g renumber-windows on # Renumber windows when a window is closed
         set -g detach-on-destroy off # Don't exit from tmux when closing a session
         #set -g set-clipboard on # Use system clipboard
+        set -g extended-keys on # allow sending complex modifier key combinations
 
         # Copied from sensible
         set -g display-time 4000
