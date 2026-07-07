@@ -34,6 +34,7 @@
       nps
       # ov
       ripgrep
+      steel
       tldr
       tree
       yazi
