@@ -56,6 +56,14 @@
     #  but doesn't have support for installing homebrew itself)
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
+    # NOTE: deliberately do *not* set `inputs.nixpkgs.follows = "nixpkgs"`.
+    # helix.cachix.org is built against the nixpkgs pinned inside this flake;
+    # overriding it changes every grammar's stdenv hash and busts the cache,
+    # forcing all treesitter grammars to build from source.
+    # The Steel plugin system lives on the `steel-event-system` branch; the
+    # default branch (master) is just an upstream Helix mirror without plugins.
+    helix.url = "github:mattwparas/helix/steel-event-system";
+
     # Provides tools for customizing the look and feel of Spotify
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
