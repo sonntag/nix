@@ -46,9 +46,6 @@ jobs:
           - name: wrath
             flake_output: darwinConfigurations.wrath
             runner: macos-latest
-          - name: greed
-            flake_output: darwinConfigurations.greed
-            runner: macos-latest
     runs-on: ${{ matrix.runner }}
 
     steps:

@@ -7,8 +7,4 @@ in {
     users.justin = {};
     instantiate = withInputs;
   };
-  den.hosts.aarch64-darwin.greed = {
-    users.justin = {};
-    instantiate = withInputs;
-  };
 }
