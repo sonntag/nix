@@ -20,9 +20,13 @@
         "little-snitch"
         "obsidian"
         "readdle-spark"
+        "soulver"
+        "thebrowsercompany-dia"
         "tuna"
         "voiceink"
+        "whatsapp"
         "xnapper"
+        "zen"
         "zoom"
       ];
     };
