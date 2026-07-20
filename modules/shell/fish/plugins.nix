@@ -9,10 +9,10 @@
         name = "bass";
         src = bass.src;
       }
-      {
-        name = "fzf-fish";
-        src = fzf-fish.src;
-      }
+      # {
+      #   name = "fzf-fish";
+      #   src = fzf-fish.src;
+      # }
       {
         name = "puffer";
         src = puffer.src;

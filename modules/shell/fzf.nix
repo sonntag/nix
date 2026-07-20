@@ -2,6 +2,7 @@
   den.aspects.justin.homeManager.programs.fzf = {
     enable = true;
     enableFishIntegration = true;
+    historyWidget.command = "";
     colors = {
       "fg" = "#908caa";
       "bg" = "#191724";
