@@ -26,6 +26,7 @@
         "voiceink"
         "whatsapp"
         "xnapper"
+        "zed"
         "zen"
         "zoom"
       ];
