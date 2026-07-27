@@ -12,7 +12,6 @@
         "arc"
         "chatgpt"
         "claude"
-        "codex-app"
         "discord"
         "gifox"
         "gitbutler"
