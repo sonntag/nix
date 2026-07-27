@@ -6,6 +6,7 @@
 
     environment.shellAliases = {
       kickstart-kanata = "sudo launchctl kickstart -k system/org.nixos.kanata";
+      kill-kanata = "sudo launchctl stop -k system/org.nixos.kanata";
     };
 
     launchd.daemons = {
