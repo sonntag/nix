@@ -7,7 +7,6 @@
     ];
     darwin = {
       nix-homebrew.user = "justin";
-      services.tailscale.enable = true;
     };
   };
 }

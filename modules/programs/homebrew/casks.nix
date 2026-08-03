@@ -20,6 +20,7 @@
         "obsidian"
         "readdle-spark"
         "soulver"
+        "tailscale-app"
         "thebrowsercompany-dia"
         "tuna"
         "voiceink"
