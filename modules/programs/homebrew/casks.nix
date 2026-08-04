@@ -17,6 +17,7 @@
         "gitbutler"
         "homerow"
         "little-snitch"
+        "macwhisper"
         "obsidian"
         "readdle-spark"
         "soulver"
