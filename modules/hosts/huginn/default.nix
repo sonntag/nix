@@ -19,6 +19,8 @@
       programs.fish.enable = true;
       security.sudo.wheelNeedsPassword = false;
 
+      time.timeZone = "America/Los_Angeles";
+
       services.greetd = {
         enable = true;
         settings.default_session = {
