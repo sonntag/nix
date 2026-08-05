@@ -43,10 +43,11 @@
         monitor = lib.mkForce [",1920x1080@60,auto,1"];
         cursor.no_hardware_cursors = true;
 
-        # WayVNC must inherit the compositor instance environment. It binds
-        # only to loopback and is reached through an SSH tunnel.
+        # WayVNC must inherit the compositor instance environment. Its default
+        # is loopback-only; consuming infrastructure may provide a secured
+        # ~/.config/wayvnc/config when direct network access is appropriate.
         exec-once = lib.mkAfter [
-          "${pkgs.wayvnc}/bin/wayvnc 127.0.0.1 5900"
+          "${pkgs.wayvnc}/bin/wayvnc"
         ];
       };
     };
