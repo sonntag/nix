@@ -10,7 +10,7 @@
           then []
           else
             {
-              wrath = [den.aspects.personal];
+              wrath = [den.aspects.personal den.aspects.macwhisper];
             }
             .${
               host.name
