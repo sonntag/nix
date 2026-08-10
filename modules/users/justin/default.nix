@@ -3,21 +3,8 @@
     includes = [
       den.provides.define-user
       den.provides.primary-user
+      den.batteries.host-aspects
       den.aspects.nixible
-      ({host ? null, ...}: {
-        includes =
-          if host == null
-          then []
-          else
-            {
-              wrath = [den.aspects.personal den.aspects.macwhisper];
-            }
-            .${
-              host.name
-            }
-            or [
-            ];
-      })
     ];
     darwin = {pkgs, ...}: {
       users.knownUsers = ["justin"];
