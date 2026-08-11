@@ -1,30 +1,64 @@
 ## TODO
 
-## Steps for setting up
+## Bootstrap a new machine
 
-1. Install MacOS command line tools
+Run the bootstrap as the `justin` user on Apple Silicon macOS or x86-64/ARM64
+Ubuntu. On macOS it prompts for either a Home Manager-only setup or the full
+`wrath` nix-darwin configuration. Ubuntu activates Home Manager only.
 
-```
-xcode-select --install
-```
-
-2. Install determinate nix:
-
-```
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --determinate
+```sh
+curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/sonntag/nix/main/bootstrap.sh | sh
 ```
 
-3. Apply flake
+Home Manager is the safe default when the script cannot prompt. A target can
+also be selected explicitly:
 
-```
-nix run nix-darwin -- switch --refresh --flake github:sonntag/nix#<hostname>
+```sh
+# Home Manager only
+curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/sonntag/nix/main/bootstrap.sh |
+  sh -s -- home
+
+# Full macOS configuration
+curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/sonntag/nix/main/bootstrap.sh | sh -s -- wrath
 ```
 
-The first activation checks the flake out to
-`~/.local/share/sonntag-nix`. Subsequent rebuilds can use:
+The script installs Determinate Nix when necessary and activates the selected
+configuration directly from GitHub. The first Home Manager activation checks
+the flake out to `~/.local/share/sonntag-nix`, ready to edit with Neovim.
+Subsequent rebuilds can use:
 
-```
+```sh
+# macOS
 drs
+
+# Ubuntu (use aarch64-linux on ARM64)
+home-manager switch --flake ~/.local/share/sonntag-nix#justin@x86_64-linux
+```
+
+`huginn` is exported as a reusable NixOS module for a consuming infrastructure
+flake, rather than as `nixosConfigurations.huginn`, so it is not a bootstrap
+target in this repository.
+
+### Move from Home Manager to a full machine configuration
+
+No migration or Home Manager uninstall is required. After adding the new host
+to the local flake, activate it with its nix-darwin configuration name:
+
+```sh
+flake=~/.local/share/sonntag-nix
+host=my-new-host
+
+sudo nix run "$flake#darwinConfigurations.$host.config.system.build.darwin-rebuild" -- switch --flake "$flake#$host"
+```
+
+The nix-darwin activation then manages Home Manager as part of the machine
+configuration. Once it succeeds, use the machine rebuild rather than continuing
+to switch the standalone Home Manager profile independently.
+
+To test another branch or fork before it is merged, override the flake source:
+
+```sh
+curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/sonntag/nix/main/bootstrap.sh | FLAKE_REF=github:sonntag/nix/my-branch sh
 ```
 
 ## Configuration diagram
