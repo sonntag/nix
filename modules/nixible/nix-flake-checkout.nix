@@ -28,6 +28,8 @@
             {
               name = "Clone the flake into the local data directory";
               git = {
+                # Keep the fetch URL public so a new machine can bootstrap
+                # before its GitHub SSH key has been provisioned.
                 repo = "https://github.com/sonntag/nix.git";
                 dest = "${config.home.homeDirectory}/.local/share/sonntag-nix";
                 version = "main";
@@ -36,6 +38,22 @@
                 # Flake updates should remain an explicit Git operation.
                 update = false;
               };
+            }
+            {
+              name = "Use SSH when pushing the flake";
+              command = {
+                argv = [
+                  "${pkgs.git}/bin/git"
+                  "-C"
+                  "${config.home.homeDirectory}/.local/share/sonntag-nix"
+                  "remote"
+                  "set-url"
+                  "--push"
+                  "origin"
+                  "git@github.com:sonntag/nix.git"
+                ];
+              };
+              changed_when = false;
             }
           ];
         }
