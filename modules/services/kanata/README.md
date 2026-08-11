@@ -68,7 +68,13 @@ boundary.
 - `open-kanata-setup` requests or reviews privacy permissions.
 - `kickstart-kanata` restarts Kanata.
 - `kill-kanata` stops Kanata until launchd starts it again.
-- Logs are in `/Library/Logs/Kanata/kanata.{out,err}.log`.
+- `kanata-logs` reads Kanata's structured Unified Log entries. It shows the
+  last hour by default; pass another duration such as `kanata-logs 1d` when
+  investigating an older failure. The app wrapper records engine starts,
+  exits, signals, errors, and DriverKit state changes under the
+  `org.sonntag.kanata` subsystem while suppressing repeated readiness noise.
+- Legacy logs in `/Library/Logs/Kanata/kanata.{out,err}.log` are retained but
+  are no longer written after upgrading to the Unified Logging wrapper.
 - The active configuration is copied to
   `/Library/Application Support/Kanata/kanata.kbd`.
 

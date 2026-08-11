@@ -192,12 +192,25 @@
             echo "Karabiner DriverKit extension is not listed as active."
       '';
     };
+
+    kanataLogs = pkgs.writeShellApplication {
+      name = "kanata-logs";
+      text = ''
+        period="''${1:-1h}"
+        /usr/bin/log show \
+          --last "$period" \
+          --info \
+          --style compact \
+          --predicate 'subsystem == "org.sonntag.kanata"'
+      '';
+    };
   in {
     environment.systemPackages = [
       pkgs.kanata
       appBundle
       createSigningIdentity
       kanataStatus
+      kanataLogs
     ];
 
     environment.shellAliases = {
@@ -390,8 +403,6 @@
         RunAtLoad = true;
         KeepAlive = true;
         ProcessType = "Interactive";
-        StandardErrorPath = "/Library/Logs/Kanata/kanata.err.log";
-        StandardOutPath = "/Library/Logs/Kanata/kanata.out.log";
       };
 
       karabiner-vhiddaemon.serviceConfig = {
@@ -401,6 +412,7 @@
         UserName = "root";
         RunAtLoad = true;
         KeepAlive = true;
+        ProcessType = "Interactive";
         ThrottleInterval = 5;
       };
     };
