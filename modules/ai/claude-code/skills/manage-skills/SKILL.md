@@ -9,24 +9,24 @@ All Claude Code skills on this machine are managed declaratively through a Nix f
 
 ## Flake location
 
-The Nix flake is at `~/Development/sonntag/nix` on all of this user's machines. Skills live under:
+The Nix flake is at `~/.local/share/sonntag-nix` on all of this user's machines. Skills live under:
 
 ```
-~/Development/sonntag/nix/modules/ai/claude-code/skills/<skill-name>/SKILL.md
+~/.local/share/sonntag-nix/modules/ai/claude-code/skills/<skill-name>/SKILL.md
 ```
 
 Each skill is a directory containing a `SKILL.md` file. The directory name becomes the skill name.
 
 Skills are registered in:
 ```
-~/Development/sonntag/nix/modules/ai/claude-code/default.nix
+~/.local/share/sonntag-nix/modules/ai/claude-code/default.nix
 ```
 
 ## Creating a new skill
 
 1. Create a directory for the skill:
    ```bash
-   mkdir ~/Development/sonntag/nix/modules/ai/claude-code/skills/<skill-name>
+   mkdir ~/.local/share/sonntag-nix/modules/ai/claude-code/skills/<skill-name>
    ```
 
 2. Write the skill content in `SKILL.md` with the required frontmatter:
@@ -52,7 +52,7 @@ Edit the skill's `SKILL.md` file directly in the flake, then apply the change by
 
 ## Applying changes (switching the system)
 
-After creating or modifying a skill, rebuild and switch to the new configuration. On NixOS/nix-darwin machines, run the appropriate switch command from the flake directory or use the `drs` alias if available:
+After creating or modifying a skill, rebuild and switch to the new configuration. On NixOS/nix-darwin machines, run the appropriate switch command from the flake directory or use the `drs` command if available:
 
 ```bash
 drs
@@ -61,15 +61,15 @@ drs
 Or explicitly:
 ```bash
 # nix-darwin (macOS)
-darwin-rebuild switch --flake ~/Development/sonntag/nix
+darwin-rebuild switch --flake ~/.local/share/sonntag-nix
 
 # NixOS (Linux)
-sudo nixos-rebuild switch --flake ~/Development/sonntag/nix
+sudo nixos-rebuild switch --flake ~/.local/share/sonntag-nix
 ```
 
 ## Removing a skill
 
-1. Delete the skill directory from `~/Development/sonntag/nix/modules/ai/claude-code/skills/<skill-name>/`
+1. Delete the skill directory from `~/.local/share/sonntag-nix/modules/ai/claude-code/skills/<skill-name>/`
 2. Remove its entry from `default.nix`
 3. Switch the system to apply the change
 

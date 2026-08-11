@@ -20,6 +20,13 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 nix run nix-darwin -- switch --refresh --flake github:sonntag/nix#<hostname>
 ```
 
+The first activation checks the flake out to
+`~/.local/share/sonntag-nix`. Subsequent rebuilds can use:
+
+```
+drs
+```
+
 ## Configuration diagram
 
 Generate a Rosé Pine-themed diagram of the Den aspects that resolve into the

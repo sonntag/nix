@@ -1,12 +1,5 @@
 {
-  den.aspects.justin.homeManager = {pkgs, ...}: let
-    #inherit (config.home.user-info) nixConfigDirectory;
-    nixConfigDirectory = "/Users/justin/Development/sonntag/nix";
-    drs = pkgs.writeShellScriptBin "drs" ''
-      sudo darwin-rebuild switch --flake ${nixConfigDirectory} |& ${pkgs.nix-output-monitor}/bin/nom
-    '';
-  in {
-    home.packages = [drs];
+  den.aspects.justin.homeManager = {pkgs, ...}: {
     programs.fish = {
       functions = {
         clear-dns-cache.body = ''
@@ -50,17 +43,6 @@
       };
 
       shellAliases = with pkgs; {
-        # Nix related
-        drb = "darwin-rebuild build --flake ${nixConfigDirectory}";
-        # drs is installed as a script via home.packages
-        flakeup = "nix flake update --flake ${nixConfigDirectory}";
-        # nb = "nix build";
-        # nd = "nix develop";
-        # nf = "nix flake";
-        # nr = "nix run";
-        # ns = "nix search";
-
-        # Other
         cat = "${bat}/bin/bat";
         du = "${dust}/bin/dust";
         g = "${git}/bin/git";

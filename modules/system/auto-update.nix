@@ -1,5 +1,5 @@
 {
-  den.aspects.auto-update.darwin = {
+  den.aspects.auto-update.darwin = {config, ...}: {
     services.comin = {
       enable = true;
       remotes = [
@@ -10,8 +10,7 @@
         }
         {
           name = "local";
-          # TODO: Pull this from a common config
-          url = "/Users/justin/Development/sonntag/nix";
+          url = "${config.users.users.justin.home}/.local/share/sonntag-nix";
           poller.period = 2;
         }
       ];
