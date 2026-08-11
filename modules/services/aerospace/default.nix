@@ -172,12 +172,24 @@
           run = "move-node-to-workspace C";
         }
         {
-          "if".app-id = "com.openai.chat";
+          "if".app-id = "com.openai.codex";
           run = "move-node-to-workspace G";
         }
         {
           "if".app-id = "com.apple.MobileSMS";
           run = "move-node-to-workspace M";
+        }
+        {
+          "if".app-id = "com.readdle.SparkDesktop";
+          run = "move-node-to-workspace M";
+        }
+        {
+          "if".app-id = "net.whatsapp.WhatsApp";
+          run = "move-node-to-workspace M";
+        }
+        {
+          "if".app-id = "md.obsidian";
+          run = "move-node-to-workspace N";
         }
         {
           "if".app-id = "com.1password.1password";
@@ -196,8 +208,16 @@
           run = "move-node-to-workspace S";
         }
         {
+          "if".app-id = "com.edovia.screens.5";
+          run = "move-node-to-workspace S";
+        }
+        {
           "if".app-id = "com.mitchellh.ghostty";
           run = "move-node-to-workspace T";
+        }
+        {
+          "if".app-id = "com.goodsnooze.MacWhisper";
+          run = "move-node-to-workspace W";
         }
         {
           "if".app-id = "us.zoom.xos";
