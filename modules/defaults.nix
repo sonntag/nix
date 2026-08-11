@@ -11,14 +11,13 @@
 in {
   den.default.darwin = {inputs, ...}: {
     imports = [
-      inputs.home-manager.darwinModules.home-manager
       inputs.determinate.darwinModules.default
       inputs.comin.darwinModules.comin
       inputs.sops-nix.darwinModules.sops
     ];
+
     system.stateVersion = 6;
     nixpkgs.hostPlatform = "aarch64-darwin";
-    nixpkgs.config.allowUnfree = true;
     nixpkgs.overlays = [pkgsOverlay];
 
     home-manager = {

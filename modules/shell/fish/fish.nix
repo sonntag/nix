@@ -1,5 +1,4 @@
 {
-  den.default.darwin.programs.fish.enable = true;
   den.aspects.justin.homeManager = {pkgs, ...}: let
     #inherit (config.home.user-info) nixConfigDirectory;
     nixConfigDirectory = "/Users/justin/Development/sonntag/nix";
@@ -9,8 +8,6 @@
   in {
     home.packages = [drs];
     programs.fish = {
-      enable = true;
-
       functions = {
         clear-dns-cache.body = ''
           sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder $argv

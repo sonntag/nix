@@ -10,7 +10,6 @@
         (builtins.readDir ../../pkgs))));
   linuxPkgs = system: import inputs.nixpkgs {
     inherit system;
-    config.allowUnfree = true;
     overlays = [pkgsOverlay];
   };
   mkHome = system: {

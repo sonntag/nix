@@ -1,17 +1,16 @@
 {den, ...}: {
   den.aspects.justin = {
     includes = [
-      den.provides.define-user
-      den.provides.primary-user
+      den.batteries.define-user
+      den.batteries.primary-user
       den.batteries.host-aspects
+      (den.batteries.user-shell "fish")
       den.aspects.nixible
     ];
-    darwin = {pkgs, ...}: {
-      users.knownUsers = ["justin"];
-      users.users.justin = {
-        uid = 501;
-        shell = pkgs.fish;
-      };
+
+    darwin.users = {
+      knownUsers = ["justin"];
+      users.justin.uid = 501;
     };
 
     homeManager = {
