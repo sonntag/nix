@@ -1,0 +1,65 @@
+digraph {
+  rankdir=LR;
+  bgcolor="#191724";
+  color="#e0def4";
+  fontcolor="#e0def4";
+  node [style=filled, fillcolor="#1f1d2e", fontcolor="#e0def4", color="#908caa"];
+  edge [color="#908caa", fontcolor="#e0def4"];
+  wrath [label="wrath",shape=box,style="rounded,filled",fillcolor="#c4a7e7",color="#c4a7e7",fontcolor="#191724"];
+  subgraph cluster_ctx_host {
+    label="host { host }";
+    style=dashed;
+    color="#6e6a86";
+    fontcolor="#e0def4";
+    bgcolor="#1f1d2e";
+  auto_update [label="auto-update",shape=box,style=filled,fillcolor="#c4a7e7",color="#c4a7e7",fontcolor="#191724"];
+  host_to_hm_users [label="host-to-hm-users",shape=box,style=filled,fillcolor="#908caa",color="#908caa",fontcolor="#191724"];
+  host_to_users [label="host-to-users",shape=box,style=filled,fillcolor="#c4a7e7",color="#c4a7e7",fontcolor="#191724"];
+  den__batteries__hostname [label="batteries/hostname",shape=trapezium,style=filled,fillcolor="#c4a7e7",color="#c4a7e7",fontcolor="#191724"];
+  den__batteries__hostname__os [label="batteries/hostname/os\n({ host })",shape=hexagon,style=filled,fillcolor="#c4a7e7",color="#c4a7e7",fontcolor="#191724"];
+  insecure_predicate [label="insecure-predicate",shape=box,style=filled,fillcolor="#908caa",color="#908caa",fontcolor="#191724"];
+  insecure_predicate__os [label="insecure-predicate/os\n({ host })",shape=hexagon,style=filled,fillcolor="#c4a7e7",color="#c4a7e7",fontcolor="#191724"];
+  insecure_predicate__user [label="insecure-predicate/user\n({ host, user })",shape=hexagon,style=filled,fillcolor="#908caa",color="#908caa",fontcolor="#191724"];
+  macwhisper [label="macwhisper",shape=box,style=filled,fillcolor="#c4a7e7",color="#c4a7e7",fontcolor="#191724"];
+  os_to_host_host_wrath [label="os-to-host",shape=box,style=filled,fillcolor="#908caa",color="#908caa",fontcolor="#191724"];
+  personal [label="personal",shape=box,style=filled,fillcolor="#c4a7e7",color="#c4a7e7",fontcolor="#191724"];
+  unfree_predicate [label="unfree-predicate",shape=box,style=filled,fillcolor="#908caa",color="#908caa",fontcolor="#191724"];
+  unfree_predicate__os [label="unfree-predicate/os\n({ host })",shape=hexagon,style=filled,fillcolor="#f6c177",color="#f6c177",fontcolor="#191724"];
+  unfree_predicate__user [label="unfree-predicate/user\n({ host, user })",shape=hexagon,style=filled,fillcolor="#f6c177",color="#f6c177",fontcolor="#191724"];
+  }
+  subgraph cluster_ctx_user {
+    label="user { host, user }";
+    style=dashed;
+    color="#6e6a86";
+    fontcolor="#e0def4";
+    bgcolor="#1f1d2e";
+  _policy_hm_user_detect__0_ [label="<policy:hm-user-detect>[0]",shape=box,style=filled,fillcolor="#908caa",color="#908caa",fontcolor="#191724"];
+  den__batteries__define_user [label="batteries/define-user",shape=trapezium,style=filled,fillcolor="#908caa",color="#908caa",fontcolor="#191724"];
+  den__batteries__define_user__justin_wrath [label="batteries/define-user/justin@wrath\n({ host, user })",shape=hexagon,style=filled,fillcolor="#908caa",color="#908caa",fontcolor="#191724"];
+  hm_user_detect [label="hm-user-detect",shape=box,style=filled,fillcolor="#eb6f92",color="#eb6f92",fontcolor="#191724"];
+  den__batteries__host_aspects [label="batteries/host-aspects",shape=trapezium,style=filled,fillcolor="#eb6f92",color="#eb6f92",fontcolor="#191724"];
+  host_aspects_project [label="host-aspects-project",shape=box,style=filled,fillcolor="#908caa",color="#908caa",fontcolor="#191724"];
+  justin [label="justin\n({ user })",shape=hexagon,style=filled,fillcolor="#eb6f92",color="#eb6f92",fontcolor="#191724"];
+  nixible [label="nixible",shape=box,style=filled,fillcolor="#eb6f92",color="#eb6f92",fontcolor="#191724"];
+  os_to_host_user_justin [label="os-to-host",shape=box,style=filled,fillcolor="#f6c177",color="#f6c177",fontcolor="#191724"];
+  den__batteries__primary_user_justin_wrath_ [label="batteries/primary-user(justin@wrath)\n({ host, user })",shape=hexagon,style=filled,fillcolor="#f6c177",color="#f6c177",fontcolor="#191724"];
+  user_shell__justin_wrath [label="user-shell/justin@wrath\n({ host, user })",shape=hexagon,style=filled,fillcolor="#f6c177",color="#f6c177",fontcolor="#191724"];
+  user_to_host [label="user-to-host",shape=box,style=filled,fillcolor="#908caa",color="#908caa",fontcolor="#191724"];
+  }
+
+  den__batteries__define_user -> den__batteries__define_user__justin_wrath;
+  den__batteries__hostname -> den__batteries__hostname__os;
+  insecure_predicate -> insecure_predicate__os;
+  insecure_predicate -> insecure_predicate__user;
+  justin -> den__batteries__define_user;
+  justin -> den__batteries__host_aspects;
+  justin -> nixible;
+  justin -> den__batteries__primary_user_justin_wrath_;
+  justin -> user_shell__justin_wrath;
+  unfree_predicate -> unfree_predicate__os;
+  unfree_predicate -> unfree_predicate__user;
+  wrath -> auto_update;
+  wrath -> den__batteries__hostname;
+  wrath -> macwhisper;
+  wrath -> personal;
+}

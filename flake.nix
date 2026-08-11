@@ -18,6 +18,7 @@
     import-tree.url = "github:vic/import-tree";
     flake-aspects.url = "github:vic/flake-aspects";
     den.url = "github:vic/den";
+    den-diagram.url = "github:denful/den-diagram";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";

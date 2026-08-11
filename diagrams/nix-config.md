@@ -1,0 +1,91 @@
+# Nix configuration: wrath
+
+Generated from Den's resolved aspect graph for the `darwin`,
+`homeManager`, and `user` classes. The SVG is rendered with Graphviz;
+the equivalent Mermaid source is included below.
+
+![Resolved Nix configuration](./nix-config.svg)
+
+```mermaid
+%%{init: {"elk":{"mergeEdges":true,"nodePlacementStrategy":"BRANDES_KOEPF"},"flowchart":{"wrappingWidth":500},"layout":"elk","theme":"base","themeVariables":{"activationBkgColor":"#1f1d2e","activationBorderColor":"#6e6a86","actorBkg":"#1f1d2e","actorBorder":"#908caa","actorLineColor":"#908caa","actorTextColor":"#e0def4","background":"#191724","classText":"#e0def4","clusterBkg":"#1f1d2e","clusterBorder":"#6e6a86","edgeLabelBackground":"#191724","labelBoxBkgColor":"#1f1d2e","labelBoxBorderColor":"#908caa","labelTextColor":"#e0def4","lineColor":"#908caa","loopTextColor":"#e0def4","mainBkg":"#1f1d2e","nodeBkg":"#1f1d2e","nodeBorder":"#908caa","nodeTextColor":"#e0def4","noteBkgColor":"#1f1d2e","noteBorderColor":"#6e6a86","noteTextColor":"#e0def4","pie1":"#eb6f92","pie2":"#f6c177","pie3":"#ebbcba","pie4":"#31748f","pie5":"#9ccfd8","pie6":"#c4a7e7","pie7":"#f6c177","pie8":"#908caa","pieLegendTextColor":"#e0def4","pieOuterStrokeColor":"#6e6a86","pieSectionTextColor":"#e0def4","pieStrokeColor":"#6e6a86","pieTitleTextColor":"#e0def4","primaryBorderColor":"#908caa","primaryColor":"#1f1d2e","primaryTextColor":"#e0def4","secondBkg":"#1f1d2e","secondaryBorderColor":"#6e6a86","secondaryColor":"#1f1d2e","secondaryTextColor":"#e0def4","sequenceNumberColor":"#191724","signalColor":"#908caa","signalTextColor":"#e0def4","tertiaryBorderColor":"#6e6a86","tertiaryColor":"#1f1d2e","tertiaryTextColor":"#e0def4","textColor":"#e0def4","titleColor":"#e0def4"}}}%%
+graph LR
+  wrath([wrath]):::root
+
+  subgraph ctx_user_justin["user: justin"]
+  _policy_hm_user_detect__0_["<policy:hm-user-detect>[0]"]:::_policy_hm_user_detect__0__c
+  den__batteries__define_user[/"batteries/define-user"\]:::den__batteries__define_user_c
+  den__batteries__define_user__justin_wrath{{"batteries/define-user/justin@wrath"}}:::den__batteries__define_user__justin_wrath_c
+  hm_user_detect["hm-user-detect"]:::hm_user_detect_c
+  den__batteries__host_aspects[/"batteries/host-aspects"\]:::den__batteries__host_aspects_c
+  host_aspects_project["host-aspects-project"]:::host_aspects_project_c
+  justin{{"justin"}}:::justin_c
+  nixible["nixible"]:::nixible_c
+  os_to_host_user_justin["os-to-host"]:::os_to_host_user_justin_c
+  den__batteries__primary_user_justin_wrath_{{"batteries/primary-user(justin@wrath)"}}:::den__batteries__primary_user_justin_wrath__c
+  user_shell__justin_wrath{{"user-shell/justin@wrath"}}:::user_shell__justin_wrath_c
+  user_to_host["user-to-host"]:::user_to_host_c
+  den__batteries__define_user --> den__batteries__define_user__justin_wrath
+  justin --> den__batteries__define_user
+  justin --> den__batteries__host_aspects
+  justin --> nixible
+  justin --> den__batteries__primary_user_justin_wrath_
+  justin --> user_shell__justin_wrath
+  end
+  subgraph ctx_host_wrath["host: wrath"]
+  auto_update["auto-update"]:::auto_update_c
+  host_to_hm_users["host-to-hm-users"]:::host_to_hm_users_c
+  host_to_users["host-to-users"]:::host_to_users_c
+  den__batteries__hostname[/"batteries/hostname"\]:::den__batteries__hostname_c
+  den__batteries__hostname__os{{"batteries/hostname/os"}}:::den__batteries__hostname__os_c
+  insecure_predicate["insecure-predicate"]:::insecure_predicate_c
+  insecure_predicate__os{{"insecure-predicate/os"}}:::insecure_predicate__os_c
+  insecure_predicate__user{{"insecure-predicate/user"}}:::insecure_predicate__user_c
+  macwhisper["macwhisper"]:::macwhisper_c
+  os_to_host_host_wrath["os-to-host"]:::os_to_host_host_wrath_c
+  personal["personal"]:::personal_c
+  unfree_predicate["unfree-predicate"]:::unfree_predicate_c
+  unfree_predicate__os{{"unfree-predicate/os"}}:::unfree_predicate__os_c
+  unfree_predicate__user{{"unfree-predicate/user"}}:::unfree_predicate__user_c
+  den__batteries__hostname --> den__batteries__hostname__os
+  insecure_predicate --> insecure_predicate__os
+  insecure_predicate --> insecure_predicate__user
+  unfree_predicate --> unfree_predicate__os
+  unfree_predicate --> unfree_predicate__user
+  wrath --> auto_update
+  wrath --> den__batteries__hostname
+  wrath --> macwhisper
+  wrath --> personal
+  end
+
+
+  classDef root fill:#c4a7e7,stroke:#c4a7e7,color:#191724,font-weight:bold
+  classDef _policy_hm_user_detect__0__c fill:#908caa,stroke:#908caa,color:#191724,stroke-dasharray: 3 3,stroke-width:1px
+  classDef auto_update_c fill:#c4a7e7,stroke:#c4a7e7,color:#191724,stroke-width:3px
+  classDef den__batteries__define_user_c fill:#908caa,stroke:#908caa,color:#191724,stroke-width:3px
+  classDef den__batteries__define_user__justin_wrath_c fill:#908caa,stroke:#908caa,color:#191724,stroke-width:2px
+  classDef hm_user_detect_c fill:#eb6f92,stroke:#eb6f92,color:#191724,stroke-width:2px,stroke-dasharray: 8 4
+  classDef den__batteries__host_aspects_c fill:#eb6f92,stroke:#eb6f92,color:#191724,stroke-width:3px
+  classDef host_aspects_project_c fill:#908caa,stroke:#908caa,color:#191724,stroke-width:2px,stroke-dasharray: 8 4
+  classDef host_to_hm_users_c fill:#908caa,stroke:#908caa,color:#191724,stroke-width:2px,stroke-dasharray: 8 4
+  classDef host_to_users_c fill:#c4a7e7,stroke:#c4a7e7,color:#191724,stroke-width:2px,stroke-dasharray: 8 4
+  classDef den__batteries__hostname_c fill:#c4a7e7,stroke:#c4a7e7,color:#191724,stroke-width:3px
+  classDef den__batteries__hostname__os_c fill:#c4a7e7,stroke:#c4a7e7,color:#191724,stroke-width:2px
+  classDef insecure_predicate_c fill:#908caa,stroke:#908caa,color:#191724,stroke-width:3px
+  classDef insecure_predicate__os_c fill:#c4a7e7,stroke:#c4a7e7,color:#191724,stroke-width:2px
+  classDef insecure_predicate__user_c fill:#908caa,stroke:#908caa,color:#191724,stroke-dasharray: 3 3,stroke-width:1px
+  classDef justin_c fill:#eb6f92,stroke:#eb6f92,color:#191724,stroke-width:3px
+  classDef macwhisper_c fill:#c4a7e7,stroke:#c4a7e7,color:#191724,stroke-width:3px
+  classDef nixible_c fill:#eb6f92,stroke:#eb6f92,color:#191724,stroke-width:3px
+  classDef os_to_host_host_wrath_c fill:#908caa,stroke:#908caa,color:#191724,stroke-width:2px,stroke-dasharray: 8 4
+  classDef os_to_host_user_justin_c fill:#f6c177,stroke:#f6c177,color:#191724,stroke-width:2px,stroke-dasharray: 8 4
+  classDef personal_c fill:#c4a7e7,stroke:#c4a7e7,color:#191724,stroke-width:3px
+  classDef den__batteries__primary_user_justin_wrath__c fill:#f6c177,stroke:#f6c177,color:#191724,stroke-width:2px
+  classDef unfree_predicate_c fill:#908caa,stroke:#908caa,color:#191724,stroke-width:3px
+  classDef unfree_predicate__os_c fill:#f6c177,stroke:#f6c177,color:#191724,stroke-width:2px
+  classDef unfree_predicate__user_c fill:#f6c177,stroke:#f6c177,color:#191724,stroke-dasharray: 3 3,stroke-width:1px
+  classDef user_shell__justin_wrath_c fill:#f6c177,stroke:#f6c177,color:#191724,stroke-width:2px
+  classDef user_to_host_c fill:#908caa,stroke:#908caa,color:#191724,stroke-width:2px,stroke-dasharray: 8 4
+  classDef wrath_c fill:#908caa,stroke:#908caa,color:#191724,stroke-width:3px
+style ctx_user_justin fill:#1f1d2e,stroke:#6e6a86,stroke-width:2px
+style ctx_host_wrath fill:#1f1d2e,stroke:#6e6a86,stroke-width:2px
+```

@@ -45,6 +45,11 @@ fmt:
     # format the nix files in this repo
     nix fmt
 
+# Generate the Den diagram for the current configuration
+[group('nix')]
+diagram:
+    nix run path:.#write-diagram
+
 # Show all the auto gc roots in the nix store
 [group('nix')]
 gcroot:
