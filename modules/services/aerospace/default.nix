@@ -46,21 +46,10 @@
       # 'main' binding mode must be always presented
       # Fallback value (if you omit the key): mode.main.binding = {}
       mode.main.binding = {
-        alt-slash = "layout tiles horizontal vertical";
-        alt-comma = "layout accordion horizontal vertical";
-
         alt-h = "focus left";
         alt-j = "focus down";
         alt-k = "focus up";
         alt-l = "focus right";
-
-        alt-shift-h = "move left";
-        alt-shift-j = "move down";
-        alt-shift-k = "move up";
-        alt-shift-l = "move right";
-
-        alt-shift-minus = "resize smart -50";
-        alt-shift-equal = "resize smart +50";
 
         alt-1 = "workspace 1";
         alt-2 = "workspace 2";
@@ -71,6 +60,7 @@
         alt-c = "workspace C";
         alt-d = "workspace D";
         alt-e = "workspace E";
+        alt-f = "workspace F";
         alt-g = "workspace G";
         alt-i = "workspace I";
         alt-m = "workspace M";
@@ -88,41 +78,11 @@
         alt-y = "workspace Y";
         alt-z = "workspace Z";
 
-        alt-shift-1 = "move-node-to-workspace 1";
-        alt-shift-2 = "move-node-to-workspace 2";
-        alt-shift-3 = "move-node-to-workspace 3";
-        alt-shift-4 = "move-node-to-workspace 4";
-        alt-shift-a = "move-node-to-workspace A";
-        alt-shift-b = "move-node-to-workspace B";
-        alt-shift-c = "move-node-to-workspace C";
-        alt-shift-d = "move-node-to-workspace D";
-        alt-shift-e = "move-node-to-workspace E";
-        alt-shift-g = "move-node-to-workspace G";
-        alt-shift-i = "move-node-to-workspace I";
-        alt-shift-m = "move-node-to-workspace M";
-        alt-shift-n = "move-node-to-workspace N";
-        alt-shift-o = "move-node-to-workspace O";
-        alt-shift-p = "move-node-to-workspace P";
-        alt-shift-q = "move-node-to-workspace Q";
-        alt-shift-r = "move-node-to-workspace R";
-        alt-shift-s = "move-node-to-workspace S";
-        alt-shift-t = "move-node-to-workspace T";
-        alt-shift-u = "move-node-to-workspace U";
-        alt-shift-v = "move-node-to-workspace V";
-        alt-shift-w = "move-node-to-workspace W";
-        alt-shift-x = "move-node-to-workspace X";
-        alt-shift-y = "move-node-to-workspace Y";
-        alt-shift-z = "move-node-to-workspace Z";
-
-        alt-shift-f = "fullscreen";
-
         # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
         alt-tab = "workspace-back-and-forth";
-        # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-        alt-shift-tab = "move-workspace-to-monitor --wrap-around next";
 
         # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-        alt-shift-semicolon = "mode service";
+        alt-semicolon = "mode service";
       };
 
       # 'service' binding mode declaration.
@@ -130,18 +90,92 @@
       mode.service.binding = {
         esc = "mode main";
 
-        r = ["flatten-workspace-tree" "mode main"];
+        slash = "layout tiles horizontal vertical";
+        comma = "layout accordion horizontal vertical";
+
+        minus = "resize smart -50";
+        equal = "resize smart +50";
+
+        # r = ["flatten-workspace-tree" "mode main"];
         # Toggle between floating and tiling layout
-        f = ["layout floating tiling" "mode main"];
-        backspace = ["close-all-windows-but-current" "mode main"];
+        alt-shift-f = ["layout floating tiling" "mode main"];
+        # backspace = ["close-all-windows-but-current" "mode main"];
 
         # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
         # s = ["layout sticky tiling" "mode main"]
+
+        h = "focus left";
+        j = "focus down";
+        k = "focus up";
+        l = "focus right";
+
+        alt-h = "move left";
+        alt-j = "move down";
+        alt-k = "move up";
+        alt-l = "move right";
 
         alt-shift-h = ["join-with left" "mode main"];
         alt-shift-j = ["join-with down" "mode main"];
         alt-shift-k = ["join-with up" "mode main"];
         alt-shift-l = ["join-with right" "mode main"];
+
+        "1" = "workspace 1";
+        "2" = "workspace 2";
+        "3" = "workspace 3";
+        "4" = "workspace 4";
+        a = "workspace A";
+        b = "workspace B";
+        c = "workspace C";
+        d = "workspace D";
+        e = "workspace E";
+        f = "workspace F";
+        g = "workspace G";
+        i = "workspace I";
+        m = "workspace M";
+        n = "workspace N";
+        o = "workspace O";
+        p = "workspace P";
+        q = "workspace Q";
+        r = "workspace R";
+        s = "workspace S";
+        t = "workspace T";
+        u = "workspace U";
+        v = "workspace V";
+        w = "workspace W";
+        x = "workspace X";
+        y = "workspace Y";
+        z = "workspace Z";
+
+        alt-1 = "move-node-to-workspace 1";
+        alt-2 = "move-node-to-workspace 2";
+        alt-3 = "move-node-to-workspace 3";
+        alt-4 = "move-node-to-workspace 4";
+        alt-a = "move-node-to-workspace A";
+        alt-b = "move-node-to-workspace B";
+        alt-c = "move-node-to-workspace C";
+        alt-d = "move-node-to-workspace D";
+        alt-e = "move-node-to-workspace E";
+        alt-f = "move-node-to-workspace F";
+        alt-g = "move-node-to-workspace G";
+        alt-i = "move-node-to-workspace I";
+        alt-m = "move-node-to-workspace M";
+        alt-n = "move-node-to-workspace N";
+        alt-o = "move-node-to-workspace O";
+        alt-p = "move-node-to-workspace P";
+        alt-q = "move-node-to-workspace Q";
+        alt-r = "move-node-to-workspace R";
+        alt-s = "move-node-to-workspace S";
+        alt-t = "move-node-to-workspace T";
+        alt-u = "move-node-to-workspace U";
+        alt-v = "move-node-to-workspace V";
+        alt-w = "move-node-to-workspace W";
+        alt-x = "move-node-to-workspace X";
+        alt-y = "move-node-to-workspace Y";
+        alt-z = "move-node-to-workspace Z";
+
+        tab = "workspace-back-and-forth";
+        # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
+        alt-tab = "move-workspace-to-monitor --wrap-around next";
       };
 
       workspace-to-monitor-force-assignment = {
