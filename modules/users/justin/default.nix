@@ -5,7 +5,6 @@
       den.batteries.primary-user
       den.batteries.host-aspects
       (den.batteries.user-shell "fish")
-      den.aspects.nixible
     ];
 
     darwin.users = {

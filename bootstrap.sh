@@ -102,6 +102,27 @@ select_activation() {
   esac
 }
 
+select_ssh_setup() {
+  requested="${BOOTSTRAP_SSH_KEY:-}"
+
+  if [ -z "$requested" ] && [ -t 1 ]; then
+    printf '\nSet up a local, per-device SSH key? [y/N]: ' >/dev/tty
+    IFS= read -r requested </dev/tty || requested=""
+  fi
+
+  case "${requested:-no}" in
+    y | Y | yes | YES | true | 1)
+      SETUP_SSH_KEY=1
+      ;;
+    n | N | no | NO | false | 0)
+      SETUP_SSH_KEY=0
+      ;;
+    *)
+      die "unknown SSH key choice '$requested' (expected 'yes' or 'no')"
+      ;;
+  esac
+}
+
 install_determinate_nix() {
   installer="$(mktemp "${TMPDIR:-/tmp}/determinate-nix-installer.XXXXXX")"
   trap 'rm -f "$installer"' EXIT HUP INT TERM
@@ -119,6 +140,7 @@ install_determinate_nix() {
 
 detect_target
 select_activation "${1:-}"
+select_ssh_setup
 
 current_user="$(id -un)"
 [ "$current_user" = "$EXPECTED_USER" ] ||
@@ -153,6 +175,11 @@ case "$nix_version" in
     ;;
 esac
 
+if [ "$SETUP_SSH_KEY" -eq 1 ]; then
+  info "Creating a local SSH identity"
+  "$NIX_BIN" run "${FLAKE_REF}#setup-ssh"
+fi
+
 case "$ACTIVATION" in
   darwin)
     darwin_rebuild="${FLAKE_REF}#darwinConfigurations.${DARWIN_CONFIGURATION}.config.system.build.darwin-rebuild"
@@ -160,6 +187,20 @@ case "$ACTIVATION" in
     info "Activating macOS configuration ${DARWIN_CONFIGURATION} from ${FLAKE_REF}"
     sudo "$NIX_BIN" run "$darwin_rebuild" -- \
       switch --flake "${FLAKE_REF}#${DARWIN_CONFIGURATION}"
+
+    # On a new machine, the sops-nix launch agent creates the age key and then
+    # fails to decrypt until its public recipient is enrolled. Give launchd a
+    # moment to write the key before reporting that expected bootstrap boundary.
+    age_key_file="$HOME/Library/Application Support/sops/age/keys.txt"
+    attempts=0
+    while [ ! -f "$age_key_file" ] && [ "$attempts" -lt 10 ]; do
+      sleep 1
+      attempts=$((attempts + 1))
+    done
+
+    info "Verifying SOPS enrollment"
+    "$NIX_BIN" run "${FLAKE_REF}#sops-status" -- --check
+    nixible_target="${EXPECTED_USER}@${DARWIN_CONFIGURATION}"
     ;;
   home-manager)
     home_configuration="${HOME_CONFIGURATION:-justin@${NIX_SYSTEM}}"
@@ -172,7 +213,23 @@ case "$ACTIVATION" in
 
     info "Activating Home Manager configuration ${home_configuration}"
     "$generation/activate"
+    nixible_target="${EXPECTED_USER}@${NIX_SYSTEM}"
+
+    # Standalone targets currently own no encrypted secrets, so sops-nix does
+    # not create an age key for them. If one already exists, surface its public
+    # recipient without making it a prerequisite for Home Manager.
+    case "$OS_FAMILY" in
+      darwin) age_key_file="$HOME/Library/Application Support/sops/age/keys.txt" ;;
+      linux) age_key_file="${XDG_CONFIG_HOME:-$HOME/.config}/sops/age/keys.txt" ;;
+    esac
+    if [ -f "$age_key_file" ]; then
+      info "Current SOPS identity"
+      "$NIX_BIN" run "${FLAKE_REF}#sops-status"
+    fi
     ;;
 esac
+
+info "Applying Nixible policies for ${nixible_target}"
+"$NIX_BIN" run "${FLAKE_REF}#nixible:${nixible_target}"
 
 info "Bootstrap complete"

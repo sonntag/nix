@@ -1,27 +1,25 @@
 {
-  den.aspects.personal.homeManager = {config, ...}: {
-    sops.secrets.".ssh/id_justin" = {
-      sopsFile = ./justin.yaml;
-      key = "private-key";
-      path = "${config.home.homeDirectory}/.ssh/id_justin";
-    };
-
+  den.aspects.personal.homeManager = {
+    lib,
+    pkgs,
+    ...
+  }: {
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
       settings = {
-        "github.com" = {
-          HostName = "github.com";
-          AddKeysToAgent = "yes";
-          IdentityFile = "~/.ssh/id_justin";
-          # This should only be for darwin
-          UseKeychain = "yes";
-        };
+        "github.com" =
+          {
+            HostName = "github.com";
+            AddKeysToAgent = "yes";
+            # The private key is generated locally by `nix run .#setup-ssh`.
+            # Nix manages how it is used, but never owns the key material.
+            IdentityFile = "~/.ssh/id_ed25519";
+          }
+          // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
+            UseKeychain = "yes";
+          };
       };
-    };
-
-    home.file = {
-      "./.ssh/id_justin.pub".source = ./justin.pub;
     };
   };
 }

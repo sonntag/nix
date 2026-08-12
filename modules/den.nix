@@ -12,5 +12,7 @@
   ];
 
   systems = ["aarch64-darwin" "x86_64-linux" "aarch64-linux"];
-  den.schema.user.classes = lib.mkDefault ["homeManager"];
+  # Host aspects are projected into every class listed here. Including
+  # `nixible` lets host policies participate when resolving a user's playbooks.
+  den.schema.user.classes = lib.mkDefault ["homeManager" "nixible"];
 }

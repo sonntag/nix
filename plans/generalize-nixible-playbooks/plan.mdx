@@ -1,5 +1,9 @@
 <RichText id="intro">
 
+> Superseded: Nixible is now a Den class resolved per host user or standalone
+> home and exported as an explicit target command. Imperative installers do not
+> run during Home Manager activation.
+
 # Generalize nixible playbooks into a declarative home-manager option
 
 Today the nixible integration is one bespoke file, `modules/nixible/claude-code.nix`, that hand-wires three things specifically for Claude Code: the playbook data, a `nix run .#nixible:claude-code` app, and a `den.aspects.claude-code` aspect with a `home.activation.installClaudeCode` hook. Adding a second playbook means copy-pasting all of that boilerplate and inventing new hardcoded names.
