@@ -81,7 +81,7 @@
   s (tap-hold-release-keys $alt-tap $alt-hold (multi s @tap) lalt $lh-keys)
   d (tap-hold-release-keys $sft-tap $sft-hold (multi d @tap) lsft $lh-keys)
   f (tap-hold-release-keys $met-tap $met-hold (multi f @tap) lmet $lh-keys)
-  j (tap-hold-release-keys $met-tap $met-hold (multi j @tap) rmet $rh-keys)
+  j (tap-hold-release-keys $met-tap $met-hold (multi j @tap) lmet $rh-keys)
   k (tap-hold-release-keys $sft-tap $sft-hold (multi k @tap) rsft $rh-keys)
   l (tap-hold-release-keys $alt-tap $alt-hold (multi l @tap) ralt $rh-keys)
   ; (tap-hold-release-keys $ctl-tap $ctl-hold (multi ; @tap) rctl $rh-keys)
