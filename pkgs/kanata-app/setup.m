@@ -17,6 +17,7 @@ extern char **environ;
 static volatile sig_atomic_t childPid = -1;
 static os_log_t lifecycleLog;
 static os_log_t engineLog;
+static os_log_t setupLog;
 static pthread_mutex_t stateLock = PTHREAD_MUTEX_INITIALIZER;
 static int virtualKeyboardReady = -1;
 static int driverConnected = -1;
@@ -29,6 +30,7 @@ typedef struct {
 static void initializeLogs(void) {
   lifecycleLog = os_log_create("org.sonntag.kanata", "lifecycle");
   engineLog = os_log_create("org.sonntag.kanata", "engine");
+  setupLog = os_log_create("org.sonntag.kanata", "setup");
 }
 
 static void stripAnsiEscapeSequences(char *line) {
@@ -297,6 +299,17 @@ static void openSettings(NSString *pane) {
   }
 }
 
+static BOOL driverIsInstalled(void) {
+  return [[NSFileManager defaultManager]
+      fileExistsAtPath:
+          @"/Applications/.Karabiner-VirtualHIDDevice-Manager.app"];
+}
+
+static BOOL setupIsComplete(void) {
+  return AXIsProcessTrusted() && CGPreflightListenEventAccess() &&
+         driverIsInstalled();
+}
+
 int main(int argc, char *argv[]) {
   @autoreleasepool {
     initializeLogs();
@@ -304,9 +317,22 @@ int main(int argc, char *argv[]) {
       return runService(argc, argv);
     }
 
+    BOOL setupIfNeeded =
+        argc > 1 && strcmp(argv[1], "--setup-if-needed") == 0;
+    if (setupIfNeeded && setupIsComplete()) {
+      os_log_info(setupLog, "Setup check complete; no user action is needed");
+      return 0;
+    }
+
     NSApplication *application = [NSApplication sharedApplication];
     [application setActivationPolicy:NSApplicationActivationPolicyRegular];
     [application activateIgnoringOtherApps:YES];
+
+    if (setupIfNeeded) {
+      os_log(setupLog, "Setup is incomplete; requesting user approval");
+    } else {
+      os_log(setupLog, "Opening the Kanata setup window");
+    }
 
     NSDictionary *accessibilityOptions = @{
       (__bridge NSString *)kAXTrustedCheckOptionPrompt : @YES,
@@ -319,8 +345,14 @@ int main(int argc, char *argv[]) {
       inputMonitoringGranted = CGRequestListenEventAccess();
     }
 
-    BOOL driverInstalled = [[NSFileManager defaultManager]
-        fileExistsAtPath:@"/Applications/.Karabiner-VirtualHIDDevice-Manager.app"];
+    BOOL driverInstalled = driverIsInstalled();
+
+    os_log(setupLog,
+           "Setup status: Accessibility=%{public}s, Input Monitoring=%{public}s, "
+           "DriverKit=%{public}s",
+           accessibilityGranted ? "granted" : "needs approval",
+           inputMonitoringGranted ? "granted" : "needs approval",
+           driverInstalled ? "installed" : "not installed");
 
     NSString *status = [NSString
         stringWithFormat:

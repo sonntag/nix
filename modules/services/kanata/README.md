@@ -8,6 +8,19 @@ DriverKit package, and runs both required background processes with launchd.
 Kanata runs as root because the standalone Karabiner virtual HID daemon exposes
 its IPC socket under `/Library/Application Support/org.pqrs/tmp/rootonly`.
 
+## Background-service design
+
+Nix owns both privileged LaunchDaemons and the primary user's setup
+LaunchAgent. The setup agent does not install or register the root services; it
+only runs the signed `Kanata.app` executable in the graphical login session so
+macOS can request user-scoped privacy permissions. Keeping privileged service
+registration in Nix gives each job a single owner and avoids an additional
+Background Items approval competing with declarative activation.
+
+For a future Developer ID-signed distribution that targets macOS 13 or newer,
+the equivalent fully bundled design is to put the agent and daemon property
+lists in `Contents/Library` and register them with `SMAppService`.
+
 ## First installation
 
 1. Rebuild the nix-darwin system.
@@ -22,13 +35,17 @@ its IPC socket under `/Library/Application Support/org.pqrs/tmp/rootonly`.
    - Kanata before 1.13.0 uses DriverKit 6.2.0.
    - Kanata 1.13.0 and newer uses DriverKit 8.0.0.
 
-2. Open `Kanata.app`, or run `open-kanata-setup`.
+2. Complete the setup window that opens automatically during the rebuild (or
+   at the next login if no graphical session is active).
 
-   The app requests Input Monitoring and Accessibility access and provides
-   buttons that open the relevant System Settings panes. The background
-   LaunchDaemon runs through this same app executable, which makes the visible
-   `Kanata` permission entry the responsible application for the embedded
-   engine.
+   A per-user LaunchAgent runs the signed app with `--setup-if-needed`. It exits
+   silently when Input Monitoring, Accessibility, and the DriverKit package are
+   already present. Otherwise, the app requests the privacy permissions and
+   provides buttons that open the relevant System Settings panes. The
+   background LaunchDaemon runs through this same app executable, which makes
+   the visible `Kanata` permission entry the responsible application for the
+   embedded engine. You can reopen the setup window later with
+   `open-kanata-setup`.
 
 3. In **System Settings → General → Login Items & Extensions → Driver
    Extensions**, enable

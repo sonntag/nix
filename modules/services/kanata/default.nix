@@ -9,6 +9,7 @@
     appDst = "/Applications/Nix Apps/Kanata.app";
     legacyAppDst = "/Applications/Kanata.app";
     kanataLauncher = "${appDst}/Contents/MacOS/Kanata";
+    setupAgentLabel = "${appBundleId}.setup";
     configDir = "/Library/Application Support/Kanata";
     configDst = "${configDir}/kanata.kbd";
     karabinerManager = "/Applications/.Karabiner-VirtualHIDDevice-Manager.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Manager";
@@ -183,6 +184,13 @@
             echo "DriverKit daemon: loaded"
           else
             echo "DriverKit daemon: not loaded"
+          fi
+
+          setupAgent="gui/$(/usr/bin/id -u)/${setupAgentLabel}"
+          if /bin/launchctl print "$setupAgent" >/dev/null 2>&1; then
+            echo "Kanata setup agent: loaded"
+          else
+            echo "Kanata setup agent: not loaded"
           fi
 
           echo
@@ -415,6 +423,21 @@
         ProcessType = "Interactive";
         ThrottleInterval = 5;
       };
+    };
+
+    # Run the signed application in the primary user's GUI session so macOS
+    # can attribute privacy prompts to Kanata.app. This is deliberately only a
+    # setup check; Nix remains the sole owner of the privileged daemons.
+    launchd.user.agents.kanata-setup.serviceConfig = {
+      Label = setupAgentLabel;
+      ProgramArguments = [
+        kanataLauncher
+        "--setup-if-needed"
+      ];
+      LimitLoadToSessionType = "Aqua";
+      RunAtLoad = true;
+      KeepAlive = false;
+      ProcessType = "Interactive";
     };
   };
 }
