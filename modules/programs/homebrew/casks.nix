@@ -24,7 +24,6 @@
         "tailscale-app"
         "thebrowsercompany-dia"
         "tuna"
-        "voiceink"
         "whatsapp"
         "xnapper"
         "zed"
