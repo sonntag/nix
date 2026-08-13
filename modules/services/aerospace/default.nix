@@ -2,6 +2,10 @@
   den.default.darwin.services.aerospace = {
     enable = true;
     settings = {
+      config-version = 2;
+
+      persistent-workspaces = ["1" "2" "3" "4" "A" "B" "C" "D" "E" "F" "G" "I" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"];
+
       # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
       enable-normalization-flatten-containers = true;
       enable-normalization-opposite-orientation-for-nested-containers = true;
