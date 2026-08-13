@@ -17,6 +17,7 @@
         "gitbutler"
         "homerow"
         "little-snitch"
+        "logseq"
         "obsidian"
         "readdle-spark"
         "soulver"
