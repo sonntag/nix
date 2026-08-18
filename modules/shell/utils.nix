@@ -11,7 +11,7 @@
       # mode (e.g. `curl … | sh` key-press menus) working. On Linux the system
       # stty is already GNU and works fine, so we keep the full package there.
       (
-        if stdenv.isDarwin
+        if stdenv.hostPlatform.isDarwin
         then
           symlinkJoin {
             name = "coreutils-no-stty";

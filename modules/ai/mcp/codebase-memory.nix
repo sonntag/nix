@@ -1,17 +1,22 @@
 {
-  den.aspects.justin.homeManager = {pkgs, lib, ...}: let
+  den.aspects.justin.homeManager = {
+    pkgs,
+    lib,
+    ...
+  }: let
     pkg = pkgs.codebase-memory-mcp;
     skill = name: builtins.readFile "${pkg}/share/claude-code-skills/${name}/SKILL.md";
-  in lib.mkIf pkgs.stdenv.isDarwin {
-    programs.mcp.servers.codebase-memory-mcp = {
-      command = "${pkg}/bin/codebase-memory-mcp";
-    };
+  in
+    lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
+      programs.mcp.servers.codebase-memory-mcp = {
+        command = "${pkg}/bin/codebase-memory-mcp";
+      };
 
-    programs.claude-code.skills = {
-      codebase-memory-exploring = skill "codebase-memory-exploring";
-      codebase-memory-quality = skill "codebase-memory-quality";
-      codebase-memory-reference = skill "codebase-memory-reference";
-      codebase-memory-tracing = skill "codebase-memory-tracing";
+      programs.claude-code.skills = {
+        codebase-memory-exploring = skill "codebase-memory-exploring";
+        codebase-memory-quality = skill "codebase-memory-quality";
+        codebase-memory-reference = skill "codebase-memory-reference";
+        codebase-memory-tracing = skill "codebase-memory-tracing";
+      };
     };
-  };
 }
