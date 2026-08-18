@@ -11,7 +11,6 @@
     "logseq"
     "obsidian"
     "readdle-spark"
-    "tailscale-app"
     "thebrowsercompany-dia"
     {
       name = "mikker/tap/tuna";
