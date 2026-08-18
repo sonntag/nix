@@ -9,6 +9,5 @@
     "nordvpn"
     "rekordbox"
     "tor-browser"
-    "whatsapp"
   ];
 }
