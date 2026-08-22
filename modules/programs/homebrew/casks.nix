@@ -7,6 +7,7 @@
     "claude"
     "discord"
     "gifox"
+    "helium-browser"
     "little-snitch"
     "logseq"
     "obsidian"
