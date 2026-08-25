@@ -2,69 +2,69 @@
 
 ## Bootstrap a new machine
 
-Run the bootstrap as the `justin` user on Apple Silicon macOS or x86-64/ARM64
-Ubuntu. On macOS it prompts for either a Home Manager-only setup or the full
-`wrath` nix-darwin configuration. Ubuntu activates Home Manager only.
+Run the bootstrap as the user who will own the configuration:
 
 ```sh
 curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/sonntag/nix/main/bootstrap.sh | sh
 ```
 
-Home Manager is the safe default when the script cannot prompt. A target can
-also be selected explicitly:
+Bootstrap only installs Determinate Nix when necessary and adds `nixctl` to the
+current user's Nix profile. It does not require a username or apply any Home
+Manager, personal, or machine configuration. After it finishes, start the
+interactive setup in a new shell:
 
 ```sh
-# Home Manager only
-curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/sonntag/nix/main/bootstrap.sh |
-  sh -s -- home
-
-# Full macOS configuration
-curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/sonntag/nix/main/bootstrap.sh | sh -s -- wrath
+nixctl setup
 ```
 
-The script installs Determinate Nix when necessary and activates the selected
-configuration directly from GitHub. It offers to create a passphrase-protected,
-per-device SSH key; the private key is never stored in this flake. After
-activation it runs the Nixible policies resolved for that Den target, including
-the local checkout and native tool installers. Subsequent rebuilds can use:
+Setup clones the flake when needed, creates or loads the device's
+passphrase-protected SSH key, and lists compatible configurations. It can apply
+an existing configuration or scaffold a new nix-darwin/NixOS host and open its
+files in Neovim before activation. After activation it applies the Nixible
+policies for the selected target. Successful setup is recorded locally, so a
+later invocation exits without making changes; use `nixctl setup --force` to
+run it again.
+
+## Manage the flake with nixctl
+
+`nixctl` remembers the target selected by setup. Without that state, it detects
+nix-darwin or NixOS from the current system and otherwise uses the standalone
+Home Manager configuration for the current platform.
 
 ```sh
-# macOS
-drs
+# Build or activate this machine's configuration
+nixctl build
+nixctl switch
 
-# Ubuntu (use aarch64-linux on ARM64)
-home-manager switch --flake ~/.local/share/sonntag-nix#justin@x86_64-linux
+# Explicitly select another compatible configuration
+nixctl build wrath
+nixctl switch wrath
+
+# Forward additional arguments to the underlying build/switch command
+nixctl switch -- --show-trace
+
+# Update flake inputs
+nixctl update
 ```
 
-`huginn` is exported as a reusable NixOS module for a consuming infrastructure
-flake, rather than as `nixosConfigurations.huginn`, so it is not a bootstrap
-target in this repository.
+The old `drb`, `drs`, and `flakeup` helpers have been replaced by `nixctl build`,
+`nixctl switch`, and `nixctl update` respectively.
 
-### Move from Home Manager to a full machine configuration
+`huginn` remains a reusable NixOS module for a consuming infrastructure flake,
+rather than an activatable `nixosConfiguration` in this repository.
 
-No migration or Home Manager uninstall is required. After adding the new host
-to the local flake, activate it with its nix-darwin configuration name:
-
-```sh
-flake=~/.local/share/sonntag-nix
-host=my-new-host
-
-sudo nix run "$flake#darwinConfigurations.$host.config.system.build.darwin-rebuild" -- switch --flake "$flake#$host"
-```
-
-The nix-darwin activation then manages Home Manager as part of the machine
-configuration. Once it succeeds, use the machine rebuild rather than continuing
-to switch the standalone Home Manager profile independently.
+### Test a bootstrap branch or fork
 
 To test another branch or fork before it is merged, override the flake source:
 
 ```sh
 curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/sonntag/nix/main/bootstrap.sh | FLAKE_REF=github:sonntag/nix/my-branch sh
+
+# Keep setup on the same branch when it creates the checkout
+NIXCTL_REPO_BRANCH=my-branch nixctl setup
 ```
 
-Set `BOOTSTRAP_SSH_KEY=1` to create the local SSH key without prompting, or
-`BOOTSTRAP_SSH_KEY=0` to skip it. The key generator itself still prompts for a
-passphrase.
+For a fork, also set `NIXCTL_REPO_URL` to its HTTPS Git URL.
 
 ## Machine identities
 
@@ -91,7 +91,7 @@ nix run path:.#sops-status -- --check
 ```
 
 Register the printed SSH public key with GitHub before changing a checkout's
-push URL to SSH. The bootstrap checkout deliberately uses HTTPS so a GitHub SSH
+push URL to SSH. The setup checkout deliberately uses HTTPS so a GitHub SSH
 identity is never a prerequisite for rebuilding the machine.
 
 ### Enroll a new SOPS machine
@@ -103,8 +103,8 @@ decrypted. It also only runs when at least one secret is configured, so the
 secret-free standalone Home Manager targets do not generate an unused key.
 
 On a new `wrath` machine, the first activation starts the sops-nix launch agent.
-It creates the age key, but MacWhisper's secret remains unavailable. Bootstrap
-then prints the recipient and stops at the enrollment boundary. On an already
+It creates the age key, but MacWhisper's secret remains unavailable. Setup then
+prints the recipient and stops at the enrollment boundary. On an already
 trusted machine:
 
 1. Add the printed `age1...` recipient to `.sops.yaml`.
@@ -115,10 +115,10 @@ trusted machine:
    ```
 
 3. Commit and push the updated recipient metadata.
-4. Rerun bootstrap on the new machine; the same `wrath` policy now decrypts and
-   the remaining Nixible setup runs.
+4. Rerun `nixctl setup --force` on the new machine; the same `wrath` policy now
+   decrypts and the remaining Nixible setup runs.
 
-The standalone Home Manager bootstrap can finish without SOPS enrollment
+The standalone Home Manager setup can finish without SOPS enrollment
 because it has no configured secrets.
 
 ## Imperative playbooks
@@ -149,7 +149,7 @@ nix run path:.#nixible:justin@aarch64-darwin
 nix run path:.#nixible:justin@x86_64-linux
 ```
 
-The bootstrap runs the matching command once after a successful activation.
+`nixctl setup` runs the matching command once after a successful activation.
 Ordinary Home Manager and nix-darwin rebuilds never invoke Nixible. The current
 checkout and installer tasks remain safe to rerun because they are idempotent.
 

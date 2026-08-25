@@ -1,0 +1,490 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+program_name="${0##*/}"
+config_dir="${NIXCTL_CONFIG_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/sonntag-nix}"
+state_dir="${NIXCTL_STATE_DIR:-${XDG_STATE_HOME:-$HOME/.local/state}/nixctl}"
+setup_marker="$state_dir/setup-complete"
+target_file="$state_dir/target"
+repo_url="${NIXCTL_REPO_URL:-https://github.com/sonntag/nix.git}"
+repo_branch="${NIXCTL_REPO_BRANCH:-}"
+user_name="${NIXCTL_USER:-justin}"
+
+info() {
+  printf '\n==> %s\n' "$1"
+}
+
+die() {
+  printf '\nerror: %s\n' "$1" >&2
+  exit 1
+}
+
+usage() {
+  cat <<EOF
+Usage: $program_name <command> [options]
+
+Manage the Sonntag Nix flake on this machine.
+
+Commands:
+  switch [CONFIG] [-- ARGS...]  Activate the current or selected configuration
+  build [CONFIG] [-- ARGS...]   Build without activating
+  update [ARGS...]              Update the flake inputs
+  setup [--force]               Set up and activate a new machine
+  help                          Show this help
+
+Environment:
+  NIXCTL_CONFIG_DIR  Local flake checkout (default: $config_dir)
+  NIXCTL_REPO_URL    Git repository cloned by setup (default: $repo_url)
+  NIXCTL_REPO_BRANCH Optional branch cloned by setup
+  NIXCTL_USER        Configured user (default: $user_name)
+EOF
+}
+
+flake_ref() {
+  [ -f "$config_dir/flake.nix" ] ||
+    die "no flake checkout exists at $config_dir; run '$program_name setup' first"
+  printf 'path:%s\n' "$config_dir"
+}
+
+nix_system() {
+  local kernel machine
+  kernel="$(uname -s)"
+  machine="$(uname -m)"
+
+  case "$kernel:$machine" in
+    Darwin:arm64) printf 'aarch64-darwin\n' ;;
+    Linux:x86_64) printf 'x86_64-linux\n' ;;
+    Linux:aarch64 | Linux:arm64) printf 'aarch64-linux\n' ;;
+    *) die "unsupported platform: $kernel $machine" ;;
+  esac
+}
+
+machine_kind() {
+  case "$(uname -s)" in
+    Darwin) printf 'darwin\n' ;;
+    Linux)
+      if [ -e /etc/NIXOS ]; then
+        printf 'nixos\n'
+      else
+        printf 'home\n'
+      fi
+      ;;
+    *) die "unsupported operating system: $(uname -s)" ;;
+  esac
+}
+
+short_hostname() {
+  hostname -s 2>/dev/null || uname -n | cut -d. -f1
+}
+
+output_name() {
+  case "$1" in
+    darwin) printf 'darwinConfigurations\n' ;;
+    nixos) printf 'nixosConfigurations\n' ;;
+    home) printf 'homeConfigurations\n' ;;
+    *) die "unknown configuration kind: $1" ;;
+  esac
+}
+
+list_configs() {
+  local kind flake output
+  kind="$1"
+  flake="$(flake_ref)"
+  output="$(output_name "$kind")"
+
+  nix eval --json "$flake#$output" --apply 'x: builtins.attrNames x' 2>/dev/null |
+    jq -r '.[]' || true
+}
+
+config_exists() {
+  local kind requested candidate
+  kind="$1"
+  requested="$2"
+  while IFS= read -r candidate; do
+    [ "$candidate" = "$requested" ] && return 0
+  done < <(list_configs "$kind")
+  return 1
+}
+
+read_saved_target() {
+  local saved_kind saved_config extra
+  [ -f "$target_file" ] || return 1
+  IFS=$'\t' read -r saved_kind saved_config extra < "$target_file" || return 1
+  [ -n "$saved_kind" ] && [ -n "$saved_config" ] && [ -z "${extra:-}" ] || return 1
+  printf '%s\t%s\n' "$saved_kind" "$saved_config"
+}
+
+default_target() {
+  local saved kind config system
+  if saved="$(read_saved_target)"; then
+    printf '%s\n' "$saved"
+    return
+  fi
+
+  kind="$(machine_kind)"
+  system="$(nix_system)"
+  case "$kind" in
+    darwin)
+      config="$(short_hostname)"
+      if config_exists darwin "$config" &&
+        { command -v darwin-rebuild >/dev/null 2>&1 || [ -e /run/current-system ]; }; then
+        printf 'darwin\t%s\n' "$config"
+      else
+        printf 'home\t%s@%s\n' "$user_name" "$system"
+      fi
+      ;;
+    nixos) printf 'nixos\t%s\n' "$(short_hostname)" ;;
+    home) printf 'home\t%s@%s\n' "$user_name" "$system" ;;
+  esac
+}
+
+resolve_target() {
+  local requested="${1:-}" kind config system platform_kind
+  if [ -z "$requested" ]; then
+    default_target
+    return
+  fi
+
+  platform_kind="$(machine_kind)"
+  if [ "$platform_kind" != home ] && config_exists "$platform_kind" "$requested"; then
+    kind="$platform_kind"
+    config="$requested"
+  elif config_exists home "$requested"; then
+    kind=home
+    config="$requested"
+  else
+    system="$(nix_system)"
+    if config_exists home "$user_name@$requested"; then
+      kind=home
+      config="$user_name@$requested"
+    elif [ "$requested" = home ] && config_exists home "$user_name@$system"; then
+      kind=home
+      config="$user_name@$system"
+    else
+      die "configuration '$requested' does not exist in $config_dir"
+    fi
+  fi
+
+  case "$platform_kind:$kind" in
+    darwin:darwin | darwin:home | nixos:nixos | nixos:home | home:home) ;;
+    *) die "a $kind configuration cannot be used on this $platform_kind machine" ;;
+  esac
+  printf '%s\t%s\n' "$kind" "$config"
+}
+
+parse_target_args() {
+  requested_config=""
+  rebuild_args=()
+
+  if [ "$#" -gt 0 ] && [ "$1" != -- ] && [[ "$1" != -* ]]; then
+    requested_config="$1"
+    shift
+  fi
+  if [ "${1:-}" = -- ]; then
+    shift
+  fi
+  rebuild_args=("$@")
+}
+
+run_build() {
+  local kind="$1" config="$2" flake
+  shift 2
+  flake="$(flake_ref)"
+
+  case "$kind" in
+    darwin)
+      nix run "$flake#darwinConfigurations.$config.config.system.build.darwin-rebuild" -- \
+        build --flake "$flake#$config" "$@"
+      ;;
+    nixos)
+      command -v nixos-rebuild >/dev/null 2>&1 ||
+        die "nixos-rebuild is not available on this NixOS machine"
+      nixos-rebuild build --flake "$flake#$config" "$@"
+      ;;
+    home)
+      nix build "$flake#homeConfigurations.\"$config\".activationPackage" "$@"
+      ;;
+  esac
+}
+
+run_switch() {
+  local kind="$1" config="$2" flake generation
+  shift 2
+  flake="$(flake_ref)"
+
+  case "$kind" in
+    darwin)
+      sudo -H nix run \
+        "$flake#darwinConfigurations.$config.config.system.build.darwin-rebuild" -- \
+        switch --flake "$flake#$config" "$@" |& nom
+      ;;
+    nixos)
+      command -v nixos-rebuild >/dev/null 2>&1 ||
+        die "nixos-rebuild is not available on this NixOS machine"
+      sudo -H nixos-rebuild switch --flake "$flake#$config" "$@" |& nom
+      ;;
+    home)
+      info "Building Home Manager configuration $config"
+      generation="$(nix build --no-link --print-out-paths \
+        "$flake#homeConfigurations.\"$config\".activationPackage" "$@")"
+      [ -x "$generation/activate" ] ||
+        die "Home Manager activation script was not produced at $generation/activate"
+      info "Activating Home Manager configuration $config"
+      "$generation/activate"
+      ;;
+  esac
+}
+
+command_build() {
+  local target kind config
+  parse_target_args "$@"
+  target="$(resolve_target "$requested_config")"
+  IFS=$'\t' read -r kind config <<< "$target"
+  info "Building $kind configuration $config"
+  run_build "$kind" "$config" "${rebuild_args[@]}"
+}
+
+command_switch() {
+  local target kind config
+  parse_target_args "$@"
+  target="$(resolve_target "$requested_config")"
+  IFS=$'\t' read -r kind config <<< "$target"
+  info "Switching to $kind configuration $config"
+  run_switch "$kind" "$config" "${rebuild_args[@]}"
+}
+
+ensure_checkout() {
+  local -a clone_args
+  if [ -f "$config_dir/flake.nix" ]; then
+    info "Using the existing flake checkout at $config_dir"
+    return
+  fi
+  [ ! -e "$config_dir" ] ||
+    die "$config_dir exists but is not a Nix flake checkout"
+  info "Cloning the Sonntag Nix flake into $config_dir"
+  mkdir -p "$(dirname "$config_dir")"
+  clone_args=()
+  if [ -n "$repo_branch" ]; then
+    clone_args+=(--branch "$repo_branch")
+  fi
+  git clone "${clone_args[@]}" "$repo_url" "$config_dir"
+}
+
+choose_setup_target() {
+  local platform_kind system item index choice
+  local -a kinds configs labels
+  platform_kind="$(machine_kind)"
+  system="$(nix_system)"
+  kinds=()
+  configs=()
+  labels=()
+
+  if [ "$platform_kind" != home ]; then
+    while IFS= read -r item; do
+      [ -n "$item" ] || continue
+      kinds+=("$platform_kind")
+      configs+=("$item")
+      labels+=("$item ($platform_kind)")
+    done < <(list_configs "$platform_kind")
+  fi
+
+  if config_exists home "$user_name@$system"; then
+    kinds+=(home)
+    configs+=("$user_name@$system")
+    labels+=("$user_name@$system (standalone Home Manager)")
+  fi
+
+  printf '\nChoose a configuration to apply:\n' >/dev/tty
+  for ((index = 0; index < ${#labels[@]}; index++)); do
+    printf '  %d) %s\n' "$((index + 1))" "${labels[$index]}" >/dev/tty
+  done
+  if [ "$platform_kind" != home ]; then
+    printf '  %d) Create a new %s machine configuration\n' \
+      "$((index + 1))" "$platform_kind" >/dev/tty
+  fi
+  printf 'Selection: ' >/dev/tty
+  IFS= read -r choice </dev/tty || die "could not read a configuration selection"
+
+  case "$choice" in
+    '' | *[!0-9]*) die "invalid selection: ${choice:-empty}" ;;
+  esac
+  if [ "$choice" -ge 1 ] && [ "$choice" -le "${#labels[@]}" ]; then
+    setup_kind="${kinds[$((choice - 1))]}"
+    setup_config="${configs[$((choice - 1))]}"
+  elif [ "$platform_kind" != home ] && [ "$choice" -eq "$((index + 1))" ]; then
+    create_machine_config "$platform_kind" "$system"
+  else
+    die "selection $choice is out of range"
+  fi
+}
+
+create_machine_config() {
+  local kind="$1" system="$2" suggested name host_dir registration_file aspect_file
+  local nixos_import
+  suggested="$(short_hostname | tr '[:upper:]_' '[:lower:]-' | tr -cd 'a-z0-9-')"
+  printf 'New machine name [%s]: ' "$suggested" >/dev/tty
+  IFS= read -r name </dev/tty || die "could not read the machine name"
+  name="${name:-$suggested}"
+  [[ "$name" =~ ^[a-z0-9][a-z0-9-]*$ ]] ||
+    die "machine names may contain only lowercase letters, numbers, and hyphens"
+
+  host_dir="$config_dir/modules/hosts/$name"
+  registration_file="$host_dir/host.nix"
+  aspect_file="$host_dir/default.nix"
+  [ ! -e "$host_dir" ] || die "host files already exist at $host_dir"
+  mkdir -p "$host_dir"
+
+  if [ "$kind" = darwin ]; then
+    cat > "$registration_file" <<EOF
+{inputs, ...}: {
+  den.hosts.$system.$name = {
+    users.$user_name = {};
+    instantiate = args: inputs.darwin.lib.darwinSystem (args // {
+      specialArgs = (args.specialArgs or {}) // {inherit inputs;};
+    });
+  };
+}
+EOF
+    cat > "$aspect_file" <<EOF
+{den, ...}: {
+  den.aspects.$name = {
+    includes = [
+      den.batteries.hostname
+      den.aspects.auto-update
+      den.aspects.personal
+    ];
+
+    darwin.nix-homebrew.user = "$user_name";
+  };
+}
+EOF
+  else
+    cat > "$registration_file" <<EOF
+{inputs, ...}: {
+  den.hosts.$system.$name = {
+    users.$user_name = {};
+    instantiate = args: inputs.nixpkgs.lib.nixosSystem (args // {
+      specialArgs = (args.specialArgs or {}) // {inherit inputs;};
+    });
+  };
+}
+EOF
+    if [ -r /etc/nixos/hardware-configuration.nix ]; then
+      cp /etc/nixos/hardware-configuration.nix "$host_dir/hardware-configuration.nix"
+      nixos_import="imports = [./hardware-configuration.nix];"
+    else
+      nixos_import="# imports = [./hardware-configuration.nix];"
+    fi
+    cat > "$aspect_file" <<EOF
+{den, ...}: {
+  den.aspects.$name = {
+    includes = [den.batteries.hostname];
+
+    nixos = {
+      # Add this machine's hardware, boot, networking, and service settings.
+      $nixos_import
+      system.stateVersion = "26.05";
+    };
+  };
+}
+EOF
+  fi
+
+  info "Opening the new $name configuration in Neovim"
+  if command -v nvim >/dev/null 2>&1; then
+    nvim "$registration_file" "$aspect_file"
+  else
+    nix run nixpkgs#neovim -- "$registration_file" "$aspect_file"
+  fi
+  if ! nix eval --raw \
+    "$(flake_ref)#$(output_name "$kind").$name.config.networking.hostName" >/dev/null; then
+    die "the edited flake does not export a valid $kind configuration named '$name'"
+  fi
+  setup_kind="$kind"
+  setup_config="$name"
+}
+
+verify_sops_enrollment() {
+  local kind="$1" config="$2" age_key_file attempts
+  [ "$kind" = darwin ] && [ "$config" = wrath ] || return
+
+  age_key_file="$HOME/Library/Application Support/sops/age/keys.txt"
+  attempts=0
+  while [ ! -f "$age_key_file" ] && [ "$attempts" -lt 10 ]; do
+    sleep 1
+    attempts=$((attempts + 1))
+  done
+
+  info "Verifying SOPS enrollment"
+  nix run "$(flake_ref)#sops-status" -- --check
+}
+
+run_nixible() {
+  local kind="$1" config="$2" target flake
+  flake="$(flake_ref)"
+  case "$kind" in
+    darwin | nixos) target="$user_name@$config" ;;
+    home) target="$config" ;;
+  esac
+
+  if nix eval "$flake#apps.$(nix_system).\"nixible:$target\".program" \
+    --raw >/dev/null 2>&1; then
+    info "Applying Nixible policies for $target"
+    nix run "$flake#nixible:$target"
+  fi
+}
+
+command_setup() {
+  local force=false
+  case "${1:-}" in
+    --force) force=true; shift ;;
+    -h | --help)
+      printf 'Usage: %s setup [--force]\n' "$program_name"
+      return
+      ;;
+  esac
+  [ "$#" -eq 0 ] || die "unknown setup argument: $1"
+
+  if [ -e "$setup_marker" ] && ! "$force"; then
+    info "Setup has already completed on this machine; nothing to do"
+    printf "Run '%s setup --force' to run it again.\n" "$program_name"
+    return
+  fi
+  [ -t 0 ] && [ -t 1 ] || die "setup requires an interactive terminal"
+
+  ensure_checkout
+  info "Creating or loading this device's SSH identity"
+  nix run "$(flake_ref)#setup-ssh"
+  choose_setup_target
+  info "Applying $setup_kind configuration $setup_config"
+  run_switch "$setup_kind" "$setup_config"
+  verify_sops_enrollment "$setup_kind" "$setup_config"
+  run_nixible "$setup_kind" "$setup_config"
+
+  mkdir -p "$state_dir"
+  printf '%s\t%s\n' "$setup_kind" "$setup_config" > "$target_file"
+  : > "$setup_marker"
+  info "Setup complete"
+}
+
+main() {
+  local command="${1:-help}"
+  [ "$#" -eq 0 ] || shift
+  case "$command" in
+    switch) command_switch "$@" ;;
+    build) command_build "$@" ;;
+    update)
+      info "Updating flake inputs"
+      nix flake update --flake "$(flake_ref)" "$@"
+      ;;
+    setup) command_setup "$@" ;;
+    help | -h | --help) usage ;;
+    *)
+      usage >&2
+      die "unknown command: $command"
+      ;;
+  esac
+}
+
+main "$@"

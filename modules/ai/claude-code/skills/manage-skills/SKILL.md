@@ -52,19 +52,10 @@ Edit the skill's `SKILL.md` file directly in the flake, then apply the change by
 
 ## Applying changes (switching the system)
 
-After creating or modifying a skill, rebuild and switch to the new configuration. On NixOS/nix-darwin machines, run the appropriate switch command from the flake directory or use the `drs` command if available:
+After creating or modifying a skill, rebuild and switch to the new configuration with `nixctl`:
 
 ```bash
-drs
-```
-
-Or explicitly:
-```bash
-# nix-darwin (macOS)
-darwin-rebuild switch --flake ~/.local/share/sonntag-nix
-
-# NixOS (Linux)
-sudo nixos-rebuild switch --flake ~/.local/share/sonntag-nix
+nixctl switch
 ```
 
 ## Removing a skill

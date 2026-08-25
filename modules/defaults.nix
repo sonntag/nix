@@ -39,4 +39,14 @@ in {
     # standalone install, so let home-manager manage its own CLI declaratively.
     programs.home-manager.enable = !pkgs.stdenv.hostPlatform.isDarwin;
   };
+
+  den.default.nixos = {inputs, ...}: {
+    nixpkgs.overlays = [pkgsOverlay];
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      backupFileExtension = "backup";
+      extraSpecialArgs = {inherit inputs;};
+    };
+  };
 }
