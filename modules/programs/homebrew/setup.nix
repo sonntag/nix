@@ -1,23 +1,11 @@
 {
-  den.default.darwin = {inputs, ...}: let
-    inherit (inputs) nix-homebrew;
-  in {
-    imports = [nix-homebrew.darwinModules.nix-homebrew];
-
-    homebrew = {
-      enable = true;
-      onActivation = {
-        cleanup = "zap";
-        extraFlags = [
-          "--force-cleanup"
-        ];
-      };
-    };
-
-    nix-homebrew = {
-      enable = true;
-      autoMigrate = true;
-      enableRosetta = false;
+  den.default.darwin.homebrew = {
+    enable = true;
+    onActivation = {
+      cleanup = "zap";
+      extraFlags = [
+        "--force-cleanup"
+      ];
     };
   };
 }
