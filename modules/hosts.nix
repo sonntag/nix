@@ -9,8 +9,4 @@ in {
     users.justin = {};
     instantiate = withInputs;
   };
-  den.hosts.aarch64-darwin.fafnir = {
-    users.justin = {};
-    instaniate = withInputs;
-  };
 }
