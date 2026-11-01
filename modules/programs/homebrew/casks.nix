@@ -5,6 +5,7 @@
     "arc"
     "claude"
     "discord"
+    "font-libron"
     "gifox"
     "helium-browser"
     {
