@@ -17,12 +17,6 @@
         push = {autoSetupRemote = true;};
         rebase = {updateRefs = true;};
       };
-      ignores = [
-        "*.ignore.*"
-        ".clj-kondo/babashka"
-        ".clj-kondo/rewrite-clj"
-        ".clj-kondo/http-kit"
-      ];
     };
   };
 }

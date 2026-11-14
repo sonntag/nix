@@ -20,7 +20,6 @@
           }
         else coreutils
       )
-      devenv
       eza
       fd
       gh
